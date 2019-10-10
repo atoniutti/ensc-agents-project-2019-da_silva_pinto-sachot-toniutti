@@ -7673,6 +7673,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2497146789353068749}
   - component: {fileID: 5489226073813104055}
+  - component: {fileID: 5535118307005468}
+  - component: {fileID: 756197206596798087}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -7770,7 +7772,7 @@ Animator:
   m_GameObject: {fileID: 1512360783570496222}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e9968b9c90f19df41a94691ffb839e12, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 20c8bcfa197c3944dad1ff821b590bec, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -7779,6 +7781,42 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5535118307005468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512360783570496222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d4666b2b3a5ec47a60fa67633eb3cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 756197206596798087}
+  _fieldOfView: {fileID: 4193321012658101405}
+--- !u!195 &756197206596798087
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512360783570496222}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 3
+  m_Speed: 0.8
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 30
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 10
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1536404198845149385
 GameObject:
   m_ObjectHideFlags: 0
