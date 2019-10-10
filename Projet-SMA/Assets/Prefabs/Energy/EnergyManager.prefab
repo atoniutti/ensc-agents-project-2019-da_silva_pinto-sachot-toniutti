@@ -46,6 +46,6 @@ MonoBehaviour:
   energy: {fileID: 8609793076345268679, guid: ecef8506331791d48b17d458a41b4eac, type: 3}
   spawnTime: 3
   spawnPoints:
-  - {fileID: 925883568089517358, guid: a8fedf17c4795044497d61cd73871c08, type: 3}
-  - {fileID: 8023855778748423885, guid: 0fe7e2657d9f7144ea158900d9609ec8, type: 3}
+  - {fileID: 8496950566649920153, guid: 59e3439cf71bb6846b6ddfa21bd140ff, type: 3}
   - {fileID: 6469402898700207385, guid: fdda8607af3ae394c9e4d4d57d3b646d, type: 3}
+  - {fileID: 925883568089517358, guid: a8fedf17c4795044497d61cd73871c08, type: 3}
