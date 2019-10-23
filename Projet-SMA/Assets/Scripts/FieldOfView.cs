@@ -8,6 +8,8 @@ public class FieldOfView : MonoBehaviour
     public Transform _position;
     public PickableEnergy _pile;
     public int _identifiant = 0;
+
+    // If
     void OnTriggerEnter (Collider col)
     {
         if (col.gameObject.name == "EnergyCoil(Clone)" && _identifiant==0)
@@ -17,7 +19,13 @@ public class FieldOfView : MonoBehaviour
             _pile = col.GetComponent<PickableEnergy>();
             _position = col.transform;
             _identifiant = _pile.id;
-           
         }
     }
+
+    // If the energy is destroy by the pile
+    private void OnTriggerExit(Collider col)
+    {
+        
+    }
+
 }
