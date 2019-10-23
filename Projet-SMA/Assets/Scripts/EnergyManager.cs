@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyManager : MonoBehaviour
 {
-    public GameObject energy;               // The energy prefab to be spawned.
+    public GameObject energy; // The energy prefab to be spawned.
     public float spawnTime = 3f;            // How long between each spawn.
     public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
 

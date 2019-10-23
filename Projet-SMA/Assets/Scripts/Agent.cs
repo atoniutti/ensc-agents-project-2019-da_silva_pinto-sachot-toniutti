@@ -10,7 +10,8 @@ public class Agent : MonoBehaviour
     private Vector3 targetPileEnergy ;
     private Transform _moveTarget;
     private Animator animator;
-    private bool canGoToPile = false;
+    public int canTake;
+    
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
@@ -33,9 +34,10 @@ public class Agent : MonoBehaviour
        
             
         //detection dans le champs de vision cf : probleme pour aller d'abord sur l energy puis la pile.
-        if (_fieldOfView.energyFront == true)
+        if (_fieldOfView._energyFront == true )
         {
-            _agent.SetDestination(new Vector3(_fieldOfView.position.position.x+0.5f, 0, _fieldOfView.position.position.z+0.5f));
+            canTake = _fieldOfView._identifiant;
+            _agent.SetDestination(new Vector3(_fieldOfView._position.position.x+0.5f, 0, _fieldOfView._position.position.z+0.5f));
            
             animator.SetBool("walk", true);
             _agent.SetDestination(targetPileEnergy);

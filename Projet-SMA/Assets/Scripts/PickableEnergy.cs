@@ -7,17 +7,22 @@ public class PickableEnergy : MonoBehaviour
     private List<GameObject> listAgent = new List<GameObject>();
     private Transform player;
     private Transform playerCam;
+    private Agent agent;
     private float[] distance = new float[2];
     private bool hasPlayer = false;
     private bool beingCarried = false;
     private bool touched = false;
+    public static int idPrec = 0;
+    public int id;
 
     private void Start()
     {
+        id = idPrec + 1;
         foreach (GameObject agent in GameObject.FindGameObjectsWithTag("agent"))
         {
             listAgent.Add(agent);
         }
+        idPrec = id;
     }
     void Update()
     {
@@ -31,11 +36,12 @@ public class PickableEnergy : MonoBehaviour
                 {
                     player = listAgent[i].transform;
                     playerCam = listAgent[i].transform;
+                    agent = listAgent[i].GetComponent<Agent>();
                 }
             }
         }
         
-        if (player!=null)
+        if (player!=null && agent.canTake==id)
         {
             // check distance between objet and player
             float dist = Vector3.Distance(gameObject.transform.position, player.position);
