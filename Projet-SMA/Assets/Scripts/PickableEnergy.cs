@@ -4,16 +4,15 @@ using System.Collections.Generic;
 
 public class PickableEnergy : MonoBehaviour
 {
-    private List<GameObject> listAgent = new List<GameObject>();
+    private List<GameObject> listAgent = new List<GameObject>(); //list of the agnet in the scene
     private Transform player;
     private Transform playerCam;
     private Agent agent;
     private float[] distance = new float[2];
-    private bool hasPlayer = false;
-    private bool beingCarried = false;
-    private bool touched = false;
+    public bool hasPlayer = false;
     public static int idPrec = 0;
-    public int id;
+    public int id; //identifiant of the enrgy
+
 
     private void Start()
     {
@@ -31,7 +30,7 @@ public class PickableEnergy : MonoBehaviour
         {
             for(int i=0; i<listAgent.Count; i++)
             {
-                distance[i]= Vector3.Distance(gameObject.transform.position, listAgent[i].transform.position);
+                distance[i]= Vector3.Distance(transform.position, listAgent[i].transform.position);
                 if (distance[i]<=0.8)
                 {
                     player = listAgent[i].transform;
@@ -44,11 +43,11 @@ public class PickableEnergy : MonoBehaviour
         if (player!=null && agent.canTake==id)
         {
             // check distance between objet and player
-            float dist = Vector3.Distance(gameObject.transform.position, player.position);
+            float dist = Vector3.Distance(transform.position, player.position);
 
 
             // if - or = 0.3 distance = you can carry 
-            if (dist <= 0.5f)
+            if (dist <= 0.3f)
             {
                 hasPlayer = true;
             }
@@ -62,21 +61,11 @@ public class PickableEnergy : MonoBehaviour
             {
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.parent = playerCam;
-                beingCarried = true;
             }
 
-            //  If you carry  the object
-            if (beingCarried)
-            {
-                // si l'objet touche un mur / objet avec collider
-                if (touched)
-                {
-                    GetComponent<Rigidbody>().isKinematic = false;
-                    transform.parent = null;
-                    beingCarried = false;
-                    touched = false;
-                }
-            }
+           
+
+
         }
     }
         

@@ -11,7 +11,7 @@ public class Agent : MonoBehaviour
     private Transform _moveTarget;
     private Animator animator;
     public int canTake;
-    
+    public bool bol;
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
@@ -36,16 +36,25 @@ public class Agent : MonoBehaviour
         //detection dans le champs de vision cf : probleme pour aller d'abord sur l energy puis la pile.
         if (_fieldOfView._energyFront == true )
         {
-            canTake = _fieldOfView._identifiant;
-            _agent.SetDestination(new Vector3(_fieldOfView._position.position.x+0.5f, 0, _fieldOfView._position.position.z+0.5f));
-           
-            animator.SetBool("walk", true);
-            _agent.SetDestination(targetPileEnergy);
-            if (transform.position.x == targetPileEnergy.x && transform.position.z == targetPileEnergy.z)
+                canTake = _fieldOfView._identifiant;
+                _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, _fieldOfView.transform.position.y, _fieldOfView._position.position.z));
+                animator.SetBool("walk", true);
+
+            bol = _fieldOfView._energyPickable;
+
+            if (_fieldOfView._energyPickable == true)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                animator.SetBool("walk", false);
+                animator.SetBool("walk", true);
+                int i = 0;
+                Debug.Log("test"+i);
+                _agent.SetDestination(targetPileEnergy);
+                if (transform.position.x == targetPileEnergy.x && transform.position.z == targetPileEnergy.z)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                    animator.SetBool("walk", false);
+                }
             }
+           
         }
             
         

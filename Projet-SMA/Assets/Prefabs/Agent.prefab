@@ -17876,8 +17876,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3076428152252753487}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.419114, y: -1.0098073, z: -11.5}
+  m_LocalRotation: {x: -0, y: -0.99999803, z: -0, w: -0.0019959235}
+  m_LocalPosition: {x: -4.68, y: -1.1, z: -13.44}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 9175980140877492245}
@@ -17983,6 +17983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 3761590211644115478}
   _fieldOfView: {fileID: 323410599710085132}
+  canTake: 0
+  bol: 0
 --- !u!195 &3761590211644115478
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17993,10 +17995,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 3
-  m_Speed: 0.8
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 30
+  m_AngularSpeed: 45
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -35928,8 +35930,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e16ad66340956540b1919a2579ffbf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyFront: 0
-  position: {fileID: 0}
+  _energyFront: 0
+  _energyPickable: 0
+  _position: {fileID: 0}
+  _energy: {fileID: 0}
+  _identifiant: 0
 --- !u!1 &7191068634775425490
 GameObject:
   m_ObjectHideFlags: 0
