@@ -6,17 +6,20 @@ using UnityEngine.AI;
 public class Agent : MonoBehaviour
 {
     public NavMeshAgent _agent;
-    public FieldOfView _fieldOfView;
-    private Vector3 targetPileEnergy ;
+    public static int _compteur = 0;
+    public int _name;
+    public FieldOfViewAgent _fieldOfView;
+    public Camera _camera; //camera of the agent in order to modified display
+    private Vector3 targetPileEnergy = new Vector3(-2f, 0f, -3f);
     private Transform _moveTarget;
     private Animator animator;
     public int canTake;
-    public bool bol;
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
+        _name = _compteur + 1;
+        _compteur = _name;
         animator = GetComponent<Animator>();
-        targetPileEnergy = new Vector3(-0.98f, 0f, -3.65f);
     }
     private void Update()
     {
@@ -34,31 +37,28 @@ public class Agent : MonoBehaviour
        
             
         //detection dans le champs de vision cf : probleme pour aller d'abord sur l energy puis la pile.
-        if (_fieldOfView._energyFront == true )
+        if (_fieldOfView._energyFront == true  )
         {
+            if (_fieldOfView._ownerEnergy == _name)
+            {
                 canTake = _fieldOfView._identifiant;
                 _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, _fieldOfView.transform.position.y, _fieldOfView._position.position.z));
                 animator.SetBool("walk", true);
 
-            bol = _fieldOfView._energyPickable;
 
-            if (_fieldOfView._energyPickable == true)
-            {
-                animator.SetBool("walk", true);
-                int i = 0;
-                Debug.Log("test"+i);
-                _agent.SetDestination(targetPileEnergy);
-                if (transform.position.x == targetPileEnergy.x && transform.position.z == targetPileEnergy.z)
+                if (_fieldOfView._energyPickable == true)
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                    animator.SetBool("walk", false);
+                    animator.SetBool("walk", true);
+                    _agent.SetDestination(targetPileEnergy);
                 }
             }
-           
         }
-            
-        
-       
+
+        if (_fieldOfView.currentObjet==null)
+        {
+            animator.SetBool("walk", false);
+        }
+
     }
     
 

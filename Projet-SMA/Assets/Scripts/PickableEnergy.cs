@@ -6,22 +6,23 @@ public class PickableEnergy : MonoBehaviour
 {
     private List<GameObject> listAgent = new List<GameObject>(); //list of the agnet in the scene
     private Transform player;
-    private Transform playerCam;
-    private Agent agent;
-    private float[] distance = new float[2];
+    public Agent agent;
+    private float[] distance;
     public bool hasPlayer = false;
     public static int idPrec = 0;
-    public int id; //identifiant of the enrgy
+    public int id; //identifiant of the energy
+    public int matriculAgent;
 
 
     private void Start()
     {
         id = idPrec + 1;
+        idPrec = id;
         foreach (GameObject agent in GameObject.FindGameObjectsWithTag("agent"))
         {
             listAgent.Add(agent);
         }
-        idPrec = id;
+        distance = new float[listAgent.Count];
     }
     void Update()
     {
@@ -31,16 +32,17 @@ public class PickableEnergy : MonoBehaviour
             for(int i=0; i<listAgent.Count; i++)
             {
                 distance[i]= Vector3.Distance(transform.position, listAgent[i].transform.position);
-                if (distance[i]<=0.8)
+                if (distance[i]<=1)
                 {
-                    player = listAgent[i].transform;
-                    playerCam = listAgent[i].transform;
+
                     agent = listAgent[i].GetComponent<Agent>();
+                    player = agent.transform;
+                    matriculAgent = agent._name;
                 }
             }
         }
         
-        if (player!=null && agent.canTake==id)
+        if (player!=null && agent.canTake == id)
         {
             // check distance between objet and player
             float dist = Vector3.Distance(transform.position, player.position);
@@ -56,16 +58,12 @@ public class PickableEnergy : MonoBehaviour
                 hasPlayer = false;
             }
 
-            // If you can carry  the object
+            // If you can carry the object
             if (hasPlayer)
             {
                 GetComponent<Rigidbody>().isKinematic = true;
-                transform.parent = playerCam;
+                transform.parent = player;
             }
-
-           
-
-
         }
     }
         
