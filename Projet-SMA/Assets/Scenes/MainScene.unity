@@ -621,6 +621,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6660962089194563333, guid: 707306cf45dda234782afcda2f8a7f7d,
+        type: 3}
+      propertyPath: m_Name
+      value: CyberpunkBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660962089194563333, guid: 707306cf45dda234782afcda2f8a7f7d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596453580528902191, guid: 707306cf45dda234782afcda2f8a7f7d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270506714301175, guid: 707306cf45dda234782afcda2f8a7f7d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1942108827593183127, guid: 707306cf45dda234782afcda2f8a7f7d,
         type: 3}
       propertyPath: m_UseGravity
@@ -655,25 +674,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 6660962089194563333, guid: 707306cf45dda234782afcda2f8a7f7d,
-        type: 3}
-      propertyPath: m_Name
-      value: CyberpunkBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 6660962089194563333, guid: 707306cf45dda234782afcda2f8a7f7d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596453580528902191, guid: 707306cf45dda234782afcda2f8a7f7d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270506714301175, guid: 707306cf45dda234782afcda2f8a7f7d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 589047875573950676, guid: 707306cf45dda234782afcda2f8a7f7d,
         type: 3}
@@ -7471,7 +7471,7 @@ PrefabInstance:
     - target: {fileID: 3788058530260868831, guid: ae8bc82ca6c202041a1e0294826e508a,
         type: 3}
       propertyPath: m_Name
-      value: ProfRobot
+      value: RobotProf
       objectReference: {fileID: 0}
     - target: {fileID: 201178678208539852, guid: ae8bc82ca6c202041a1e0294826e508a,
         type: 3}
