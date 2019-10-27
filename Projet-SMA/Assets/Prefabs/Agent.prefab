@@ -17985,7 +17985,15 @@ MonoBehaviour:
   _name: 0
   _fieldOfView: {fileID: 323410599710085132}
   _camera: {fileID: 5347812571271413660}
-  canTake: 0
+  target:
+  - {fileID: 925883568089517358, guid: a8fedf17c4795044497d61cd73871c08, type: 3}
+  - {fileID: 8496950566649920153, guid: 59e3439cf71bb6846b6ddfa21bd140ff, type: 3}
+  - {fileID: 6469402898700207385, guid: fdda8607af3ae394c9e4d4d57d3b646d, type: 3}
+  - {fileID: 8023855778748423885, guid: 0fe7e2657d9f7144ea158900d9609ec8, type: 3}
+  - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
+  - {fileID: 1602671006598870460, guid: 0f4873711c0fc584ea17318af3a015e7, type: 3}
+  canTakeEnergy: 0
+  currentState: 0
 --- !u!195 &3761590211644115478
 NavMeshAgent:
   m_ObjectHideFlags: 0

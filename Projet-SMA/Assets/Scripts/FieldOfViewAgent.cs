@@ -12,43 +12,54 @@ public class FieldOfViewAgent : MonoBehaviour
     public int _identifiant = 0; // name of the energy
     public int _ownerEnergy; // owner of the gameObject energy
     public GameObject currentObjet;
-    private void Update()
+    private int numberOfPile = 0;
+    void OnTriggerEnter(Collider col)
     {
-        View();
-
-    }
-    // If the energy enter in the field of view
-    void OnTriggerEnter (Collider col)
-    {
-        if (col.gameObject.name == "EnergyCoil(Clone)" )
+        //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
+        if (col.gameObject.name == "EnergyCoil(Clone)")
         {
+            numberOfPile += 1;
+            if (numberOfPile>1)
+            {
+               
+                
+            }
+
+        }
+        
+            // If the energy enter in the field of view
+            if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState != AgentStates.HavingEnergy)
+        {
+
             currentObjet = col.gameObject;
             _energyFront = true;
             _energy = col.GetComponent<PickableEnergy>();
             _position = col.transform;
-            _identifiant = _energy.id;
-            
+            _identifiant = _energy.idEnergy;
+
         }
-        if(col.gameObject.name == "EnergyBoxEnter")
+        // If the box Energy enter in the field of view 
+        if (col.gameObject.name == "EnergyBoxEnterAgent")
         {
-            if(currentObjet!=null)
+            if (currentObjet != null && currentObjet.name == "EnergyCoil(Clone)")
             {
                 PoseEnergy();
             }
         }
     }
-
-    // If the energy is destroy by the pile
-     void OnTriggerExit(Collider col)
+    private void Update()
     {
-        
+        View();
     }
+    
+   
     private void View()
     {
-        if (_identifiant != 0 && _owner._name == _energy.matriculAgent)
+        if (_identifiant != 0 && _owner._name == _energy.matriculAgent )
         {
             _energyPickable = _energy.hasPlayer;
             _ownerEnergy = _energy.matriculAgent;
+
         }
     }
     public void PoseEnergy()
@@ -61,6 +72,7 @@ public class FieldOfViewAgent : MonoBehaviour
         _energy = null;
         _energyFront = false;
         _energyPickable = false;
+
     }
 
 }
