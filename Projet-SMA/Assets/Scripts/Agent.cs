@@ -6,21 +6,21 @@ using UnityEngine.AI;
 public class Agent : MonoBehaviour
 {
     public NavMeshAgent _agent;
-    public static int _compteur = 0;
+    public static int _precName = 0;
     public int _name; // name of the agent
     public FieldOfViewAgent _fieldOfView; //field of view of the agent
     public Camera _camera; //camera of the agent in order to modified display
     public Transform[] target; // An array where he have to go
     private Vector3 targetPileEnergy = new Vector3(-2f, 0f, -3f);
     private Animator animator;
-    public int canTakeEnergy;
+    public int canTakeEnergy; //identifiant of the energy that the agent can take
     public AgentStates currentState ;
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
-        _name = _compteur + 1;
+        _name = _precName + 1;
         currentState = AgentStates.Idle;
-        _compteur = _name;
+        _precName = _name;
         animator = GetComponent<Animator>();
         _camera.targetDisplay = _name;
     }

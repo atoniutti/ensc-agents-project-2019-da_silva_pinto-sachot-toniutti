@@ -10,6 +10,7 @@ public class CylinderLevel : MonoBehaviour
     public float addNumber;
     public string nameOfTheObject;
     public CylinderLevel energy;
+
     private void Start()
     {
         _rate =_rateStart;
@@ -20,6 +21,7 @@ public class CylinderLevel : MonoBehaviour
     {
         if (col.gameObject.name == nameOfTheObject)
         {
+            if (_rate<=1.4f )
             _rate += addNumber;
             _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, _rate, _cylinder.transform.localPosition.z);
         }

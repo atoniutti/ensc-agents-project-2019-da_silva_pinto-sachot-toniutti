@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046248898748356033}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.0040513277, y: -2.8, z: 0.00023126602}
+  m_LocalPosition: {x: 0.0040513277, y: 1.5, z: 0.00023126602}
   m_LocalScale: {x: 1.7500005, y: 7.493131, z: 2.5000007}
   m_Children: []
   m_Father: {fileID: 5476290399150768774}
@@ -310,7 +310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cylinder: {fileID: 1046248898748356033}
   _rateStart: -5.7
-  addNumber: 1
+  _rate: 0
+  addNumber: 0.1
   nameOfTheObject: EnergyCoil(Clone)
   energy: {fileID: 0}
 --- !u!1 &1616932682240808393
