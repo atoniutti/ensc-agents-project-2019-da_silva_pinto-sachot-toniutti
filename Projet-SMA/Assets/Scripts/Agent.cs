@@ -27,7 +27,7 @@ public class Agent : MonoBehaviour
     private void Update()
     {  
         //detection of energy in the field of view of the agent 
-        if (_fieldOfView._energyFront == true  && currentState !=AgentStates.HavingEnergy)
+        if (_fieldOfView._energyFront == true  && currentState ==AgentStates.FindingEnergy)
         {
             if (_fieldOfView._ownerEnergy == _name)
             {
