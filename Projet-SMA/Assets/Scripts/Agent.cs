@@ -27,7 +27,7 @@ public class Agent : MonoBehaviour
     private void Update()
     {  
         //detection of energy in the field of view of the agent 
-        if (_fieldOfView._energyFront == true  && currentState ==AgentStates.FindingEnergy)
+        if (_fieldOfView._energyFront == true  && currentState == AgentStates.FindingEnergy)
         {
             if (_fieldOfView._ownerEnergy == _name)
             {
@@ -35,9 +35,7 @@ public class Agent : MonoBehaviour
                 canTakeEnergy = _fieldOfView._identifiant;
                 animator.SetBool("walk", true);
                 _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, _fieldOfView.transform.position.y, _fieldOfView._position.position.z));
-                
-               
-
+       
                 // if the agent enough near of the energy 
                 if (_fieldOfView._energyPickable == true)
                 {

@@ -13,6 +13,10 @@ public class FieldOfViewAgent : MonoBehaviour
     public int _ownerEnergy; // owner of the gameObject energy
     public GameObject currentObjet;
     private int numberOfPile = 0;
+    private void Update()
+    {
+        View();
+    }
     void OnTriggerEnter(Collider col)
     {
         //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
@@ -47,11 +51,6 @@ public class FieldOfViewAgent : MonoBehaviour
             }
         }
     }
-    private void Update()
-    {
-        View();
-    }
-    
    
     private void View()
     {

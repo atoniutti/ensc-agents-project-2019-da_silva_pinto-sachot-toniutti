@@ -36,7 +36,7 @@ public class PickableEnergy : MonoBehaviour
                 distance[i]= Vector3.Distance(transform.position, listAgent[i].transform.position);
 
                 //If agent has near of the pile and he want this type of pile
-                if (distance[i]<=2 && listAgent[i].GetComponent<Agent>().currentState==AgentStates.FindingEnergy )
+                if (distance[i]<=2 && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingEnergy )
                 {
                     agent = listAgent[i].GetComponent<Agent>();
                     player = agent.transform;
@@ -69,6 +69,8 @@ public class PickableEnergy : MonoBehaviour
             }
             
         }
+        
+        
         
 
 
