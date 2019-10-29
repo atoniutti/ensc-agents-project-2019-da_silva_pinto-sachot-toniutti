@@ -141,7 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!1001 &570019836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -179,8 +178,6 @@ PrefabInstance:
 =======
 =======
 >>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
-=======
->>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
 --- !u!1 &452267991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 589577717655014142, guid: 707306cf45dda234782afcda2f8a7f7d,
@@ -200,9 +197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
-=======
 >>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
 =======
 >>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
@@ -675,11 +669,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!1001 &479327440740428548
 =======
-=======
->>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
 --- !u!4 &971173362882620559
 Transform:
   m_ObjectHideFlags: 0
@@ -701,7 +692,6 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1941427800}
-<<<<<<< HEAD
     m_Modifications:
     - target: {fileID: 8468742927771997024, guid: 6087378c3946f58468df9f07ec4235db,
         type: 3}
@@ -787,8 +777,6 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 1941427800}
-=======
->>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
     m_Modifications:
     - target: {fileID: 9053617073390186645, guid: 7add80352d9861f40b2cb7822d5ebef7,
         type: 3}
@@ -8196,10 +8184,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 704c12b257203374b879ea154e36e555, type: 3}
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
-=======
->>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
 =======
 >>>>>>> c83e4cff0b3938ff7d3c79a84ba7ce313b3b8c04
 --- !u!1 &8388838533220023057
