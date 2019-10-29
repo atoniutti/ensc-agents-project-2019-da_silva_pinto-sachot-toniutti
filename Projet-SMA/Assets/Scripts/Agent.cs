@@ -31,11 +31,11 @@ public class Agent : MonoBehaviour
         {
             if (_fieldOfView._ownerEnergy == _name)
             {
-
+                
                 canTakeEnergy = _fieldOfView._identifiant;
                 animator.SetBool("walk", true);
                 _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, _fieldOfView.transform.position.y, _fieldOfView._position.position.z));
-       
+
                 // if the agent enough near of the energy 
                 if (_fieldOfView._energyPickable == true)
                 {
@@ -50,7 +50,6 @@ public class Agent : MonoBehaviour
         //if the object is posed or destroyed
         if (_fieldOfView.currentObjet==null)
         {
-            currentState = AgentStates.Idle;
             animator.SetBool("walk", false);
         }
 
