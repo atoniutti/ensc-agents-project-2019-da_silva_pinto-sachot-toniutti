@@ -9,9 +9,6 @@ ModelImporter:
   - first:
       74: 2212242663284987593
     second: Radioactive_Waste_Sloshing
-  - first:
-      74: -4465585249817715065
-    second: Armature|Radioactive_Waste_Sloshing
   externalObjects: {}
   materials:
     importMaterials: 1
