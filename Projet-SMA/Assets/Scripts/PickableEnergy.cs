@@ -46,28 +46,38 @@ public class PickableEnergy : MonoBehaviour
         }
         
       //if there is an agnet near and he want this energy pile
-        if (player != null && agent.canTakeEnergy == idEnergy )
+        if (player != null  )
         {
-            // check distance between objet and player
-            float dist = Vector3.Distance(transform.position, player.position);
+            if  (agent.canTakeEnergy == idEnergy )
+            {
+                // check distance between objet and player
+                float dist = Vector3.Distance(transform.position, player.position);
 
-            // if - or = 0.3 distance = you can carry 
-            if (dist <= 0.3f)
-            {
-                hasPlayer = true;
-            }
-            else
-            {
-                hasPlayer = false;
+                // if - or = 0.3 distance = you can carry 
+                if (dist <= 0.3f)
+                {
+                    hasPlayer = true;
+                }
+                else
+                {
+                    hasPlayer = false;
+                }
+
+                // If you can carry the object
+                if (hasPlayer)
+                {
+                    GetComponent<Rigidbody>().isKinematic = true;
+                    transform.parent = player;
+                }
             }
 
-            // If you can carry the object
-            if (hasPlayer)
+            if(agent.canTakeEnergy != idEnergy && agent.currentState==AgentStates.HavingEnergy)
             {
-                GetComponent<Rigidbody>().isKinematic = true;
-                transform.parent = player;
+                agent = null;
+                matriculAgent = 0;
+                player = null;
             }
-            
+
         }
         
         

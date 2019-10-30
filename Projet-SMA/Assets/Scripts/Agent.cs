@@ -39,14 +39,18 @@ public class Agent : MonoBehaviour
                 // if the agent enough near of the energy 
                 if (_fieldOfView._energyPickable == true)
                 {
+
+                    currentState = AgentStates.HavingEnergy;
                     animator.SetTrigger("takeRessource");
                     animator.SetBool("walk", true);
-                    currentState = AgentStates.HavingEnergy; 
                     _agent.SetDestination(target[(int)Direction.BatteryEnergyPoint].position); //agent go to the battery
                 }
             }
         }
-
+        if (_fieldOfView._energyFront == false)
+        {
+            canTakeEnergy = 0;
+        }
         //if the object is posed or destroyed
         if (_fieldOfView.currentObjet==null)
         {
