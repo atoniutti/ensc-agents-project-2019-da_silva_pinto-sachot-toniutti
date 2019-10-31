@@ -53,8 +53,8 @@ public class PickableEnergy : MonoBehaviour
                 // check distance between objet and player
                 float dist = Vector3.Distance(transform.position, player.position);
 
-                // if - or = 0.6 distance = you can carry 
-                if (dist <= 0.6f)
+                // if - or = 0.5 distance = you can carry 
+                if (dist <= 0.5f)
                 {
                     hasPlayer = true;
                 }

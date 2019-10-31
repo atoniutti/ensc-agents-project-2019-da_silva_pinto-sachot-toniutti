@@ -38,9 +38,8 @@ public class Agent : MonoBehaviour
                 _agent.SetDestination(new Vector3(_fieldOfView._position.position.x,transform.position.y, _fieldOfView._position.position.z));
 
                 // if the agent enough near of the energy 
-                if (_fieldOfView._energyPickable == true)
+                if (_fieldOfView._energyPickable == true && _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z)))
                 {
-
                     currentState = AgentStates.HavingEnergy;
                     animator.SetTrigger("takeRessource");
                     animator.SetBool("walk", true);
@@ -54,7 +53,7 @@ public class Agent : MonoBehaviour
             }
         }
 
-        if (!_fieldOfView._energyFront)
+        if (_fieldOfView._energyFront==false)
         {
             canTakeEnergy = 0;
             
