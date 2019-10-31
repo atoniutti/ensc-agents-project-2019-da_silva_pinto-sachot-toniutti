@@ -34,7 +34,7 @@ public class Agent : MonoBehaviour
                 
                 canTakeEnergy = _fieldOfView._identifiant;
                 animator.SetBool("walk", true);
-                _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, _fieldOfView.transform.position.y, _fieldOfView._position.position.z));
+                _agent.SetDestination(new Vector3(_fieldOfView._position.position.x,transform.position.y, _fieldOfView._position.position.z));
 
                 // if the agent enough near of the energy 
                 if (_fieldOfView._energyPickable == true)
@@ -45,6 +45,11 @@ public class Agent : MonoBehaviour
                     animator.SetBool("walk", true);
                     _agent.SetDestination(target[(int)Direction.BatteryEnergyPoint].position); //agent go to the battery
                 }
+            }
+            else
+            {
+                canTakeEnergy = 0;
+
             }
         }
         if (_fieldOfView._energyFront == false)

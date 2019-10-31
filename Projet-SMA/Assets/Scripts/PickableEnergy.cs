@@ -53,8 +53,8 @@ public class PickableEnergy : MonoBehaviour
                 // check distance between objet and player
                 float dist = Vector3.Distance(transform.position, player.position);
 
-                // if - or = 0.3 distance = you can carry 
-                if (dist <= 0.3f)
+                // if - or = 0.6 distance = you can carry 
+                if (dist <= 0.6f)
                 {
                     hasPlayer = true;
                 }
@@ -64,18 +64,20 @@ public class PickableEnergy : MonoBehaviour
                 }
 
                 // If you can carry the object
-                if (hasPlayer)
+                if (hasPlayer==true)
                 {
                     GetComponent<Rigidbody>().isKinematic = true;
                     transform.parent = player;
                 }
             }
 
-            if(agent.canTakeEnergy != idEnergy && agent.currentState==AgentStates.HavingEnergy)
+            if(agent.canTakeEnergy != idEnergy && agent.currentState == AgentStates.HavingEnergy)
             {
                 agent = null;
                 matriculAgent = 0;
                 player = null;
+                hasPlayer = false;
+                transform.parent = null;
             }
 
         }
