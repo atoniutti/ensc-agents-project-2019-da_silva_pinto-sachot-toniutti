@@ -15,6 +15,7 @@ public class Agent : MonoBehaviour
     private Animator animator;
     public int canTakeEnergy; //identifiant of the energy that the agent can take
     public AgentStates currentState ;
+    public int A;
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
@@ -25,7 +26,7 @@ public class Agent : MonoBehaviour
         _camera.targetDisplay = _name;
     }
     private void Update()
-    {  
+    {
         //detection of energy in the field of view of the agent 
         if (_fieldOfView._energyFront == true  && currentState == AgentStates.FindingEnergy)
         {
@@ -52,14 +53,20 @@ public class Agent : MonoBehaviour
 
             }
         }
-        if (_fieldOfView._energyFront == false)
+
+        if (!_fieldOfView._energyFront)
         {
             canTakeEnergy = 0;
+            
         }
+
         //if the object is posed or destroyed
         if (_fieldOfView.currentObjet==null)
         {
-            animator.SetBool("walk", false);
+            
+            _agent.SetDestination(target[_fieldOfView.Destination].position);
+            currentState = AgentStates.FindingEnergy;
+            animator.SetBool("walk", true);
         }
 
     }

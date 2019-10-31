@@ -13,6 +13,11 @@ public class FieldOfViewAgent : MonoBehaviour
     public int _ownerEnergy; // owner of the gameObject energy
     public GameObject currentObjet;
     private int numberOfPile = 0;
+    public int Destination;//a supprimer test
+    public void Start()
+    {
+        Destination=Random.Range(0, 4);//a supprimer test
+    }
     private void Update()
     {
         View();
@@ -71,6 +76,7 @@ public class FieldOfViewAgent : MonoBehaviour
         _energy = null;
         _energyFront = false;
         _energyPickable = false;
+        Destination = Random.Range(0, 4); //a supprimer test
 
     }
 

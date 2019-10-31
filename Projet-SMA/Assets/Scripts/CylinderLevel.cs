@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CylinderLevel : MonoBehaviour
 {
-
     public GameObject _cylinder;
     public float _rateStart;//level of the battery at the beggining
     public float _rate;
