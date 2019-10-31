@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CylinderLevel : MonoBehaviour
 {
+
     public GameObject _cylinder;
     public float _rateStart;//level of the battery at the beggining
     public float _rate;
@@ -22,7 +23,9 @@ public class CylinderLevel : MonoBehaviour
         if (col.gameObject.name == nameOfTheObject)
         {
             if (_rate<=1.4f )
-            _rate += addNumber;
+            {
+                _rate += addNumber;
+            }
             _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, _rate, _cylinder.transform.localPosition.z);
         }
 
