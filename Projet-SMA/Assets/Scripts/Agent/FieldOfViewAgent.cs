@@ -49,7 +49,6 @@ public class FieldOfViewAgent : MonoBehaviour
                 _identifiant = _energy.idEnergy;
             }
            
-
         }
         // If the box Energy enter in the field of view 
         if (col.gameObject.name == "EnergyBoxEnterAgent")
