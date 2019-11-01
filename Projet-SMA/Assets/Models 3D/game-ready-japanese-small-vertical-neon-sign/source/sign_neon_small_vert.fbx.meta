@@ -3,7 +3,17 @@ guid: 8e112c2173b752642bf44b1b1bad0a10
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: neon_sign_tile
+    second: {fileID: 2100000, guid: 852abc2a014bffd40863dacbcf17a8af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: neon_sign_unique
+    second: {fileID: 2100000, guid: 30ce6cbe80284084388e8726bf8bf9a6, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

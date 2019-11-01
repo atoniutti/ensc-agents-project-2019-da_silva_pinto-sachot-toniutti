@@ -37,7 +37,7 @@ public class FieldOfViewAgent : MonoBehaviour
         }
         
         // If the energy enter in the field of view
-        if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy)
+        if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _identifiant == 0)
         {
 
             currentObjet = col.gameObject;

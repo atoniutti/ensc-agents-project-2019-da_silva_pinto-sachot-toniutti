@@ -14,14 +14,14 @@ public class CylinderLevel : MonoBehaviour
     private void Start()
     {
         _rate =_rateStart;
-        _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x,_rateStart, _cylinder.transform.localPosition.z);
+        _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, _rateStart, _cylinder.transform.localPosition.z);
     }
     
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.name == nameOfTheObject)
         {
-            if (_rate<=1.4f )
+            if (_rate <= 1.4f )
             {
                 _rate += addNumber;
             }
