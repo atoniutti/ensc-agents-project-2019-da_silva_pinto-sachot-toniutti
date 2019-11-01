@@ -69,6 +69,7 @@ public class PickableEnergy : MonoBehaviour
                     GetComponent<Rigidbody>().isKinematic = true;
                     transform.parent = player;
                     transform.localPosition = new Vector3(0.6f,6, 4);
+                    transform.localRotation = new Quaternion(0f,0f,180f,0f );
                 }
             }
 
