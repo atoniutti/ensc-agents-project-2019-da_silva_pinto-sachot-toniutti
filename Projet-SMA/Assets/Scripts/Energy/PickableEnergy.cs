@@ -51,7 +51,7 @@ public class PickableEnergy : MonoBehaviour
             if  (agent.canTakeEnergy == idEnergy )
             {
                 // check distance between objet and player
-                float dist = Vector3.Distance(transform.position, player.position);
+                float dist = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(player.position.x, player.position.z));
 
                 // if - or = 0.5 distance = you can carry 
                 if (dist <= 0.5f)
