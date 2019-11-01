@@ -40,11 +40,15 @@ public class FieldOfViewAgent : MonoBehaviour
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy)
         {
 
-            currentObjet = col.gameObject;
-            _energyFront = true;
             _energy = col.GetComponent<PickableEnergy>();
-            _position = col.transform;
-            _identifiant = _energy.idEnergy;
+            if(_energy.hasPlayer==false)
+            {
+                currentObjet = col.gameObject;
+                _energyFront = true;
+                _position = col.transform;
+                _identifiant = _energy.idEnergy;
+            }
+           
 
         }
         // If the box Energy enter in the field of view 

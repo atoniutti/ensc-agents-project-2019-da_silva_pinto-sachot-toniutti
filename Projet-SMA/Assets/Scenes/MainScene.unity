@@ -1378,7 +1378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2449119695711884359, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
-  numberOfAgents: 3
+  numberOfAgents: 10
 --- !u!114 &4316584976389661230
 MonoBehaviour:
   m_ObjectHideFlags: 0
