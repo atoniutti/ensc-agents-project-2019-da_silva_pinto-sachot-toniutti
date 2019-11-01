@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159e88a1afeee8e42937e332a6614530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listAgent:
-  - {fileID: 0}
-  listCameraAgent:
-  - {fileID: 0}
+  agent: {fileID: 0}
+  hasPlayer: 0
+  idEnergy: 0
+  matriculAgent: 0
