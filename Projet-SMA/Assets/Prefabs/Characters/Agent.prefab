@@ -30608,6 +30608,7 @@ GameObject:
   - component: {fileID: 2622002020163438955}
   - component: {fileID: 2622002020163438954}
   - component: {fileID: 2622002020163438949}
+  - component: {fileID: 6523346343367042829}
   m_Layer: 0
   m_Name: Agent
   m_TagString: agent
@@ -30718,7 +30719,20 @@ MonoBehaviour:
   - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
   canTakeEnergy: 0
   currentState: 1
-  A: 0
+--- !u!136 &6523346343367042829
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287823205103929896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.179791
+  m_Height: 18.484406
+  m_Direction: 1
+  m_Center: {x: 0, y: 8.742204, z: 0.19153953}
 --- !u!1 &6292880258573172290
 GameObject:
   m_ObjectHideFlags: 0

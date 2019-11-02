@@ -8,6 +8,7 @@ public class ToxicManager : MonoBehaviour
     public Transform spawnPoint;  // An array of the spawn points this object can spawn from.
     public int actualAgent;
     public int precedentAgent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +22,13 @@ public class ToxicManager : MonoBehaviour
     // If the agent enter in the area
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Agent(Clone)" || col.gameObject.name == "Agent")
+        if (col.gameObject.name== "Agent(Clone)")
         {
-            actualAgent = col.GetComponent<Agent>()._name;
+            precedentAgent = col.GetComponent<Agent>()._name;
             if(actualAgent!= precedentAgent)
             {
                 Instantiate(toxic, spawnPoint.position, spawnPoint.rotation);
-                precedentAgent = actualAgent;
+                 actualAgent= precedentAgent ;
             }
         }
     }
