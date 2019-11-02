@@ -168,6 +168,8 @@ MonoBehaviour:
   toxic: {fileID: 1999708491803102162, guid: 620dbf3b9c3b77846ba2cd90ca884da3, type: 3}
   spawnPoint: {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13,
     type: 3}
+  actualAgent: 0
+  precedentAgent: 0
 --- !u!65 &280455504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -774,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6287823205103929896, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
-  numberOfAgents: 2
+  numberOfAgents: 3
 --- !u!1001 &2622002022182718029
 PrefabInstance:
   m_ObjectHideFlags: 0

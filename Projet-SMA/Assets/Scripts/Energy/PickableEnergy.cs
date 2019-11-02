@@ -31,6 +31,7 @@ public class PickableEnergy : MonoBehaviour
         
         if (player==null)
         {
+
             //check the distance between the energy/Toxic pile and the different agent
             for(int i=0; i<listAgent.Count; i++)
             {
@@ -90,6 +91,8 @@ public class PickableEnergy : MonoBehaviour
                 player = null;
                 hasPlayer = false;
                 transform.parent = null;
+               
+
             }
 
         }

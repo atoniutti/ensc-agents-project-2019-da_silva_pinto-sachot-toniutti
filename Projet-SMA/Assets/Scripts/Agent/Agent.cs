@@ -23,7 +23,6 @@ public class Agent : MonoBehaviour
         _precName = _name;
         animator = GetComponent<Animator>();
         _camera.targetDisplay = _name;
-        _agent.SetDestination(target[_fieldOfView.Destination].position);
     }
     private void Update()
     {

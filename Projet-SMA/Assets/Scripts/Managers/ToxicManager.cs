@@ -6,8 +6,8 @@ public class ToxicManager : MonoBehaviour
 {
     public GameObject toxic; // The energy prefab to be spawned.
     public Transform spawnPoint;  // An array of the spawn points this object can spawn from.
-    private int actualAgent;
-    private int precedentAgent;
+    public int actualAgent;
+    public int precedentAgent;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +21,10 @@ public class ToxicManager : MonoBehaviour
     // If the agent enter in the area
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Agent(Clone)")
+        if (col.gameObject.name == "Agent(Clone)" || col.gameObject.name == "Agent")
         {
             actualAgent = col.GetComponent<Agent>()._name;
-            if(actualAgent!=precedentAgent)
+            if(actualAgent!= precedentAgent)
             {
                 Instantiate(toxic, spawnPoint.position, spawnPoint.rotation);
                 precedentAgent = actualAgent;

@@ -18,7 +18,7 @@ public class FieldOfViewAgent : MonoBehaviour
     public void Start()
     {
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        Destination =Random.Range(0, 5);//a supprimer test
+        
         _energyFront = false;
         _toxicFront = false;
     }
