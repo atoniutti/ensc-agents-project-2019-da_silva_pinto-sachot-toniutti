@@ -5,8 +5,8 @@ using UnityEngine;
 public class FieldOfViewAgent : MonoBehaviour
 {
     public Agent _owner;
-    public bool _energyFront= false; // boolean if gamObject energy enter in the fieldOfView
-    public bool _toxicFront = false; // boolean if gamObject toxic enter in the fieldOfView
+    public bool _energyFront; // boolean if gamObject energy enter in the fieldOfView
+    public bool _toxicFront; // boolean if gamObject toxic enter in the fieldOfView
     public bool _energyPickable = false; // boolean if the energy is pickable
     public Transform _position;
     public PickableEnergy _energy; // gameObject Energy
@@ -17,7 +17,10 @@ public class FieldOfViewAgent : MonoBehaviour
     public int Destination;//a supprimer test
     public void Start()
     {
-        Destination=Random.Range(0, 4);//a supprimer test
+        gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        Destination =Random.Range(0, 5);//a supprimer test
+        _energyFront = false;
+        _toxicFront = false;
     }
     private void Update()
     {

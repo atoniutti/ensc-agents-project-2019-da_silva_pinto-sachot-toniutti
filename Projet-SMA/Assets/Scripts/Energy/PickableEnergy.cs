@@ -16,6 +16,7 @@ public class PickableEnergy : MonoBehaviour
 
     private void Start()
     {
+        gameObject.GetComponent<BoxCollider>().isTrigger = false;
         idEnergy = idPrec + 1;
         idPrec = idEnergy;
         //make a list of the agent

@@ -17,6 +17,7 @@ public class CylinderLevel : MonoBehaviour
 
     private void Start()
     {
+        gameObject.GetComponent<BoxCollider>().isTrigger = true;
         countdown = 5;
         _rateStart = -5.7f;
         _ratePercent =0;
