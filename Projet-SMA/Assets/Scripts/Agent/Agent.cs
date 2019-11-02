@@ -15,7 +15,6 @@ public class Agent : MonoBehaviour
     private Animator animator;
     public int canTakeEnergy; //identifiant of the energy that the agent can take
     public AgentStates currentState ;
-    public int A;
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
@@ -86,17 +85,19 @@ public class Agent : MonoBehaviour
         //if the object is posed or destroyed
         if (_fieldOfView.currentObjet==null)
         {
-            
+           
             _agent.SetDestination(target[_fieldOfView.Destination].position);
             //  Pour tester (a supprimer)
             if (_fieldOfView.Destination==4)
             {
                 currentState = AgentStates.FindingToxic;
             }
-            else
+
+            if (_fieldOfView.Destination != 4)
             {
                 currentState = AgentStates.FindingEnergy;
             }
+           
             animator.SetBool("walk", true);
         }
 
