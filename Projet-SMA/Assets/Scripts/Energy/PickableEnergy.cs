@@ -89,7 +89,6 @@ public class PickableEnergy : MonoBehaviour
                 player = null;
                 hasPlayer = false;
                 transform.parent = null;
-                GetComponent<Rigidbody>().isKinematic = false;
             }
 
         }
