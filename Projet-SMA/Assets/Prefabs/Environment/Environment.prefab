@@ -877,6 +877,11 @@ PrefabInstance:
       propertyPath: PercentQuantiteIn
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 6053234673574578838, guid: e33192f4dbd804b40b7ef5c672da527d,
+        type: 3}
+      propertyPath: nameOfTheObject
+      value: Toxic(Clone)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e33192f4dbd804b40b7ef5c672da527d, type: 3}
 --- !u!4 &8794613366004003367 stripped
