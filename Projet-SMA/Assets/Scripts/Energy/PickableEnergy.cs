@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PickableEnergy : MonoBehaviour
 {
-    private List<GameObject> listAgent = new List<GameObject>(); //list of the agnet in the scene
+    private List<GameObject> listAgent = new List<GameObject>(); //list of the agent in the scene
     private Transform player;
     public Agent agent;
     private float[] distance;

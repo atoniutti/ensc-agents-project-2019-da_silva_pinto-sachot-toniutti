@@ -41,7 +41,7 @@ public class FieldOfViewAgent : MonoBehaviour
         }*/
         
         // If the energy enter in the field of view
-        if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy)
+        if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
 
             _energy = col.GetComponent<PickableEnergy>();
@@ -54,7 +54,8 @@ public class FieldOfViewAgent : MonoBehaviour
             }
            
         }
-        if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic)
+        // If the toxic enter in the field of view
+        if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic && _owner.canTakeEnergy == 0)
         {
             _energy = col.GetComponent<PickableEnergy>();
             if (_energy.hasPlayer == false)
