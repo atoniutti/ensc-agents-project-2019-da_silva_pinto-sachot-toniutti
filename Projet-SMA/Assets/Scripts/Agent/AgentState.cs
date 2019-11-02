@@ -7,4 +7,4 @@ public enum AgentType { Liar, slave }
 public enum Discussion { GoWestPoint, GoNorthPoint, GoEastPoint, GoSouthPoint, NeedFindToxic, NeedFindEnergy, haveManyAtEast, haveManyAtWest, haveManyAtNoth, haveManyAtSouth,
     DonthaveManyAtEast, DonthaveManyAtNoth, DonthaveManyAtWest, DonthaveManyAtSouth }
 
-public enum Direction { EastPoint,  NorthPoint, SouthPoint, WestPoint, BatteryEnergyPoint, BatteryWastePoint }
+public enum Direction { EastPoint,  NorthPoint, SouthPoint, WestPoint,ToxicPoint, BatteryWastePoint, BatteryEnergyPoint, }

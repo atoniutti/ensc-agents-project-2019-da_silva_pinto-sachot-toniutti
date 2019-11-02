@@ -30,17 +30,26 @@ public class PickableEnergy : MonoBehaviour
         
         if (player==null)
         {
-            //check the distance vetxeen the energy pile and the different agent
+            //check the distance between the energy/Toxic pile and the different agent
             for(int i=0; i<listAgent.Count; i++)
             {
                 distance[i]= Vector3.Distance(transform.position, listAgent[i].transform.position);
 
                 //If agent has near of the pile and he want this type of pile
-                if (distance[i]<=2 && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingEnergy )
+                if (distance[i]<=2  )
                 {
-                    agent = listAgent[i].GetComponent<Agent>();
-                    player = agent.transform;
-                    matriculAgent = agent._name;
+                    if(name == "EnergyCoil(Clone)" && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingEnergy)
+                    {
+                        agent = listAgent[i].GetComponent<Agent>();
+                        player = agent.transform;
+                        matriculAgent = agent._name;
+                    }
+                    if (name == "Toxic(Clone)" && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingToxic)
+                    {
+                        agent = listAgent[i].GetComponent<Agent>();
+                        player = agent.transform;
+                        matriculAgent = agent._name;
+                    }
                 }
             }
         }
@@ -73,13 +82,14 @@ public class PickableEnergy : MonoBehaviour
                 }
             }
 
-            if(agent.canTakeEnergy != idEnergy && agent.currentState == AgentStates.HavingEnergy)
+            if(agent.canTakeEnergy != idEnergy && (agent.currentState == AgentStates.HavingEnergy || agent.currentState == AgentStates.HavingToxic))
             {
                 agent = null;
                 matriculAgent = 0;
                 player = null;
                 hasPlayer = false;
                 transform.parent = null;
+                GetComponent<Rigidbody>().isKinematic = false;
             }
 
         }

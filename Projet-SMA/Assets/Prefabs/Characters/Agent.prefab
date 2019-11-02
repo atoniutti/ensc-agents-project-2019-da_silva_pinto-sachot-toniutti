@@ -5757,7 +5757,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
   - {fileID: 2100000, guid: 77ba0f5f860325f49af64d573fb1c282, type: 2}
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
-  - {fileID: 2100000, guid: bda2536814e7ccc4cae5e4cd5c800149, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10579,7 +10579,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 77ba0f5f860325f49af64d573fb1c282, type: 2}
-  - {fileID: 2100000, guid: bda2536814e7ccc4cae5e4cd5c800149, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12609,6 +12609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _owner: {fileID: 2622002020163438949}
   _energyFront: 0
+  _toxicFront: 0
   _energyPickable: 0
   _position: {fileID: 0}
   _energy: {fileID: 0}
@@ -13633,7 +13634,7 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 77ba0f5f860325f49af64d573fb1c282, type: 2}
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
-  - {fileID: 2100000, guid: bda2536814e7ccc4cae5e4cd5c800149, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30608,7 +30609,7 @@ GameObject:
   - component: {fileID: 2622002020163438954}
   - component: {fileID: 2622002020163438949}
   m_Layer: 0
-  m_Name: Agent2
+  m_Name: Agent
   m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30712,8 +30713,9 @@ MonoBehaviour:
   - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
   - {fileID: 6622306575045670967, guid: cb22802e2934f634ea928c200ab4fda0, type: 3}
   - {fileID: 1431829714896668889, guid: 2130fd16d3a389446af98de5d49e7f66, type: 3}
-  - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
+  - {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13, type: 3}
   - {fileID: 1602671006598870460, guid: 0f4873711c0fc584ea17318af3a015e7, type: 3}
+  - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
   canTakeEnergy: 0
   currentState: 1
   A: 0
@@ -42918,7 +42920,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
   - {fileID: 2100000, guid: 77ba0f5f860325f49af64d573fb1c282, type: 2}
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
-  - {fileID: 2100000, guid: bda2536814e7ccc4cae5e4cd5c800149, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

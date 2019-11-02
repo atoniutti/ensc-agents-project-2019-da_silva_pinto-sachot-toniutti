@@ -5,7 +5,8 @@ using UnityEngine;
 public class FieldOfViewAgent : MonoBehaviour
 {
     public Agent _owner;
-    public bool _energyFront= false; // boolean if gamObject enter in the fieldOfView
+    public bool _energyFront= false; // boolean if gamObject energy enter in the fieldOfView
+    public bool _toxicFront = false; // boolean if gamObject toxic enter in the fieldOfView
     public bool _energyPickable = false; // boolean if the energy is pickable
     public Transform _position;
     public PickableEnergy _energy; // gameObject Energy
@@ -25,7 +26,7 @@ public class FieldOfViewAgent : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
-        if (col.gameObject.name == "EnergyCoil(Clone)")
+       /* if (col.gameObject.name == "EnergyCoil(Clone)")
         {
             numberOfPile += 1;
             if (numberOfPile>1)
@@ -34,7 +35,7 @@ public class FieldOfViewAgent : MonoBehaviour
                 
             }
 
-        }
+        }*/
         
         // If the energy enter in the field of view
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy)
@@ -50,12 +51,34 @@ public class FieldOfViewAgent : MonoBehaviour
             }
            
         }
+        if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic)
+        {
+            _energy = col.GetComponent<PickableEnergy>();
+            if (_energy.hasPlayer == false)
+            {
+                currentObjet = col.gameObject;
+                _toxicFront = true;
+                _position = col.transform;
+                _identifiant = _energy.idEnergy;
+            }
+
+        }
+        
         // If the box Energy enter in the field of view 
         if (col.gameObject.name == "EnergyBoxEnterAgent")
         {
             if (currentObjet != null && currentObjet.name == "EnergyCoil(Clone)")
             {
-                PoseEnergy();
+                PoseEnergy(_energyFront);
+            }
+        }
+
+        // If the box Waste enter in the field of view 
+        if (col.gameObject.name == "WasteBoxEnterAgent")
+        {
+            if (currentObjet != null && currentObjet.name == "Toxic(Clone)")
+            {
+                PoseEnergy(_toxicFront);
             }
         }
     }
@@ -66,10 +89,9 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             _energyPickable = _energy.hasPlayer;
             _ownerEnergy = _energy.matriculAgent;
-
         }
     }
-    public void PoseEnergy()
+    public void PoseEnergy(bool front)
     {
         Destroy(currentObjet);
         _identifiant = 0;
@@ -77,10 +99,14 @@ public class FieldOfViewAgent : MonoBehaviour
         _ownerEnergy = 0;
         _position = null;
         _energy = null;
-        _energyFront = false;
+        front = false;
         _energyPickable = false;
-        Destination = Random.Range(0, 4); //a supprimer test
+        Destination = Random.Range(0, 5); //a supprimer test
 
     }
 
+    public void CheckBattery()
+    {
+
+    }
 }

@@ -32,7 +32,6 @@ public class Agent : MonoBehaviour
         {
             if (_fieldOfView._ownerEnergy == _name)
             {
-                
                 canTakeEnergy = _fieldOfView._identifiant;
                 animator.SetBool("walk", true);
                 _agent.SetDestination(new Vector3(_fieldOfView._position.position.x,transform.position.y, _fieldOfView._position.position.z));
@@ -52,19 +51,52 @@ public class Agent : MonoBehaviour
 
             }
         }
-
-        if (_fieldOfView._energyFront==false)
+        //detection of toxic in the field of view of the agent 
+        if (_fieldOfView._toxicFront == true && currentState == AgentStates.FindingToxic)
         {
-            canTakeEnergy = 0;
-            
+            if (_fieldOfView._ownerEnergy == _name)
+            {
+                canTakeEnergy = _fieldOfView._identifiant;
+                animator.SetBool("walk", true);
+                _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z));
+
+                // if the agent enough near of the energy 
+                if (_fieldOfView._energyPickable == true && _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z)))
+                {
+                    currentState = AgentStates.HavingToxic;
+                    animator.SetTrigger("takeRessource");
+                    animator.SetBool("walk", true);
+                    _agent.SetDestination(target[(int)Direction.BatteryWastePoint].position); //agent go to the battery
+                }
+            }
+            else
+            {
+                canTakeEnergy = 0;
+
+            }
         }
 
+        if ((_fieldOfView._energyFront==false && currentState == AgentStates.FindingEnergy )
+            || (_fieldOfView._toxicFront == false && currentState == AgentStates.FindingToxic))
+        {
+            canTakeEnergy = 0;
+        }
+
+       
         //if the object is posed or destroyed
         if (_fieldOfView.currentObjet==null)
         {
             
             _agent.SetDestination(target[_fieldOfView.Destination].position);
-            currentState = AgentStates.FindingEnergy;
+            //  Pour tester (a supprimer)
+            if (_fieldOfView.Destination==4)
+            {
+                currentState = AgentStates.FindingToxic;
+            }
+            else
+            {
+                currentState = AgentStates.FindingEnergy;
+            }
             animator.SetBool("walk", true);
         }
 
