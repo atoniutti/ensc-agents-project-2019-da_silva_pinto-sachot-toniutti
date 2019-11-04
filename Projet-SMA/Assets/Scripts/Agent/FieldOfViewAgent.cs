@@ -88,7 +88,7 @@ public class FieldOfViewAgent : MonoBehaviour
    
     private void View()
     {
-        if (_identifiant != 0 && _owner._name == _energy.matriculAgent )
+        if (_identifiant != 0 && _owner._code == _energy.matriculAgent )
         {
             _energyPickable = _energy.hasPlayer;
             _ownerEnergy = _energy.matriculAgent;

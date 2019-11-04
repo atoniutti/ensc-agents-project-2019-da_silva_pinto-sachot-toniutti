@@ -13172,7 +13172,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2622002020204325305}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 0.31
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -13514,7 +13514,7 @@ GameObject:
   - component: {fileID: 2622002021166081497}
   m_Layer: 9
   m_Name: NameText
-  m_TagString: Untagged
+  m_TagString: AgentName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32008,7 +32008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 2622002020163438954}
-  _name: 0
+  _code: 0
+  _name: {fileID: 2622002021166081497}
   _fieldOfView: {fileID: 2622002020843932829}
   _camera: {fileID: 2622002020204325305}
   target:
@@ -32022,6 +32023,7 @@ MonoBehaviour:
   canTakeEnergy: 0
   currentState: 1
   pointPosition: {fileID: 2622002021394178104}
+  canvasCamera: {fileID: 2622002020577534154}
   canvasAgent: {fileID: 606636061290355057}
 --- !u!136 &6523346343367042829
 CapsuleCollider:
@@ -35312,7 +35314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5052645309075327962
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35550,7 +35552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95, y: 189.99997}
+  m_AnchoredPosition: {x: -95, y: 189.9999}
   m_SizeDelta: {x: 180, y: 380}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7080404885530504169
@@ -42156,7 +42158,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8510454936737143643}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

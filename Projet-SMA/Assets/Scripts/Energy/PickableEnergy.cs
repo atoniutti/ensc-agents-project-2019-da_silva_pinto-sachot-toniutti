@@ -44,13 +44,13 @@ public class PickableEnergy : MonoBehaviour
                     {
                         agent = listAgent[i].GetComponent<Agent>();
                         player = agent.transform;
-                        matriculAgent = agent._name;
+                        matriculAgent = agent._code;
                     }
                     if (name == "Toxic(Clone)" && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingToxic)
                     {
                         agent = listAgent[i].GetComponent<Agent>();
                         player = agent.transform;
-                        matriculAgent = agent._name;
+                        matriculAgent = agent._code;
                     }
                 }
             }

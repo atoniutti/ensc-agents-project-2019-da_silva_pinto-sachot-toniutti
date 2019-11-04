@@ -23,7 +23,7 @@ public class ToxicManager : MonoBehaviour
     {
         if (col.gameObject.name== "Agent(Clone)")
         {
-            actualAgent = col.GetComponent<Agent>()._name;
+            actualAgent = col.GetComponent<Agent>()._code;
             if( precedentAgent != actualAgent)
             {
                  Instantiate(toxic, spawnPoint.position, spawnPoint.rotation);
