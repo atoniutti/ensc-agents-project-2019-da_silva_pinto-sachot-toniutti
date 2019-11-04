@@ -17,6 +17,8 @@ public class Agent : MonoBehaviour
     public int canTakeEnergy; //identifiant of the energy that the agent can take
     public AgentStates currentState;
     public GameObject pointPosition;
+    public Canvas canvasAgent;
+
     private void Start ()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
@@ -27,20 +29,27 @@ public class Agent : MonoBehaviour
         _camera.targetDisplay = _name;
         _camera.enabled = true;
     }
+
     private void Update ()
     {
-        // Maj Minimap
+        // Point on Minimap
         if (Camera.current == _camera)
         {
-            //pointPosition.GetComponent<Renderer>().material = Resources.Load("Materials/green", typeof(Material)) as Material;
+            // Point Position
             pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
             pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+
+            // Canvas Agent
+            canvasAgent.enabled = false;
         }
         else
         {
-            //pointPosition.GetComponent<Renderer>().material = Resources.Load("Materials/red", typeof(Material)) as Material;
+            // Point Position
             pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
             pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+
+            // Canvas Agent
+            canvasAgent.enabled = true;
         }
 
         //detection of energy in the field of view of the agent 
@@ -67,6 +76,7 @@ public class Agent : MonoBehaviour
 
             }
         }
+
         //detection of toxic in the field of view of the agent 
         if (_fieldOfView._toxicFront == true && currentState == AgentStates.FindingToxic)
         {
@@ -97,7 +107,6 @@ public class Agent : MonoBehaviour
         {
             canTakeEnergy = 0;
         }
-
        
         //if the object is posed or destroyed
         if (_fieldOfView.currentObjet==null)
