@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,8 +15,9 @@ public class Agent : MonoBehaviour
     private Vector3 targetPileEnergy = new Vector3(-2f, 0f, -3f);
     private Animator animator;
     public int canTakeEnergy; //identifiant of the energy that the agent can take
-    public AgentStates currentState ;
-    private void Start()
+    public AgentStates currentState;
+    public GameObject pointPosition;
+    private void Start ()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
         _name = _precName + 1;
@@ -23,9 +25,24 @@ public class Agent : MonoBehaviour
         _precName = _name;
         animator = GetComponent<Animator>();
         _camera.targetDisplay = _name;
+        _camera.enabled = true;
     }
-    private void Update()
+    private void Update ()
     {
+        // Maj Minimap
+        if (Camera.current == _camera)
+        {
+            //pointPosition.GetComponent<Renderer>().material = Resources.Load("Materials/green", typeof(Material)) as Material;
+            pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+        }
+        else
+        {
+            //pointPosition.GetComponent<Renderer>().material = Resources.Load("Materials/red", typeof(Material)) as Material;
+            pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+        }
+
         //detection of energy in the field of view of the agent 
         if (_fieldOfView._energyFront == true  && currentState == AgentStates.FindingEnergy)
         {
@@ -102,6 +119,4 @@ public class Agent : MonoBehaviour
         }
 
     }
-    
-
 }
