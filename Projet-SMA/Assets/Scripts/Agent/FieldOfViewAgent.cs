@@ -17,8 +17,7 @@ public class FieldOfViewAgent : MonoBehaviour
     public int Destination;//a supprimer test
     public void Start()
     {
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        
+        gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         _energyFront = false;
         _toxicFront = false;
     }
