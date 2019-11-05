@@ -313,7 +313,6 @@ GameObject:
   m_Component:
   - component: {fileID: 671013868}
   - component: {fileID: 671013867}
-  - component: {fileID: 671013866}
   m_Layer: 0
   m_Name: MinimapCamera
   m_TagString: Untagged
@@ -321,14 +320,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &671013866
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671013865}
-  m_Enabled: 1
 --- !u!20 &671013867
 Camera:
   m_ObjectHideFlags: 0
@@ -901,7 +892,7 @@ PrefabInstance:
     - target: {fileID: 5730342100259990073, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 189.99998
+      value: 189.92023
       objectReference: {fileID: 0}
     - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
