@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AgentManager : MonoBehaviour
 {
-    public GameObject agent;
+    public Agent agent;
+    public List<Agent> agents;
     public int numberOfAgents = 10;
 
     List<Transform> spawnPoints = new List<Transform>();
@@ -18,11 +19,17 @@ public class AgentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agents = new List<Agent>();
         GenerateRandomSpawnPoints();
 
         foreach (Transform sp in spawnPoints)
         {
             Spawn(sp);
+        }
+
+        foreach (Agent a in agents)
+        {
+            a.agentsList = agents;
         }
     }
 
@@ -60,5 +67,6 @@ public class AgentManager : MonoBehaviour
     {
         // Create an instance of the agent prefab
         Instantiate(agent, spawnPoint.position, spawnPoint.rotation);
+        agents.Add(agent);
     }
 }

@@ -19,8 +19,8 @@ public class Agent : MonoBehaviour
     public int canTakeEnergy; //identifiant of the energy that the agent can take
     public AgentStates currentState;
     public GameObject pointPosition;
-    public Canvas canvasCamera;
     public Canvas canvasAgent;
+    public List<Agent> agentsList = new List<Agent>();
 
     private void Start()
     {
@@ -32,6 +32,14 @@ public class Agent : MonoBehaviour
         animator = GetComponent<Animator>();
         _camera.targetDisplay = _code;
         _camera.enabled = true;
+
+        // Canvas Agent
+        ScrollRect sc = canvasAgent.GetComponent<ScrollRect>();
+        foreach (Agent a in agentsList)
+        {
+            //AgentButton agentButton = new AgentButton();
+            //agentButton.transform.SetParent(sc.content);
+        }
     }
 
     private void Update()
