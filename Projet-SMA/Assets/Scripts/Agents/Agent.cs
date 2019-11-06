@@ -20,7 +20,7 @@ public class Agent : MonoBehaviour
     public AgentStates currentState;
     public GameObject pointPosition;
     public Canvas canvasAgent;
-    public List<Agent> agentsList = new List<Agent>();
+    public List<AgentTrust> agentsList = new List<AgentTrust>();
 
     AgentButton agentButton;
 
@@ -34,14 +34,6 @@ public class Agent : MonoBehaviour
         animator = GetComponent<Animator>();
         _camera.targetDisplay = _code;
         _camera.enabled = true;
-
-        // Canvas Agent
-        ScrollRect sc = canvasAgent.GetComponent<ScrollRect>();
-        foreach (Agent a in agentsList)
-        {
-            Instantiate(agentButton, sc.content, false);
-            agentButton.agent = a;
-        }
     }
 
     private void Update()

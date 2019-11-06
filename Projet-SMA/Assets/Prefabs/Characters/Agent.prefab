@@ -13819,6 +13819,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d353ac4e88607cf4d90efadc1887bf74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAgent: {fileID: 2622002020163438949}
+  scrollView: {fileID: 5190159524510703912}
+  scrollContent: {fileID: 7076582035792195556}
+  agentButton: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
+    type: 3}
 --- !u!1 &2629176340441946297
 GameObject:
   m_ObjectHideFlags: 0

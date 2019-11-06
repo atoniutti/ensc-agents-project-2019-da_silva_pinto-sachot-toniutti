@@ -13,10 +13,7 @@ public class ScrollAgents : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Agent a in currentAgent.agentsList)
-        {
-            GenerateItem(a);
-        }
+        
     }
 
     // Update is called once per frame
@@ -25,10 +22,18 @@ public class ScrollAgents : MonoBehaviour
         
     }
 
-    void GenerateItem(Agent a)
+    public void GenerateList()
+    {
+        foreach (AgentTrust a in currentAgent.agentsList)
+        {
+            GenerateItem(a);
+        }
+    }
+
+    void GenerateItem(AgentTrust a)
     {
         AgentButton scrollItem = Instantiate(agentButton);
         scrollItem.transform.SetParent(scrollContent.transform, false);
-        scrollItem.agent = a;
+        scrollItem.agent = a.agent;
     }
 }
