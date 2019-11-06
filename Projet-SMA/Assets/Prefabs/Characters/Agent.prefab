@@ -13742,6 +13742,7 @@ GameObject:
   - component: {fileID: 2622002021958473852}
   - component: {fileID: 2622002021958473854}
   - component: {fileID: 2622002021958473855}
+  - component: {fileID: 5715635523893074355}
   m_Layer: 9
   m_Name: AgentsList
   m_TagString: Untagged
@@ -13806,6 +13807,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5715635523893074355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622002021958473853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d353ac4e88607cf4d90efadc1887bf74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2629176340441946297
 GameObject:
   m_ObjectHideFlags: 0
@@ -48918,6 +48931,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
+        type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 2622002020163438949}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af4a70dbb77a3ab49af7d8a4bfae919a, type: 3}
 --- !u!224 &8737041008719026043 stripped

@@ -22,6 +22,8 @@ public class Agent : MonoBehaviour
     public Canvas canvasAgent;
     public List<Agent> agentsList = new List<Agent>();
 
+    AgentButton agentButton;
+
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
@@ -37,8 +39,8 @@ public class Agent : MonoBehaviour
         ScrollRect sc = canvasAgent.GetComponent<ScrollRect>();
         foreach (Agent a in agentsList)
         {
-            //AgentButton agentButton = new AgentButton();
-            //agentButton.transform.SetParent(sc.content);
+            Instantiate(agentButton, sc.content, false);
+            agentButton.agent = a;
         }
     }
 

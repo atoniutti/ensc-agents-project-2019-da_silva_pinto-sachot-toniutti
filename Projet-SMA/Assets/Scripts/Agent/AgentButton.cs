@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AgentButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Agent agent;
+    public Text name;
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    private void Start()
     {
-        
+        name.text = agent._name.text;
     }
 }
