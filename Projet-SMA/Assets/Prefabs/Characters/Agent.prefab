@@ -12920,10 +12920,10 @@ RectTransform:
   m_Father: {fileID: 2622002020265612778}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 250}
-  m_SizeDelta: {x: -520, y: -600}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -92}
+  m_SizeDelta: {x: 696, y: 84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2622002020130109450
 CanvasRenderer:
@@ -13081,10 +13081,10 @@ RectTransform:
   m_Father: {fileID: 2622002020577534153}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1216, y: 684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2622002020265612772
 CanvasRenderer:
@@ -13217,7 +13217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -13690,10 +13690,10 @@ RectTransform:
   m_Father: {fileID: 2622002020265612778}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 420, y: -115}
-  m_SizeDelta: {x: -940, y: -330}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -188, y: -115}
+  m_SizeDelta: {x: 276, y: 354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2622002021516275941
 CanvasRenderer:
@@ -13766,10 +13766,10 @@ RectTransform:
   m_Father: {fileID: 2622002020265612778}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -420, y: -40}
-  m_SizeDelta: {x: -940, y: -180}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 188.00006, y: -40}
+  m_SizeDelta: {x: 276, y: 504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2622002021958473854
 CanvasRenderer:
@@ -25838,9 +25838,9 @@ RectTransform:
   m_Father: {fileID: 2622002020265612778}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: 135}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -188, y: 135}
   m_SizeDelta: {x: 266, y: 148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5311213122388690482
@@ -32042,7 +32042,6 @@ MonoBehaviour:
   currentState: 1
   pointPosition: {fileID: 2622002021394178104}
   canvasAgent: {fileID: 606636061290355057}
-  agentsList: []
 --- !u!136 &6523346343367042829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -42217,7 +42216,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 855415475505593588}
   m_HandleRect: {fileID: 8510454936737143643}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -48831,6 +48830,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AgentButton
       objectReference: {fileID: 0}
+    - target: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
+        type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 2622002020163438949}
     - target: {fileID: 6008590281190373177, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -48936,11 +48940,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
-        type: 3}
-      propertyPath: agent
-      value: 
-      objectReference: {fileID: 2622002020163438949}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af4a70dbb77a3ab49af7d8a4bfae919a, type: 3}
 --- !u!224 &8737041008719026043 stripped
