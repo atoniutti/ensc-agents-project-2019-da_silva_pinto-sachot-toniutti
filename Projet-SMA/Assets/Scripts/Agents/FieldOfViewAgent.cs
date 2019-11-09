@@ -14,12 +14,15 @@ public class FieldOfViewAgent : MonoBehaviour
     public int _ownerEnergy; // owner of the gameObject energy
     public GameObject currentObjet;
     private int numberOfPile = 0;
+    public float percentOfEnergy ;
+    public float percentOfToxic;
     public int Destination;//a supprimer test
     public void Start()
     {
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         _energyFront = false;
         _toxicFront = false;
+        Destination = (int)Direction.BatteryEnergyPoint;
     }
     private void Update()
     {
@@ -82,6 +85,16 @@ public class FieldOfViewAgent : MonoBehaviour
             if (currentObjet != null && currentObjet.name == "Toxic(Clone)")
             {
                 PoseEnergy(_toxicFront);
+            }
+        }
+
+        if (col.gameObject.name == "InformationBox")
+        {
+            percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;
+            percentOfToxic = col.GetComponent<InformationPiles>().toxicRate;
+            if (percentOfEnergy <= 0)
+            {
+                Destination = Random.Range(0, 5);
             }
         }
     }

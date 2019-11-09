@@ -11,13 +11,15 @@ public class Agent : MonoBehaviour
     public static int _precCode = 0;
     public int _code; // code name of the agent
     public Text _name; // name of the agent
-    public FieldOfViewAgent _fieldOfView; //field of view of the agent
+    private Animator animator;
     public Camera _camera; //camera of the agent in order to modified display
+
+    public FieldOfViewAgent _fieldOfView; //field of view of the agent
     public Transform[] target; // An array where he have to go
     private Vector3 targetPileEnergy = new Vector3(-2f, 0f, -3f);
-    private Animator animator;
+    
     public int canTakeEnergy; //identifiant of the energy that the agent can take
-    public AgentStates currentState;
+    public AgentStates currentState;// State of the agent
     public GameObject pointPosition;
     public Canvas canvasAgent;
     public List<AgentTrust> agentsList = new List<AgentTrust>();
@@ -58,6 +60,7 @@ public class Agent : MonoBehaviour
             canvasAgent.enabled = true;
         }
 
+       
         //detection of energy in the field of view of the agent 
         if (_fieldOfView._energyFront == true && currentState == AgentStates.FindingEnergy)
         {
