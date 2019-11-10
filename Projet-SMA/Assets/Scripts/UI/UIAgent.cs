@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class UIAgent : MonoBehaviour
 {
     //UI
     public Agent owner;
     public GameObject pointPosition;
+    public Text _name; // name of the agent
+
     public Canvas canvasAgent;
     public List<AgentTrust> agentsList = new List<AgentTrust>();
     AgentButton agentButton;
@@ -17,7 +21,7 @@ public class UIAgent : MonoBehaviour
     {
         owner._camera.targetDisplay = owner._code;
         owner._camera.enabled = true;
-        owner._name.text = GetNameCode();
+        _name.text = GetNameCode();
     }
 
     // Update is called once per frame

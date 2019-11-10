@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class Agent : MonoBehaviour
 {
@@ -13,7 +12,6 @@ public class Agent : MonoBehaviour
 
     public static int _precCode;
     public int _code; // code name of the agent
-    public Text _name; // name of the agent
     public FieldOfViewAgent _fieldOfView; //field of view of the agent
 
     public Transform[] target; // An array where he have to go
@@ -99,7 +97,6 @@ public class Agent : MonoBehaviour
                 PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
                 PercentOfToxicPile = _fieldOfView.percentOfToxic;
                 currentState = MakeAChoice(PercentOfEnergyPile, PercentOfToxicPile);
-
             }
             
             /*if (_fieldOfView._agentFront==true)
