@@ -11,11 +11,13 @@ public class UIAgent : MonoBehaviour
     public List<AgentTrust> agentsList = new List<AgentTrust>();
     AgentButton agentButton;
 
+
     // Start is called before the first frame update
     void Start()
     {
         owner._camera.targetDisplay = owner._code;
         owner._camera.enabled = true;
+        owner._name.text = GetNameCode();
     }
 
     // Update is called once per frame
@@ -39,5 +41,20 @@ public class UIAgent : MonoBehaviour
             // Canvas Agent
             canvasAgent.enabled = true;
         }
+    }
+    private string GetNameCode()
+    {
+        string name = "Agent ";
+
+        if (owner._code < 10)
+        {
+            name += "00" + owner._code;
+        }
+        else
+        {
+            name += "0" + owner._code;
+        }
+
+        return name;
     }
 }

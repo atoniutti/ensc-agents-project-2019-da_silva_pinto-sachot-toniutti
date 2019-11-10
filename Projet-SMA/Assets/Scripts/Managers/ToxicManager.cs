@@ -14,7 +14,6 @@ public class ToxicManager : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        Instantiate(toxic, spawnPoint.position, spawnPoint.rotation);
         listAgentInArea.Add(0);
     }
 

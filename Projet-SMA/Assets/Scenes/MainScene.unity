@@ -1141,7 +1141,7 @@ PrefabInstance:
     - target: {fileID: 5730342100259990073, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0006513963
+      value: -0.00064086914
       objectReference: {fileID: 0}
     - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
@@ -5130,6 +5130,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639841832964485079, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.2283113
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639841832964485079, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.4808234
       objectReference: {fileID: 0}
     - target: {fileID: 8184555415159600057, guid: 5ac65a0fdd8756d4198ca4f298590303,
         type: 3}
