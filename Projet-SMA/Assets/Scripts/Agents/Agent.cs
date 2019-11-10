@@ -16,14 +16,11 @@ public class Agent : MonoBehaviour
 
     public FieldOfViewAgent _fieldOfView; //field of view of the agent
     public Transform[] target; // An array where he have to go
-    public int currentTarget;
-    public int canTakeEnergy; //identifiant of the energy that the agent can take
+    public int currentTarget; //diection of the agent
     public AgentStates currentState;// State of the agent
-    public GameObject pointPosition;
-    public Canvas canvasAgent;
-    public List<AgentTrust> agentsList = new List<AgentTrust>();
 
-    AgentButton agentButton;
+    public int canTakeEnergy; //identifiant of the energy that the agent can take
+
 
     private void Start()
     {
@@ -41,27 +38,6 @@ public class Agent : MonoBehaviour
 
     private void Update()
     {
-        //UI Agent
-        // Point on Minimap
-        if (Camera.current == _camera)
-        {
-            // Point Position
-            pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-            pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
-
-            // Canvas Agent
-            canvasAgent.enabled = false;
-        }
-        else
-        {
-            // Point Position
-            pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
-
-            // Canvas Agent
-            canvasAgent.enabled = true;
-        }
-
         if (_fieldOfView._pileFront == true)
         {
             //decider de trouver de l'energy ou du toxic

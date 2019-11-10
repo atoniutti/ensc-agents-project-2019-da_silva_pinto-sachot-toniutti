@@ -11,14 +11,14 @@ public class InformationPiles : MonoBehaviour
     public float toxicRate;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         energyRate = energyBoxEnter._ratePercent;
         toxicRate = wasteBoxEnter._ratePercent;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         energyRate = energyBoxEnter._ratePercent;
         toxicRate = wasteBoxEnter._ratePercent;
