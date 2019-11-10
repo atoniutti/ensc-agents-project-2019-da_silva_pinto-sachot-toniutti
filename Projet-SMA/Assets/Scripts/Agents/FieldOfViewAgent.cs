@@ -5,24 +5,34 @@ using UnityEngine;
 public class FieldOfViewAgent : MonoBehaviour
 {
     public Agent _owner;
+
+    //For pickable Object(Toxic and energy)
     public bool _energyFront; // boolean if gamObject energy enter in the fieldOfView
     public bool _toxicFront; // boolean if gamObject toxic enter in the fieldOfView
+    public bool _pileFront ;
     public bool _energyPickable = false; // boolean if the energy is pickable
-    public Transform _position;
     public PickableEnergy _energy; // gameObject Energy
     public int _identifiant = 0; // name of the energy
     public int _ownerEnergy; // owner of the gameObject energy
     public GameObject currentObjet;
-    private int numberOfPile = 0;
+    public Transform _position;
+    public int[] NumberOfPileByPlace;
+
+
+    //Look pile
     public float percentOfEnergy ;
     public float percentOfToxic;
+    //For agent 
+
     public int Destination;//a supprimer test
     public void Start()
     {
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
         _energyFront = false;
         _toxicFront = false;
-        Destination = (int)Direction.BatteryEnergyPoint;
+        _pileFront = false;
+        NumberOfPileByPlace = new int[4];
+
     }
     private void Update()
     {
@@ -37,7 +47,6 @@ public class FieldOfViewAgent : MonoBehaviour
             if (numberOfPile>1)
             {
                
-                
             }
 
         }*/

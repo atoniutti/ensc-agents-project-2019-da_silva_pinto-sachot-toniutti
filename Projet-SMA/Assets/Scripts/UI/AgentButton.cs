@@ -13,4 +13,5 @@ public class AgentButton : MonoBehaviour
     {
         id.text = agent._name.text;
     }
+    
 }

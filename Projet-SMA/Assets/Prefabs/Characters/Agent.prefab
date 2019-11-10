@@ -12986,13 +12986,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2622002020204325310}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 13, z: -20.1}
+  m_LocalRotation: {x: 0.06104851, y: 0, z: 0, w: 0.99813485}
+  m_LocalPosition: {x: 0, y: 16, z: -20.1}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 6996777689335691323}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 7, y: 0, z: 0}
 --- !u!20 &2622002020204325305
 Camera:
   m_ObjectHideFlags: 0
@@ -13336,6 +13336,8 @@ MonoBehaviour:
   _identifiant: 0
   _ownerEnergy: 0
   currentObjet: {fileID: 0}
+  percentOfEnergy: 0
+  percentOfToxic: 0
   Destination: 0
 --- !u!1 &2622002020901857898
 GameObject:
@@ -32028,8 +32030,8 @@ MonoBehaviour:
   _agent: {fileID: 2622002020163438954}
   _code: 0
   _name: {fileID: 2622002021166081497}
-  _fieldOfView: {fileID: 2622002020843932829}
   _camera: {fileID: 2622002020204325305}
+  _fieldOfView: {fileID: 2622002020843932829}
   target:
   - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
   - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
