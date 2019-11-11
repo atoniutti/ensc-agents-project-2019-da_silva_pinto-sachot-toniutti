@@ -32062,7 +32062,7 @@ MonoBehaviour:
   - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
   currentTarget: 0
   currentState: 0
-  dialogue: 2
+  dialogue: 3
   actualDialogueWithAgent: 0
   listenAnOtherAgent: 0
   PercentTrustStart: 60

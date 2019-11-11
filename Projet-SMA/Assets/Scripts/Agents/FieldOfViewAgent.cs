@@ -51,7 +51,7 @@ public class FieldOfViewAgent : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
-       if (col.gameObject.name == "EnergyCoil(Clone)")
+       /*if (col.gameObject.name == "EnergyCoil(Clone)")
         {
             if ((int)_owner.currentTarget<4 )
             {
@@ -59,7 +59,7 @@ public class FieldOfViewAgent : MonoBehaviour
             }
             
 
-        }
+        }*/
         // If the energy enter in the field of view
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
@@ -119,14 +119,18 @@ public class FieldOfViewAgent : MonoBehaviour
         // If an agent enter in the field of view 
         if (col.gameObject.name == "Agent(Clone)")
         {
-            _agentFront = true;
-            _agentMember = col.GetComponent<Agent>();
-            if(_agentMember._code!=_owner._code)
+            if(_owner.listenAnOtherAgent==true)
             {
-                _agentMemberDialogue = _agentMember.dialogue;
-                _agentMemberState = (int)_agentMember.currentState;
-                _agentMemberTarget = _agentMember.currentTarget;
+                _agentFront = true;
+                _agentMember = col.GetComponent<Agent>();
+                if (_agentMember._code != _owner._code)
+                {
+                    _agentMemberDialogue = _agentMember.dialogue;
+                    _agentMemberState = (int)_agentMember.currentState;
+                    _agentMemberTarget = _agentMember.currentTarget;
+                }
             }
+            
         }
         if (col.gameObject.name != "Agent(Clone)")
         {
