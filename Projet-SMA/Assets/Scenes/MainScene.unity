@@ -607,7 +607,6 @@ GameObject:
   m_Component:
   - component: {fileID: 671013868}
   - component: {fileID: 671013867}
-  - component: {fileID: 671013866}
   m_Layer: 0
   m_Name: MinimapCamera
   m_TagString: Untagged
@@ -615,14 +614,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &671013866
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671013865}
-  m_Enabled: 1
 --- !u!20 &671013867
 Camera:
   m_ObjectHideFlags: 0
@@ -1065,41 +1056,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
@@ -1117,6 +1073,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.18
       objectReference: {fileID: 0}
     - target: {fileID: 6593525050837076256, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
@@ -1141,7 +1107,7 @@ PrefabInstance:
     - target: {fileID: 5730342100259990073, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00064086914
+      value: -6.561249
       objectReference: {fileID: 0}
     - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
@@ -1262,6 +1228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2622002020163438949, guid: ea247fed1d32d354c897b62297e3c9dd,
+        type: 3}
+      propertyPath: dialogue
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
@@ -5142,6 +5113,11 @@ PrefabInstance:
       value: 0.4808234
       objectReference: {fileID: 0}
     - target: {fileID: 8184555415159600057, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31e99be02e4468a45a42adb1824a7a0a, type: 2}
+    - target: {fileID: 6698549656269006592, guid: 5ac65a0fdd8756d4198ca4f298590303,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

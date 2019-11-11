@@ -9,74 +9,99 @@ public class Agent : MonoBehaviour
     public NavMeshAgent _agent;
     private Animator animator;
     public Camera _camera; //camera of the agent in order to modified display
+    
 
     public static int _precCode;
     public int _code; // code name of the agent
     public FieldOfViewAgent _fieldOfView; //field of view of the agent
 
+    //Agent
     public Transform[] target; // An array where he have to go
-    public int currentTarget; //diection of the agent
+    public Direction currentTarget; //diection of the agent
     public AgentStates currentState;// State of the agent
     public Discussion dialogue;
+
+    //Variable corresponding to the other agents in the scene
+    public int actualDialogueWithAgent;
+    public bool listenAnOtherAgent;
+    public List<AgentTrust> agentsList = new List<AgentTrust>();
+    public float PercentTrustStart;
+    private bool BoolStartTrust;
+
+    //Corresponding to the battery that the agent can take
     public int canTakeEnergy; //identifiant of the energy that the agent can take
+
+    //Corresponding to the parametre of the two pile
     public float PercentOfEnergyPile;
     public float PercentOfToxicPile;
+    private float proba ;
+    public bool checkPile;
 
 
     private void Start()
     {
         _agent = GetComponent(typeof(NavMeshAgent)) as NavMeshAgent;
         _code = _precCode + 1;
-        currentState = AgentStates.Idle;
+        currentState = AgentStates.Start;
         _precCode = _code;
         animator = GetComponent<Animator>();
         _camera.targetDisplay = _code;
         _camera.enabled = true;
         currentState = AgentStates.Start;
-        
+        BoolStartTrust = true;
+        checkPile = false;
+        listenAnOtherAgent = false;
     }
 
     private void Update()
     {
-        
+        //At the beginning the agent trust is the same for everyone
+        if (BoolStartTrust == true)
+        {
+            InstanciateTrust(PercentTrustStart);
+            BoolStartTrust = false;
+        }
+
         //Pickable Objet
-        //detection of energy in the field of view of the agent 
+            //detection of energy in the field of view of the agent 
         if ((_fieldOfView._energyFront == true && currentState == AgentStates.FindingEnergy))
         {
             if (_fieldOfView._ownerCombustible == _code)
             {
                 SeeObject();
+                bool go = _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z));
                 // if the agent enough near of the energy 
-                if (_fieldOfView._energyPickable == true && _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z)))
+                if (_fieldOfView._energyPickable == true && go)
                 {
                     currentState = AgentStates.HavingEnergy;
-                    TakeObject();
-                    currentTarget = (int)Direction.BatteryEnergyPoint;
-                    DestinationAgent(currentTarget);
+                    TakeObject(currentState);
+                    currentState = AgentStates.GoToPileEnergy;
+                    currentTarget = Direction.BatteryEnergyPoint;
+                    DestinationAgent((int)currentTarget);
                 }
             }
             else canTakeEnergy = 0;
         }
-
-        //detection of toxic in the field of view of the agent 
+            //detection of toxic in the field of view of the agent 
         if (_fieldOfView._toxicFront == true && currentState == AgentStates.FindingToxic)
         {
             if (_fieldOfView._ownerCombustible == _code)
             {
                 SeeObject();
+                bool go=_agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z));
                 // if the agent enough near of the energy 
-                if (_fieldOfView._energyPickable == true && _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z)))
+                if (_fieldOfView._energyPickable == true && go)
                 {
                     currentState = AgentStates.HavingToxic;
-                    TakeObject();
-                    currentTarget = (int)Direction.BatteryWastePoint;
-                    DestinationAgent(currentTarget);
+                    TakeObject(currentState);
+                    currentState = AgentStates.GoToPileToxic;
+                    currentTarget = Direction.BatteryWastePoint;
+                    DestinationAgent((int)currentTarget);
                 }
             }
             else canTakeEnergy = 0;
         }
-
-        //If nothing in front look for energy or toxic
+            //If nothing in front look for energy or toxic
         if ((_fieldOfView._energyFront == false && currentState == AgentStates.FindingEnergy)
             || (_fieldOfView._toxicFront == false && currentState == AgentStates.FindingToxic))
         {
@@ -84,45 +109,94 @@ public class Agent : MonoBehaviour
         }
 
         //Agent choice
-        //Destination of the agent 
-        if (_fieldOfView.currentObjet == null)
+            //Choice in front of the pile : Go check the need of the different pile
+        if (_fieldOfView._pileFront == true )
         {
-            if(currentState==AgentStates.Start)
+            PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
+            PercentOfToxicPile = _fieldOfView.percentOfToxic;
+            if((currentState == AgentStates.Idle || currentState == AgentStates.Start) && checkPile == false)
             {
-                currentTarget = (int)Direction.BatteryEnergyPoint;
-                DestinationAgent(currentTarget);
-            }
-            if (_fieldOfView._pileFront == true && (currentState == AgentStates.Idle|| currentState == AgentStates.Start))
-            {
-                PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
-                PercentOfToxicPile = _fieldOfView.percentOfToxic;
+                listenAnOtherAgent = true;
                 currentState = MakeAChoice(PercentOfEnergyPile, PercentOfToxicPile);
+                checkPile = true;
             }
-            
-            /*if (_fieldOfView._agentFront==true)
-            {
+            AnimationMove(currentState);
+        }
+        
+        if (_fieldOfView._pileFront == false)
+        {
+            checkPile = false;
 
-            }*/
-            //  Pour tester (a supprimer)
-            if (currentState == AgentStates.FindingToxic)
-            {
-                currentTarget = 4;
-            }
-            if (currentState == AgentStates.FindingEnergy)
-            {
-                currentTarget =0;
-            }
-            if (currentState == AgentStates.Start)
-            {
-                currentTarget = 5;
-               
-            }
-            _agent.SetDestination(target[currentTarget].position);
-            animator.SetBool("walk", true);
         }
 
+
+            //Destination of the agent if he carry nothing
+        if (_fieldOfView.currentObjet == null)
+        {
+                //At the start of the simulation
+            if(currentState==AgentStates.Start)
+            {
+                currentTarget = Direction.BatteryEnergyPoint;
+                DestinationAgent((int)currentTarget);
+                AnimationMove(currentState);
+            }
+                // If he meet an other agent 
+            if (_fieldOfView._agentFront==true && listenAnOtherAgent )
+            {
+                actualDialogueWithAgent = _fieldOfView._agentMember._code;
+
+                //Correspond to the Discussion (enumartion) of presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
+                if ((int)_fieldOfView._agentMemberDialogue <= 5 && (int)_fieldOfView._agentMemberDialogue>=2 && currentState==AgentStates.FindingEnergy)
+                {
+                    Direction precedentchoiceTarget = currentTarget;
+                    //Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
+                    if ((int)_fieldOfView._agentMemberDialogue-2 != (int)currentTarget)
+                    {
+                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent -_code)-1].trust);
+                        dialogue = (Discussion)_fieldOfView._agentMemberDialogue;
+
+                        if (currentTarget != precedentchoiceTarget)
+                        {
+                            listenAnOtherAgent = false;
+                        }
+                        else listenAnOtherAgent = true;
+                    }
+                }
+                if ((int)_fieldOfView._agentMemberDialogue ==(int)Discussion.NeedFindToxic && currentState == AgentStates.FindingToxic && listenAnOtherAgent)
+                {
+                    currentTarget = Direction.ToxicPoint;
+                    listenAnOtherAgent = false;
+                }
+                
+            }
+            
+            
+            if(currentState==AgentStates.FindingToxic)
+            {
+                currentTarget = Direction.ToxicPoint;
+            }
+            DestinationAgent((int)currentTarget);
+            AnimationMove(currentState);
+
+        }
+        if (_fieldOfView.currentObjet != null)
+        {
+            listenAnOtherAgent = true;
+        }
     }
 
+    private void InstanciateTrust(float trust)
+    {
+        foreach (GameObject agentOther in GameObject.FindGameObjectsWithTag("agent"))
+        {
+            if (_code != agentOther.GetComponent<Agent>()._code)
+            {
+                AgentTrust trustInAgent = new AgentTrust(agentOther.GetComponent<Agent>(), trust);
+                agentsList.Add(trustInAgent);
+                //Debug.Log("L'agent " + _code + " a une confiance en " + trustInAgent.agent._code + " de : " + trustInAgent.trust);
+            }
+        }
+    }
     //When the see the object he can take this one and he wlak to him
     public void SeeObject()
     {
@@ -131,50 +205,77 @@ public class Agent : MonoBehaviour
         _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z));
     }
     //When the agent is near enough to take the objet
-    public void TakeObject()
+    public void TakeObject(AgentStates state)
     {
-        animator.SetTrigger("takeRessource");
-        animator.SetBool("walk", true);
+        AnimationMove(state);
     }
-    
+    //The agent go to the destination 
+    public void DestinationAgent(int TargetAgent)
+    {
+        _agent.SetDestination(target[TargetAgent].position);
+    }
+
+    //destination choice of the agent 
+    public int ChoiceDestination()
+    {
+        return 0;
+    }
+
+    public void AnimationMove(AgentStates agentStates)
+    {
+        if (agentStates==AgentStates.Idle)
+        {
+            animator.SetBool("walk", false);
+        }
+        if(agentStates==AgentStates.FindingEnergy||agentStates==AgentStates.FindingToxic 
+            || agentStates==AgentStates.Start || agentStates==AgentStates.GoToPileEnergy||agentStates==AgentStates.GoToPileToxic)
+        {
+            animator.SetBool("walk", true);
+        }
+        if (agentStates==AgentStates.HavingEnergy|| agentStates==AgentStates.HavingToxic)
+        {
+            animator.SetTrigger("takeRessource");
+        }
+    }
+  
     //Make a choice of Direction if an other agent tell him an direction 
     public Direction MakeAChoice(float yourDistance1, float hisDistance2, float trustOfHim)
     {
         return 0;
     }
-
+    
     //Make a choice of Direction/Objectif(States) if an other agent tell him something in the discussion
-    public string MakeAChoice(Discussion dialogue,float trustOfHim)
+    public Direction MakeAChoice(Direction yourTarget, Discussion dialogue,float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
         if (trustOfHim>=80)
         {
-            return (dialogue.ToString());
+            return ((Direction)(dialogue-2)); //Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
         }
         if (trustOfHim < 80)
         {
-            if (proba < (trustOfHim / 100))
+            if (proba <=(trustOfHim / 100))
             {
-                return (dialogue.ToString());
+                return ((Direction)(dialogue-2)); //Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
             }
             else
             {
-                return "IDontTrustYou" ;
+                return yourTarget ;
             }
         }
-        else return "IDontTrustYou";
+        else return yourTarget;
     }
     //Make a choice of Objectif (State) when he see the two pile 
     public AgentStates MakeAChoice(float percentOfEnergy, float percentOfToxic)
     {
-        if (percentOfEnergy >= 0 && percentOfEnergy < 99 && percentOfToxic<10 )
+        proba = Random.Range(0f, 1f);
+        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic<=10 )
         {
             AgentStates state = AgentStates.FindingEnergy;
             return state;
         }
-        if (percentOfEnergy >= 0 && percentOfEnergy < 99 && percentOfToxic > 30 && percentOfToxic < 60)
+        if (percentOfEnergy >= 20 && percentOfEnergy <= 99 && percentOfToxic > 20 && percentOfToxic < 50)
         {
-            float proba = Random.Range(0f, 1f);
             if (proba>=0.5f)
             {
                 AgentStates state = AgentStates.FindingToxic;
@@ -193,7 +294,6 @@ public class Agent : MonoBehaviour
         }
         else
         {
-            float proba = Random.Range(0.0f, 1.0f);
             if (proba >= 0.5f)
             {
                 AgentStates state = AgentStates.FindingToxic;
@@ -208,17 +308,5 @@ public class Agent : MonoBehaviour
         
     }
 
-    //The agent go to the destination 
-    public void DestinationAgent(int TargetAgent)
-    {
-        _agent.SetDestination(target[TargetAgent].position);
-    }
-
-   
     
-
-    public int ChoiceDestination()
-    {
-        return 0;
-    }
 }

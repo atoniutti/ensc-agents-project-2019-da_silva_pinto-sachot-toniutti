@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScrollAgents : MonoBehaviour
 {
-    public UIAgent currentAgent;
+    public Agent currentAgent;
     public ScrollRect scrollView;
     public GameObject scrollContent;
     public AgentButton agentButton;

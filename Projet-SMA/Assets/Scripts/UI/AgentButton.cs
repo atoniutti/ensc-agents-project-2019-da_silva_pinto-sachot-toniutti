@@ -9,9 +9,9 @@ public class AgentButton : MonoBehaviour
     public Text id;
 
     // Start is called before the first frame update
-    private void Start()
+    public void Start()
     {
-        id.text = agent._name.text;
+        id.text = agent.GetComponent<UIAgent>()._name.text;
     }
     
 }

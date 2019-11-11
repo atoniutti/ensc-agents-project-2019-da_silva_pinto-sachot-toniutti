@@ -12,7 +12,6 @@ public class UIAgent : MonoBehaviour
     public Text _name; // name of the agent
 
     public Canvas canvasAgent;
-    public List<AgentTrust> agentsList = new List<AgentTrust>();
     AgentButton agentButton;
 
 

@@ -22,8 +22,8 @@ public class FieldOfViewAgent : MonoBehaviour
 
     //For agent
     public Agent _agentMember;
-    public int _agentMemberTarget;
-    public AgentStates _agentMemberState;
+    public Direction _agentMemberTarget;
+    public int _agentMemberState;
     public Discussion _agentMemberDialogue;
     public int[] numberOfPileByPlace;
 
@@ -51,16 +51,15 @@ public class FieldOfViewAgent : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
-       /* if (col.gameObject.name == "EnergyCoil(Clone)")
+       if (col.gameObject.name == "EnergyCoil(Clone)")
         {
-            numberOfPile += 1;
-            if (numberOfPile>1)
+            if ((int)_owner.currentTarget<4 )
             {
-               
+                numberOfPileByPlace[(int)_owner.currentTarget] += 1;
             }
+            
 
-        }*/
-        
+        }
         // If the energy enter in the field of view
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
@@ -72,7 +71,8 @@ public class FieldOfViewAgent : MonoBehaviour
                 _position = col.transform;
                 _identifiant = _battery.idEnergy;
             }
-           
+            _pileFront = false;
+
         }
         // If the toxic enter in the field of view
         if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic && _owner.canTakeEnergy == 0)
@@ -85,6 +85,7 @@ public class FieldOfViewAgent : MonoBehaviour
                 _position = col.transform;
                 _identifiant = _battery.idEnergy;
             }
+            _pileFront = false;
         }
         
         // If the box Energy enter in the field of view 
@@ -92,7 +93,7 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             if (currentObjet != null && currentObjet.name == "EnergyCoil(Clone)")
             {
-                PoseEnergy(_energyFront);
+                PoseEnergy();
             }
         }
 
@@ -101,33 +102,35 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             if (currentObjet != null && currentObjet.name == "Toxic(Clone)")
             {
-                PoseEnergy(_toxicFront);
+                PoseEnergy();
             }
         }
+
         // If the box informationBox enter in the field of view 
         if (col.gameObject.name == "InformationBox")
         {
-            _pileFront = true;
+            
             percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;
             percentOfToxic = col.GetComponent<InformationPiles>().toxicRate;
-            
-        }
-        if (col.gameObject.name != "InformationBox")
-        {
-            _pileFront = false;
-          
+            _pileFront = true;
 
         }
+
         // If an agent enter in the field of view 
         if (col.gameObject.name == "Agent(Clone)")
         {
+            _agentFront = true;
             _agentMember = col.GetComponent<Agent>();
             if(_agentMember._code!=_owner._code)
             {
                 _agentMemberDialogue = _agentMember.dialogue;
-                _agentMemberState = _agentMember.currentState;
+                _agentMemberState = (int)_agentMember.currentState;
                 _agentMemberTarget = _agentMember.currentTarget;
             }
+        }
+        if (col.gameObject.name != "Agent(Clone)")
+        {
+            _agentFront = false;
         }
     }
 
@@ -139,7 +142,7 @@ public class FieldOfViewAgent : MonoBehaviour
             _ownerCombustible = _battery.matriculAgent;
         }
     }
-    public void PoseEnergy(bool front)
+    public void PoseEnergy()
     {
         Destroy(currentObjet);
         _identifiant = 0;
@@ -147,7 +150,9 @@ public class FieldOfViewAgent : MonoBehaviour
         _ownerCombustible = 0;
         _position = null;
         _battery = null;
-        front = false;
+        _toxicFront = false;
+        _energyFront = false;
+        _pileFront = true;
         _energyPickable = false;
         _owner.currentState = AgentStates.Idle;
         

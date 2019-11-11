@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AgentStates {Idle, FindingEnergy, FindingToxic, HavingEnergy, HavingToxic, Start}
+public enum AgentStates {Idle, FindingEnergy, FindingToxic, HavingEnergy, HavingToxic, GoToPileEnergy, GoToPileToxic, Start}
 public enum AgentType { Liar, honest}
 public enum Discussion
 {
-     NeedFindEnergy, NeedFindToxic, HaveManyAtEast, HaveManyAtWest, HaveManyAtNorth, HaveManyAtSouth,
-    DonthaveManyAtEast, DonthaveManyAtNoth, DonthaveManyAtWest, DonthaveManyAtSouth
+     NeedFindEnergy, NeedFindToxic, HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest, 
+    DonthaveManyAtEast, DonthaveManyAtNoth, DonthaveManyAtWest, DonthaveManyAtSouth,IDoNotKnow
 }
 
 public enum Answer

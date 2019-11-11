@@ -7,6 +7,7 @@ public class AgentManager : MonoBehaviour
     public Agent agent;
     public List<Agent> agents;
     public int numberOfAgents = 10;
+    
 
     List<Transform> spawnPoints = new List<Transform>();
     float maxX = 2f;
@@ -27,7 +28,9 @@ public class AgentManager : MonoBehaviour
         {
             Spawn(sp);
         }
+        
     }
+ 
 
     void GenerateRandomSpawnPoints()
     {

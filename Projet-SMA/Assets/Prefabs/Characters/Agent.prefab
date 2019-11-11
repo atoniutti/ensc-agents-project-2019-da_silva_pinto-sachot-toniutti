@@ -13331,16 +13331,20 @@ MonoBehaviour:
   _energyFront: 0
   _toxicFront: 0
   _pileFront: 0
+  _agentFront: 0
   _energyPickable: 0
-  _energy: {fileID: 0}
+  _battery: {fileID: 0}
   _identifiant: 0
-  _ownerEnergy: 0
+  _ownerCombustible: 0
   currentObjet: {fileID: 0}
   _position: {fileID: 0}
-  NumberOfPileByPlace: 
+  _agentMember: {fileID: 0}
+  _agentMemberTarget: 0
+  _agentMemberState: 0
+  _agentMemberDialogue: 0
+  numberOfPileByPlace: 
   percentOfEnergy: 0
   percentOfToxic: 0
-  Destination: 0
 --- !u!1 &2622002020901857898
 GameObject:
   m_ObjectHideFlags: 0
@@ -13823,7 +13827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d353ac4e88607cf4d90efadc1887bf74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAgent: {fileID: 1281074319820868494}
+  currentAgent: {fileID: 2622002020163438949}
   scrollView: {fileID: 5190159524510703912}
   scrollContent: {fileID: 7076582035792195556}
   agentButton: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
@@ -31948,7 +31952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6287823205103929896}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.19, y: 0, z: 0.72}
+  m_LocalPosition: {x: -1.18, y: 0, z: -4.29}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 190523016326569074}
@@ -32045,9 +32049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agent: {fileID: 2622002020163438954}
-  _code: 0
-  _name: {fileID: 2622002021166081497}
   _camera: {fileID: 2622002020204325305}
+  _code: 0
   _fieldOfView: {fileID: 2622002020843932829}
   target:
   - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
@@ -32058,8 +32061,15 @@ MonoBehaviour:
   - {fileID: 1602671006598870460, guid: 0f4873711c0fc584ea17318af3a015e7, type: 3}
   - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
   currentTarget: 0
-  currentState: 1
+  currentState: 0
+  dialogue: 2
+  actualDialogueWithAgent: 0
+  listenAnOtherAgent: 0
+  PercentTrustStart: 60
   canTakeEnergy: 0
+  PercentOfEnergyPile: 0
+  PercentOfToxicPile: 0
+  checkPile: 0
 --- !u!114 &1281074319820868494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32074,6 +32084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 2622002020163438949}
   pointPosition: {fileID: 2622002021394178104}
+  _name: {fileID: 2622002021166081497}
   canvasAgent: {fileID: 606636061290355057}
 --- !u!1 &6292880258573172290
 GameObject:
@@ -48854,6 +48865,11 @@ PrefabInstance:
       propertyPath: agent
       value: 
       objectReference: {fileID: 2622002020163438949}
+    - target: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
+        type: 3}
+      propertyPath: id
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6008590281190373177, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
         type: 3}
       propertyPath: m_LocalPosition.x

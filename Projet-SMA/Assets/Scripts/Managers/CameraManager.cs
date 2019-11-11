@@ -16,7 +16,6 @@ public class CameraManager : MonoBehaviour
     {
         currentCamera = mainCamera;
         currentAgent = FindObjectOfType<Agent>();
-        Debug.LogError(currentAgent);
     }
 
     // Update is called once per frame

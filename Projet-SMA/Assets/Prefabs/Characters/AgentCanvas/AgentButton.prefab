@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  name: {fileID: 5924189518682882897}
+  id: {fileID: 0}
 --- !u!1 &7451863598916141696
 GameObject:
   m_ObjectHideFlags: 0
