@@ -16,6 +16,8 @@ public class CameraManager : MonoBehaviour
     {
         currentCamera = mainCamera;
         currentAgent = FindObjectOfType<Agent>();
+        mainCameraButton.onClick.AddListener(DisplayMainCamera);
+        agentCameraButton.onClick.AddListener(DisplayAgentCamera);
     }
 
     // Update is called once per frame
@@ -31,5 +33,15 @@ public class CameraManager : MonoBehaviour
             mainCameraButton.interactable = true;
             agentCameraButton.interactable = false;
         }
+    }
+
+    public void DisplayMainCamera()
+    {
+        currentCamera = mainCamera;
+    }
+
+    public void DisplayAgentCamera()
+    {
+        currentCamera = currentAgent._camera;
     }
 }
