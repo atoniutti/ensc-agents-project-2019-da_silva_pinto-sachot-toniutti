@@ -22,7 +22,6 @@ public class AgentManager : MonoBehaviour
     {
         agents = new List<Agent>();
         GenerateRandomSpawnPoints();
-        GenerateAgentTrustList();
 
         foreach (Transform sp in spawnPoints)
         {
@@ -67,15 +66,5 @@ public class AgentManager : MonoBehaviour
         // Create an instance of the agent prefab
         Instantiate(agent, spawnPoint.position, spawnPoint.rotation);
         agents.Add(agent);
-    }
-
-    void GenerateAgentTrustList()
-    {
-        //foreach (Agent a in agents)
-        //{
-        //    a.agentsList = agents;
-        //}
-
-        // Génération de la liste --> Ajout pour chaque agent et création de l'UI
     }
 }

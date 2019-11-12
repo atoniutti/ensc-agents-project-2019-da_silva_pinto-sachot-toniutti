@@ -31,7 +31,7 @@ public class FieldOfViewAgent : MonoBehaviour
 
     //Look pile
     public float percentOfEnergy ;
-    public float percentOfToxic;
+    public float percentOfWaste;
     //For agent 
 
     
@@ -111,7 +111,7 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             
             percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;
-            percentOfToxic = col.GetComponent<InformationPiles>().toxicRate;
+            percentOfWaste = col.GetComponent<InformationPiles>().toxicRate;
             _pileFront = true;
 
         }

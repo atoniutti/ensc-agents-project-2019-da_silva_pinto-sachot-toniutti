@@ -9,11 +9,11 @@ public class UIAgent : MonoBehaviour
     //UI
     public Agent owner;
     public GameObject pointPosition;
-    public Text _name; // name of the agent
+    public Text _name; // Name of the agent
+    public ProgressBar _energyProgressBar;
+    public ProgressBar _wasteProgressBar;
 
     public Canvas canvasAgent;
-    AgentButton agentButton;
-
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,12 @@ public class UIAgent : MonoBehaviour
             // Canvas Agent
             canvasAgent.enabled = true;
         }
+
+        // Update Percent Of Energy & Toxic Piles
+        _energyProgressBar.UpdateBar(owner.PercentOfEnergyPile);
+        _wasteProgressBar.UpdateBar(owner.PercentOfWastePile);
     }
+
     private string GetNameCode()
     {
         string name = "Agent ";

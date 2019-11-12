@@ -5,13 +5,20 @@ using UnityEngine.UI;
 
 public class AgentButton : MonoBehaviour
 {
-    public Agent agent;
-    public Text id;
+    public AgentTrust _agentTrust;
+    public Text _name;
+    public CircularProgressBar _trustProgressBar;
 
     // Start is called before the first frame update
     public void Start()
     {
-        id.text = agent.GetComponent<UIAgent>()._name.text;
+
     }
-    
+
+    // Update is called once per frame
+    void Update()
+    {
+        _name.text = _agentTrust.agent.GetComponent<UIAgent>()._name.text;
+        _trustProgressBar.UpdateBar(_agentTrust.trust);
+    }
 }
