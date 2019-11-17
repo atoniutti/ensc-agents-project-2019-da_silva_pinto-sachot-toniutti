@@ -19,6 +19,7 @@ public class FieldOfViewAgent : MonoBehaviour
     public int _ownerCombustible; // owner of object energy
     public GameObject currentObjet; 
     public Transform _position; //position of the objet enr
+    private List<int> _batterySeeList; // list of batterie see
 
     //For agent
     public Agent _agentMember;
@@ -32,7 +33,7 @@ public class FieldOfViewAgent : MonoBehaviour
     //Look pile
     public float percentOfEnergy ;
     public float percentOfWaste;
-    //For agent 
+     
 
     
     public void Start()
@@ -42,6 +43,7 @@ public class FieldOfViewAgent : MonoBehaviour
         _toxicFront = false;
         _pileFront = false;
         numberOfPileByPlace = new int[4];
+        _batterySeeList = new List<int>();
 
     }
     private void Update()
@@ -50,20 +52,36 @@ public class FieldOfViewAgent : MonoBehaviour
     }
     void OnTriggerEnter(Collider col)
     {
-        //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
-       /*if (col.gameObject.name == "EnergyCoil(Clone)")
+        /*if (col.gameObject.name == "EnergyCoil(Clone)" )
         {
-            if ((int)_owner.currentTarget<4 )
+            if ((int)_owner.currentTarget <= 3 && col.GetComponent<PickableEnergy>().hasPlayer==false)
             {
-                numberOfPileByPlace[(int)_owner.currentTarget] += 1;
-            }
-            
+                
+                if (_batterySeeList.Count ==0 )
+                {
+                    numberOfPileByPlace[(int)_owner.currentTarget] += 1;
+                    _batterySeeList.Add(col.GetComponent<PickableEnergy>().idEnergy);
+                }
+                else
+                {
+                    if (_batterySeeList[_batterySeeList.IndexOf(col.GetComponent<PickableEnergy>().idEnergy)] != col.GetComponent<PickableEnergy>().idEnergy)
+                    {
+                        numberOfPileByPlace[(int)_owner.currentTarget] += 1;
+                        _batterySeeList.Add(_battery.idEnergy);
 
+                    }
+                }
+                    
+
+            }
         }*/
-        // If the energy enter in the field of view
+
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
+            //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
             _battery = col.GetComponent<PickableEnergy>();
+            
+            // If the energy enter in the field of view
             if(_battery.hasPlayer==false)
             {
                 currentObjet = col.gameObject;
@@ -72,7 +90,6 @@ public class FieldOfViewAgent : MonoBehaviour
                 _identifiant = _battery.idEnergy;
             }
             _pileFront = false;
-
         }
         // If the toxic enter in the field of view
         if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic && _owner.canTakeEnergy == 0)
@@ -117,22 +134,19 @@ public class FieldOfViewAgent : MonoBehaviour
         }
 
         // If an agent enter in the field of view 
-        if (col.gameObject.name == "Agent(Clone)")
+        if (col.gameObject.tag== "agent" && _owner.listenAnOtherAgent)
         {
-            if(_owner.listenAnOtherAgent==true)
+            _agentFront = true;
+            _agentMember = col.GetComponent<Agent>();
+            if (_agentMember._code != _owner._code)
             {
-                _agentFront = true;
-                _agentMember = col.GetComponent<Agent>();
-                if (_agentMember._code != _owner._code)
-                {
-                    _agentMemberDialogue = _agentMember.dialogue;
-                    _agentMemberState = (int)_agentMember.currentState;
-                    _agentMemberTarget = _agentMember.currentTarget;
-                }
+                _agentMemberDialogue = _agentMember.dialogue;
+                _agentMemberState = (int)_agentMember.currentState;
+                _agentMemberTarget = _agentMember.currentTarget;
             }
             
         }
-        if (col.gameObject.name != "Agent(Clone)")
+        if (_owner.listenAnOtherAgent==false)
         {
             _agentFront = false;
         }

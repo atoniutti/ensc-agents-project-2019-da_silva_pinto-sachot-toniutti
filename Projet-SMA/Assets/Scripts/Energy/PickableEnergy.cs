@@ -84,7 +84,7 @@ public class PickableEnergy : MonoBehaviour
                 }
             }
 
-            if(agent.canTakeEnergy != idEnergy && (agent.currentState == AgentStates.HavingEnergy || agent.currentState == AgentStates.HavingToxic))
+            if(agent.canTakeEnergy != idEnergy && (agent.currentState == AgentStates.GoToPileEnergy || agent.currentState == AgentStates.GoToPileToxic))
             {
                 agent = null;
                 matriculAgent = 0;

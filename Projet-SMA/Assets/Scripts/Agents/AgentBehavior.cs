@@ -6,14 +6,10 @@ public enum AgentStates {Idle, FindingEnergy, FindingToxic, HavingEnergy, Having
 public enum AgentType { Liar, honest}
 public enum Discussion
 {
-     NeedFindEnergy, NeedFindToxic, HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest, 
-    DonthaveManyAtEast, DonthaveManyAtNoth, DonthaveManyAtWest, DonthaveManyAtSouth,IDoNotKnow
+     NeedFindEnergy, NeedFindToxic, HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest,
+    DonthaveManyAtNorth, DonthaveManyAtSouth, DonthaveManyAtEast, DonthaveManyAtWest,
 }
 
-public enum Answer
-{
-    FindingEnergy, FindingToxic, EastPoint, WestPoint, NorthPoint, SouthPoint
-}
 public enum Direction
 {
     NorthPoint, SouthPoint, EastPoint, WestPoint,ToxicPoint, BatteryWastePoint, BatteryEnergyPoint

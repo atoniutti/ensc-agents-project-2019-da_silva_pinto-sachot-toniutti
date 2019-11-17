@@ -112,11 +112,11 @@ public class Agent : MonoBehaviour
 
         //Agent choice
             //Choice in front of the pile : Go check the need of the different pile
-        if (_fieldOfView._pileFront == true )
+        if (_fieldOfView._pileFront == true &&  checkPile == false)
         {
             PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
             PercentOfWastePile = _fieldOfView.percentOfWaste;
-            if((currentState == AgentStates.Idle || currentState == AgentStates.Start) && checkPile == false)
+            if((currentState == AgentStates.Idle || currentState == AgentStates.Start))
             {
                 listenAnOtherAgent = true;
                 currentState = MakeAChoice(PercentOfEnergyPile, PercentOfWastePile);
@@ -142,18 +142,18 @@ public class Agent : MonoBehaviour
                 AnimationMove(currentState);
             }
             // If he meet an other agent 
-            if (_fieldOfView._agentFront==true && listenAnOtherAgent )
+            if (listenAnOtherAgent &&_fieldOfView._agentFront == true )
             {
                 actualDialogueWithAgent = _fieldOfView._agentMember._code;
 
-                //Correspond to the Discussion (enumartion) of presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
+                //Correspond to the Discussion (enumartion) about presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
                 if ((int)_fieldOfView._agentMemberDialogue <= 5 && (int)_fieldOfView._agentMemberDialogue>=2 && currentState==AgentStates.FindingEnergy)
                 {
                     Direction precedentchoiceTarget = currentTarget;
                     //Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
                     if ((int)_fieldOfView._agentMemberDialogue-2 != (int)currentTarget)
                     {
-                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent -_code)-1].trust);
+                        currentTarget = MakeAChoice(precedentchoiceTarget,2, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent -_code)-1].trust);
                         dialogue = (Discussion)_fieldOfView._agentMemberDialogue;
 
                         if (currentTarget != precedentchoiceTarget)
@@ -163,6 +163,20 @@ public class Agent : MonoBehaviour
                         else listenAnOtherAgent = true;
                     }
                 }
+                //Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNoth, DonthaveManyAtWest, DonthaveManyAtSouth
+                if ((int)_fieldOfView._agentMemberDialogue <= 9 && (int)_fieldOfView._agentMemberDialogue >= 6 && currentState == AgentStates.FindingEnergy)
+                {
+                    Direction precedentchoiceTarget = currentTarget;
+                    //Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
+                    if ((int)_fieldOfView._agentMemberDialogue - 6 == (int)currentTarget && MakeAChoice(agentsList[Mathf.Abs(actualDialogueWithAgent - _code) - 1].trust))
+                    {
+                        _fieldOfView.numberOfPileByPlace[(int)currentTarget] = -2;
+                        int maxValue = Mathf.Max(_fieldOfView.numberOfPileByPlace.ToArray());
+                        currentTarget = (Direction)System.Array.IndexOf(_fieldOfView.numberOfPileByPlace.ToArray(), maxValue);
+                        _fieldOfView.numberOfPileByPlace[(int)currentTarget] = 0;
+                    }
+                    
+                }
                 if ((int)_fieldOfView._agentMemberDialogue ==(int)Discussion.NeedFindToxic && currentState == AgentStates.FindingToxic && listenAnOtherAgent)
                 {
                     currentTarget = Direction.ToxicPoint;
@@ -171,19 +185,16 @@ public class Agent : MonoBehaviour
                 
             }
             
-            
             if(currentState==AgentStates.FindingToxic)
             {
                 currentTarget = Direction.ToxicPoint;
             }
+
             DestinationAgent((int)currentTarget);
             AnimationMove(currentState);
 
         }
-        if (_fieldOfView.currentObjet != null)
-        {
-            listenAnOtherAgent = true;
-        }
+        
     }
 
     private void InstanciateTrust(float trust)
@@ -219,11 +230,7 @@ public class Agent : MonoBehaviour
         _agent.SetDestination(target[TargetAgent].position);
     }
 
-    // Destination choice of the agent 
-    public int ChoiceDestination()
-    {
-        return 0;
-    }
+
 
     public void AnimationMove(AgentStates agentStates)
     {
@@ -248,19 +255,41 @@ public class Agent : MonoBehaviour
         return 0;
     }
     
+    //boolean if the agent is agree or not with dialogue of the other agent
+    public bool MakeAChoice(float trustOfHim)
+    {
+        float proba = Random.Range(0f, 1f);
+        if (trustOfHim >= 80)
+        {
+            return (true); //if agent agree with dialogue of the other agent
+        }
+        if (trustOfHim < 80)
+        {
+            if (proba <= (trustOfHim / 100))
+            {
+                return (true);  //if agent agree with dialogue of the other agent
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else return false;
+    }
+
     // Make a choice of Direction/Objectif(States) if an other agent tell him something in the discussion
-    public Direction MakeAChoice(Direction yourTarget, Discussion dialogue,float trustOfHim)
+    public Direction MakeAChoice(Direction yourTarget,int differenceEnum, Discussion dialogue,float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
         if (trustOfHim>=80)
         {
-            return ((Direction)(dialogue-2)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
+            return ((Direction)(dialogue-differenceEnum)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
         }
         if (trustOfHim < 80)
         {
             if (proba <=(trustOfHim / 100))
             {
-                return ((Direction)(dialogue-2)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
+                return ((Direction)(dialogue-differenceEnum)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
             }
             else
             {
