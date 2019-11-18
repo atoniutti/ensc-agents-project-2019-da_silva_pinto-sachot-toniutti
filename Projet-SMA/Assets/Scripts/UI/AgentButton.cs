@@ -26,5 +26,6 @@ public class AgentButton : MonoBehaviour
     {
         CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         cameraManager.SwitchAgent(_agentTrust.agent);
+
     }
 }

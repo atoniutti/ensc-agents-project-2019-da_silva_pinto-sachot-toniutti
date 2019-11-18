@@ -14,7 +14,7 @@ public class SpawnListener : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        listBatteryInArea.Add(0);
+        
     }
 
     public void Update()
@@ -42,7 +42,7 @@ public class SpawnListener : MonoBehaviour
                 batteryHere = false;
             }
         }
-        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>().currentState == AgentStates.GoToPileEnergy)
+        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>().currentState == AgentStates.GoToPileEnergy && listBatteryInArea.Count>0)
         {
             actualBatteryOut = col.GetComponent<Agent>().canTakeEnergy;
             listBatteryInArea.Remove(actualBatteryOut);

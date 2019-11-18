@@ -14,6 +14,7 @@ public class UIAgent : MonoBehaviour
     public ProgressBar _wasteProgressBar;
     public CameraManager cameraManager;
 
+
     public Canvas canvasAgent;
 
     // Start is called before the first frame update

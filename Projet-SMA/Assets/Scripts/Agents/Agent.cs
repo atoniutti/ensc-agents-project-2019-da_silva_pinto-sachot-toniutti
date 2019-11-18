@@ -360,21 +360,12 @@ public class Agent : MonoBehaviour
         {
             return Discussion.NeedFindToxic;
         }
-        if(stateAgent==AgentStates.Start)
+        if (stateAgent == AgentStates.Start)
         {
             return Discussion.I_Don_t_Know;
         }
-        if ((stateAgent == AgentStates.GoToPileEnergy || stateAgent == AgentStates.GoToPileToxic) && maxValue <= 1)
-        {
-           
-            return Discussion.I_Don_t_Know;
-           
-        }
-
-        else
-        {
-            return Discussion.I_Don_t_Know;
-        }
+        else return (Discussion.I_Don_t_Know);
+        
 
 
     }
