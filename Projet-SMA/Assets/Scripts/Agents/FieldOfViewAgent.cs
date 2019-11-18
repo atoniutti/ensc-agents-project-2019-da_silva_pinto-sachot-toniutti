@@ -171,7 +171,6 @@ public class FieldOfViewAgent : MonoBehaviour
         _energyFront = false;
         _pileFront = true;
         _energyPickable = false;
-        _owner.currentState = AgentStates.Idle;
         
 
     }
