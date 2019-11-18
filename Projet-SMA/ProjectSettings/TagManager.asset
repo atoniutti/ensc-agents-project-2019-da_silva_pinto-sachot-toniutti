@@ -6,6 +6,7 @@ TagManager:
   tags:
   - agent
   - AgentName
+  - CameraManager
   layers:
   - Default
   - TransparentFX

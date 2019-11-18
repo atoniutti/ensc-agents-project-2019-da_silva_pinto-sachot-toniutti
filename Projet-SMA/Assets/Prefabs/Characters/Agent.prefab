@@ -12824,7 +12824,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2622002020204325310}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -31766,6 +31766,8 @@ MonoBehaviour:
   _name: {fileID: 2622002021166081497}
   _energyProgressBar: {fileID: 8038498337240924253}
   _wasteProgressBar: {fileID: 3756298790110836378}
+  cameraManager: {fileID: 6918046970985349077, guid: c11a41a5c46cc8a44becae7ee2625a8e,
+    type: 3}
   canvasAgent: {fileID: 606636061290355057}
 --- !u!1 &6292880258573172290
 GameObject:
