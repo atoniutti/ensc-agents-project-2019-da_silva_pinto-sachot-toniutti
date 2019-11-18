@@ -15,11 +15,6 @@ public class EnergyManager : MonoBehaviour
         InvokeRepeating("Spawn", spawnTime, spawnTime);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     void Spawn()
     {
         // Find a random index between zero and one less than the number of spawn points.

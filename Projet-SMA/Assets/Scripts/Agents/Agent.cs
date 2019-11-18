@@ -26,6 +26,7 @@ public class Agent : MonoBehaviour
     public List<AgentTrust> agentsList = new List<AgentTrust>();
     public float PercentTrustStart;
     private bool BoolStartTrust;
+    private float countDown = 10;
 
     // Corresponding to the battery that the agent can take
     public int canTakeEnergy; //identifiant of the energy that the agent can take
@@ -36,6 +37,7 @@ public class Agent : MonoBehaviour
     private float proba ;
     public bool checkPile;
     private int randomDirection;
+    public int[] numberOfBatteryByPlace;
 
     private void Start()
     {
@@ -51,10 +53,14 @@ public class Agent : MonoBehaviour
         listenAnOtherAgent = false;
         dialogue = Discussion.I_Don_t_Know;
         randomDirection = Random.Range(0, 3);
+        numberOfBatteryByPlace = new int[4];
     }
 
     private void Update()
-    {
+    { 
+
+        numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
+        dialogue=DialogueUpdtate(currentState, numberOfBatteryByPlace);
         // At the beginning the agent trust is the same for everyone
         if (BoolStartTrust)
         {
@@ -66,7 +72,10 @@ public class Agent : MonoBehaviour
         // Detection of energy in the field of view of the agent 
         if ((_fieldOfView._energyFront == true && currentState == AgentStates.FindingEnergy))
         {
-
+            if (_fieldOfView.spawnPoint && countDown <= 0.0f && !listenAnOtherAgent)
+            {
+                TrustUpdate(5,_fieldOfView._agentMember._code);
+            }
             if (_fieldOfView._ownerCombustible == _code)
             {
                 SeeObject();
@@ -109,7 +118,15 @@ public class Agent : MonoBehaviour
         if ((_fieldOfView._energyFront == false && currentState == AgentStates.FindingEnergy)
             || (_fieldOfView._toxicFront == false && currentState == AgentStates.FindingToxic))
         {
-
+            countDown -= Time.deltaTime;
+            if (_fieldOfView.spawnPoint && countDown <= 0.0f && !listenAnOtherAgent)
+            {
+                TrustUpdate(-5, _fieldOfView._agentMember._code);
+                currentTarget=TargetMostBattery(numberOfBatteryByPlace);
+                countDown = 10;
+                listenAnOtherAgent = true;
+            }
+           
             canTakeEnergy = 0;
         }
 
@@ -144,14 +161,11 @@ public class Agent : MonoBehaviour
                 currentTarget = Direction.PileEnergyPoint;
                 DestinationAgent((int)currentTarget);
                 AnimationMove(currentState);
-                dialogue = DialogueUpdtate(currentState);
+               
             }
-            if(dialogue==Discussion.I_Don_t_Know)
+            if ((dialogue==Discussion.NeedFindEnergy ||dialogue==Discussion.I_Don_t_Know )&&currentState==AgentStates.FindingEnergy)
             {
-                if(currentState==AgentStates.FindingEnergy)
-                {
-                    currentTarget=(Direction)randomDirection;
-                }
+                currentTarget = (Direction)randomDirection;
             }
             // If he meet an other agent 
             if (listenAnOtherAgent &&_fieldOfView._agentFront == true )
@@ -161,13 +175,12 @@ public class Agent : MonoBehaviour
                 if ((int)_fieldOfView._agentMemberDialogue >= 0 && (int)_fieldOfView._agentMemberDialogue <= 3 &&  currentState==AgentStates.FindingEnergy)
                 {
                     Direction precedentchoiceTarget = currentTarget;
-                    //Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
+                    actualDialogueWithAgent = _fieldOfView._agentMember._code;
+                    
                     if ((int)_fieldOfView._agentMemberDialogue!= (int)currentTarget)
                     {
-
-                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent -_code)-1].trust);
-                        dialogue = (Discussion)_fieldOfView._agentMemberDialogue;
-
+                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent - _code) - 1].trust);
+                        
                         if (currentTarget != precedentchoiceTarget)
                         {
                             listenAnOtherAgent = false;
@@ -179,16 +192,14 @@ public class Agent : MonoBehaviour
                 if ((int)_fieldOfView._agentMemberDialogue >= 4 && (int)_fieldOfView._agentMemberDialogue <= 7 && currentState == AgentStates.FindingEnergy)
                 {
                     Direction precedentchoiceTarget = currentTarget;
+                    actualDialogueWithAgent = _fieldOfView._agentMember._code;
                     //Caution -4 it is in order to have the same correspondance according the AgentBhavior ( enumeration)
                     if ((int)_fieldOfView._agentMemberDialogue - 4 == (int)currentTarget && MakeAChoice(agentsList[Mathf.Abs(actualDialogueWithAgent - _code) - 1].trust))
                     {
-                        _fieldOfView.numberOfPileByPlace[(int)currentTarget] = -2;
-                        int maxValue = Mathf.Max(_fieldOfView.numberOfPileByPlace.ToArray());
-                        currentTarget = (Direction)System.Array.IndexOf(_fieldOfView.numberOfPileByPlace.ToArray(), maxValue);
-                        dialogue= DialogueUpdtate(currentState);
-                        _fieldOfView.numberOfPileByPlace[(int)currentTarget] = 0;
+                        numberOfBatteryByPlace[(int)currentTarget] = 0;
+                        int maxValue = Mathf.Max(numberOfBatteryByPlace);
+                        currentTarget = (Direction)System.Array.IndexOf(numberOfBatteryByPlace, maxValue);
                     }
-                    
                 }
                 //Correspond to the Discussion (enumartion) when going to find Toxic 
                 if ((int)_fieldOfView._agentMemberDialogue ==(int)Discussion.NeedFindToxic && currentState == AgentStates.FindingToxic && listenAnOtherAgent)
@@ -201,7 +212,7 @@ public class Agent : MonoBehaviour
             {
                 currentTarget = Direction.ToxicPoint;
             }
-
+            
             DestinationAgent((int)currentTarget);
             AnimationMove(currentState);
 
@@ -240,8 +251,6 @@ public class Agent : MonoBehaviour
     {
         _agent.SetDestination(target[TargetAgent].position);
     }
-
-
 
     public void AnimationMove(AgentStates agentStates)
     {
@@ -346,7 +355,6 @@ public class Agent : MonoBehaviour
             }
         }
     }
-
     public Direction TargetMostBattery(int[]list)
     {
         int maxValue = Mathf.Max(list);
@@ -364,13 +372,13 @@ public class Agent : MonoBehaviour
     {
         agentsList[Mathf.Abs(DialogueWithAgent-_code)- 1].trust+= scoreAdd;
     }
-    public Discussion DialogueUpdtate(AgentStates stateAgent)
+    public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list)
     {
-        int maxValue = Mathf.Max(_fieldOfView.numberOfPileByPlace.ToArray());
-        int minValue = Mathf.Min(_fieldOfView.numberOfPileByPlace.ToArray());
+        int maxValue = Mathf.Max(list);
+        int minValue = Mathf.Min(list);
         if (maxValue > 1)
         {
-            return (Discussion)System.Array.IndexOf(_fieldOfView.numberOfPileByPlace.ToArray(), maxValue);
+            return (Discussion)System.Array.IndexOf(list, maxValue);
         }
         if (stateAgent==AgentStates.FindingEnergy && maxValue <= 1)
         {
