@@ -14,19 +14,19 @@ public class FieldOfViewAgent : MonoBehaviour
     public bool _energyPickable = false; // boolean if the energy is pickable
 
     //For battery
-    private PickableEnergy _battery;
+    public PickableEnergy _battery;
     public int _identifiant = 0; // name of the energy
     public int _ownerCombustible; // owner of object energy
     public GameObject currentObjet; 
     public Transform _position; //position of the objet enr
     private List<int> _batterySeeList; // list of batterie see
-    public bool spawnPoint;
+
     //For agent
     public Agent _agentMember;
     public Direction _agentMemberTarget;
     public int _agentMemberState;
     public Discussion _agentMemberDialogue;
-    public int[] numberOfbattery;
+    public int[] numberOfPileByPlace;
 
 
 
@@ -42,9 +42,8 @@ public class FieldOfViewAgent : MonoBehaviour
         _energyFront = false;
         _toxicFront = false;
         _pileFront = false;
-        numberOfbattery = new int[4];
+        numberOfPileByPlace = new int[4];
         _batterySeeList = new List<int>();
-        spawnPoint = false;
 
     }
     private void Update()
@@ -55,23 +54,19 @@ public class FieldOfViewAgent : MonoBehaviour
     {
         if (col.gameObject.name == "EastInformationBox")
         {
-            numberOfbattery[2]=col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
+            numberOfPileByPlace[2]=col.GetComponent<SpawnListener>().numberOfPile;
         }
         if (col.gameObject.name == "NorthInformationBox")
         {
-            numberOfbattery[0] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
+            numberOfPileByPlace[0] = col.GetComponent<SpawnListener>().numberOfPile;
         }
         if (col.gameObject.name == "SouthInformationBox")
         {
-            numberOfbattery[1] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
+            numberOfPileByPlace[1] = col.GetComponent<SpawnListener>().numberOfPile;
         }
         if (col.gameObject.name == "WestInformationBox")
         {
-            numberOfbattery[3] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
+            numberOfPileByPlace[3] = col.GetComponent<SpawnListener>().numberOfPile;
         }
 
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
@@ -128,7 +123,6 @@ public class FieldOfViewAgent : MonoBehaviour
             percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;
             percentOfWaste = col.GetComponent<InformationPiles>().toxicRate;
             _pileFront = true;
-            spawnPoint = false;
 
         }
 

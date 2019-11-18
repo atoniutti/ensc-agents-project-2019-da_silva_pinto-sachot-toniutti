@@ -309,7 +309,7 @@ MonoBehaviour:
   _cylinder: {fileID: 7758780819920879658}
   _energyBoxEnter: {fileID: 0}
   nameOfTheObject: Toxic
-  _rateStart: 0
+  _rateStart: 10
   currentPercent: 0
   PercentQuantiteIn: -2
   PercentQuantiteOff: -1

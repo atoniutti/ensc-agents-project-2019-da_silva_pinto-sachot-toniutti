@@ -403,7 +403,7 @@ MonoBehaviour:
   _cylinder: {fileID: 1046248898748356033}
   _energyBoxEnter: {fileID: 0}
   nameOfTheObject: EnergyCoil(Clone)
-  _rateStart: 50
+  _rateStart: 30
   currentPercent: 0
   PercentQuantiteIn: 2
   PercentQuantiteOff: 1
