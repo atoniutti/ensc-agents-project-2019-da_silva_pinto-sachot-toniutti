@@ -12,6 +12,8 @@ public class CameraManager : MonoBehaviour
     public Agent currentAgent;
     public AgentManager agentManager;
 
+    private AudioSource audioMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +21,15 @@ public class CameraManager : MonoBehaviour
         mainCameraButton.interactable = false;
         mainCameraButton.onClick.AddListener(DisplayMainCamera);
         agentCameraButton.onClick.AddListener(DisplayAgentCamera);
+        audioMusic = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Update currentAgent
-        if (currentAgent == null)
+        audioMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
+        if (mainCamera == currentCamera)
         {
             currentAgent = agentManager.agents[0];
         }

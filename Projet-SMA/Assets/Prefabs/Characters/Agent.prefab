@@ -6075,7 +6075,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
   - {fileID: 2100000, guid: 77ba0f5f860325f49af64d573fb1c282, type: 2}
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
-  - {fileID: 2100000, guid: bda2536814e7ccc4cae5e4cd5c800149, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31739,9 +31739,9 @@ MonoBehaviour:
   - {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13, type: 3}
   - {fileID: 1602671006598870460, guid: 0f4873711c0fc584ea17318af3a015e7, type: 3}
   - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
-  currentTarget: 0
+  currentTarget: 6
   currentState: 0
-  dialogue: 3
+  dialogue: 2
   actualDialogueWithAgent: 0
   listenAnOtherAgent: 0
   PercentTrustStart: 60
@@ -44540,7 +44540,7 @@ SkinnedMeshRenderer:
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
   - {fileID: 2100000, guid: 77ba0f5f860325f49af64d573fb1c282, type: 2}
   - {fileID: 2100000, guid: a5aa430c7c369eb48b3f3b110c711c19, type: 2}
-  - {fileID: 2100000, guid: bda2536814e7ccc4cae5e4cd5c800149, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
