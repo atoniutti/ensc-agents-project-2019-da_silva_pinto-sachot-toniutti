@@ -74,7 +74,7 @@ public class Agent : MonoBehaviour
         {
             if (_fieldOfView.spawnPoint && countDown <= 0.0f && !listenAnOtherAgent)
             {
-                TrustUpdate(5,_fieldOfView._agentMember._code);
+                TrustUpdate(5);
             }
             if (_fieldOfView._ownerCombustible == _code)
             {
@@ -121,7 +121,7 @@ public class Agent : MonoBehaviour
             countDown -= Time.deltaTime;
             if (_fieldOfView.spawnPoint && countDown <= 0.0f && !listenAnOtherAgent)
             {
-                TrustUpdate(-5, _fieldOfView._agentMember._code);
+                TrustUpdate(-5);
                 currentTarget=TargetMostBattery(numberOfBatteryByPlace);
                 countDown = 10;
                 listenAnOtherAgent = true;
@@ -179,7 +179,7 @@ public class Agent : MonoBehaviour
                     
                     if ((int)_fieldOfView._agentMemberDialogue!= (int)currentTarget)
                     {
-                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent - _code) - 1].trust);
+                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent-1)].trust);
                         
                         if (currentTarget != precedentchoiceTarget)
                         {
@@ -368,9 +368,9 @@ public class Agent : MonoBehaviour
             return (Direction)randomDirection;
         }
     }
-    public void TrustUpdate(int scoreAdd, int DialogueWithAgent)
+    public void TrustUpdate(int scoreAdd)
     {
-        agentsList[Mathf.Abs(DialogueWithAgent-_code)- 1].trust+= scoreAdd;
+        agentsList[Mathf.Abs(actualDialogueWithAgent-_code)- 1].trust+= scoreAdd;
     }
     public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list)
     {
