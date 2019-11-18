@@ -44,8 +44,8 @@ public class Agent : MonoBehaviour
         currentState = AgentStates.Start;
         _precCode = _code;
         animator = GetComponent<Animator>();
-        _camera.targetDisplay = _code;
-        _camera.enabled = true;
+        _camera.targetDisplay = 1;
+        _camera.enabled = false;
         currentState = AgentStates.Start;
         BoolStartTrust = true;
         checkPile = false;
