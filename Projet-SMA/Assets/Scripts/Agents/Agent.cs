@@ -144,7 +144,7 @@ public class Agent : MonoBehaviour
                 currentTarget = Direction.PileEnergyPoint;
                 DestinationAgent((int)currentTarget);
                 AnimationMove(currentState);
-                dialogue = DialogueUpdtate(currentState);
+               
             }
             if(dialogue==Discussion.I_Don_t_Know)
             {
@@ -185,7 +185,6 @@ public class Agent : MonoBehaviour
                         _fieldOfView.numberOfPileByPlace[(int)currentTarget] = -2;
                         int maxValue = Mathf.Max(_fieldOfView.numberOfPileByPlace.ToArray());
                         currentTarget = (Direction)System.Array.IndexOf(_fieldOfView.numberOfPileByPlace.ToArray(), maxValue);
-                        dialogue= DialogueUpdtate(currentState);
                         _fieldOfView.numberOfPileByPlace[(int)currentTarget] = 0;
                     }
                     
@@ -364,30 +363,6 @@ public class Agent : MonoBehaviour
     {
         agentsList[Mathf.Abs(DialogueWithAgent-_code)- 1].trust+= scoreAdd;
     }
-    public Discussion DialogueUpdtate(AgentStates stateAgent)
-    {
-        int maxValue = Mathf.Max(_fieldOfView.numberOfPileByPlace.ToArray());
-        int minValue = Mathf.Min(_fieldOfView.numberOfPileByPlace.ToArray());
-        if (maxValue > 1)
-        {
-            return (Discussion)System.Array.IndexOf(_fieldOfView.numberOfPileByPlace.ToArray(), maxValue);
-        }
-        if (stateAgent==AgentStates.FindingEnergy && maxValue <= 1)
-        {
-            return Discussion.NeedFindEnergy;
-        }
-        if (stateAgent == AgentStates.FindingToxic)
-        {
-            return Discussion.NeedFindToxic;
-        }
-        if (stateAgent == AgentStates.Start)
-        {
-            return Discussion.I_Don_t_Know;
-        }
-        else return (Discussion.I_Don_t_Know);
-        
-
-
-    }
+    
    }
 
