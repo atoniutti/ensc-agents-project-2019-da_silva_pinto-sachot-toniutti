@@ -29,10 +29,10 @@ public class CameraManager : MonoBehaviour
     void Update()
     {
         audioMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
-        if (mainCamera == currentCamera)
+        /*if (mainCamera == currentCamera)
         {
             currentAgent = agentManager.agents[0];
-        }
+        }*/
         
         //if (mainCamera == currentCamera)
         //{

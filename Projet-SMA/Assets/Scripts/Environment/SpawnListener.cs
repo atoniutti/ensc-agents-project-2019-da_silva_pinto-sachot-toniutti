@@ -6,10 +6,10 @@ public class SpawnListener : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    public int actualBattery;
-    public int actualAgentOut;
+    private int actualBattery;
+    private int actualBatteryOut;
     public int numberOfPile;
-    public List<int> listBatteryInArea = new List<int>();
+    private List<int> listBatteryInArea = new List<int>();
 
     void Start()
     {
@@ -17,6 +17,10 @@ public class SpawnListener : MonoBehaviour
         listBatteryInArea.Add(0);
     }
 
+    public void Update()
+    {
+        numberOfPile = listBatteryInArea.Count;
+    }
     // If the agent enter in the area spawn toxic 
     public void OnTriggerEnter(Collider col)
     {
@@ -40,8 +44,8 @@ public class SpawnListener : MonoBehaviour
         }
         if (col.gameObject.tag == "agent" && col.GetComponent<Agent>().currentState == AgentStates.GoToPileEnergy)
         {
-            actualAgentOut = col.GetComponent<Agent>()._code;
-            listBatteryInArea.Remove(actualAgentOut);
+            actualBatteryOut = col.GetComponent<Agent>().canTakeEnergy;
+            listBatteryInArea.Remove(actualBatteryOut);
         }
     }
 

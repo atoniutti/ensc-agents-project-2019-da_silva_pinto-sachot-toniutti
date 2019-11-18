@@ -392,6 +392,7 @@ MonoBehaviour:
   mainCamera: {fileID: 963194227}
   currentCamera: {fileID: 0}
   currentAgent: {fileID: 0}
+  agentManager: {fileID: 0}
 --- !u!82 &384011355
 AudioSource:
   m_ObjectHideFlags: 0
@@ -663,9 +664,6 @@ MonoBehaviour:
   toxic: {fileID: 1999708491803102162, guid: 620dbf3b9c3b77846ba2cd90ca884da3, type: 3}
   spawnPoint: {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13,
     type: 3}
-  actualAgent: 0
-  actualAgentOut: 0
-  listAgentInArea: 
 --- !u!65 &601563433
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1031,7 +1029,7 @@ PrefabInstance:
     - target: {fileID: 5730342100259990073, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
+      value: -0.6246703
       objectReference: {fileID: 0}
     - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
@@ -1603,6 +1601,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347344848409770194, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_Name
+      value: PileInformationBox
       objectReference: {fileID: 0}
     - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
         type: 3}

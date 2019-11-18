@@ -52,8 +52,21 @@ public class FieldOfViewAgent : MonoBehaviour
     }
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Bo" )
+        if (col.gameObject.name == "EastInformationBox")
         {
+            numberOfPileByPlace[2]=col.GetComponent<SpawnListener>().numberOfPile;
+        }
+        if (col.gameObject.name == "NorthInformationBox")
+        {
+            numberOfPileByPlace[0] = col.GetComponent<SpawnListener>().numberOfPile;
+        }
+        if (col.gameObject.name == "SouthInformationBox")
+        {
+            numberOfPileByPlace[1] = col.GetComponent<SpawnListener>().numberOfPile;
+        }
+        if (col.gameObject.name == "WestInformationBox")
+        {
+            numberOfPileByPlace[3] = col.GetComponent<SpawnListener>().numberOfPile;
         }
 
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
@@ -104,7 +117,7 @@ public class FieldOfViewAgent : MonoBehaviour
         }
 
         // If the box informationBox enter in the field of view 
-        if (col.gameObject.name == "InformationBox")
+        if (col.gameObject.name == "PileInformationBox")
         {
             
             percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;

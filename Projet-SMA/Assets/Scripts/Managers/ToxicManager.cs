@@ -6,10 +6,9 @@ public class ToxicManager : MonoBehaviour
 {
     public GameObject toxic; // The energy prefab to be spawned.
     public Transform spawnPoint;  // An array of the spawn points this object can spawn from.
-    public int actualAgent;
-    public int actualAgentOut;
-
-    public List<int> listAgentInArea = new List<int>();
+    private int actualAgent;
+    private int actualAgentOut;
+    private List<int> listAgentInArea = new List<int>();
 
     void Start()
     {
