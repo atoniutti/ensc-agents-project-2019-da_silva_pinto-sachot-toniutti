@@ -52,29 +52,9 @@ public class FieldOfViewAgent : MonoBehaviour
     }
     void OnTriggerEnter(Collider col)
     {
-        /*if (col.gameObject.name == "EnergyCoil(Clone)" )
+        if (col.gameObject.name == "Bo" )
         {
-            if ((int)_owner.currentTarget <= 3 && col.GetComponent<PickableEnergy>().hasPlayer==false)
-            {
-                
-                if (_batterySeeList.Count ==0 )
-                {
-                    numberOfPileByPlace[(int)_owner.currentTarget] += 1;
-                    _batterySeeList.Add(col.GetComponent<PickableEnergy>().idEnergy);
-                }
-                else
-                {
-                    if (_batterySeeList[_batterySeeList.IndexOf(col.GetComponent<PickableEnergy>().idEnergy)] != col.GetComponent<PickableEnergy>().idEnergy)
-                    {
-                        numberOfPileByPlace[(int)_owner.currentTarget] += 1;
-                        _batterySeeList.Add(_battery.idEnergy);
-
-                    }
-                }
-                    
-
-            }
-        }*/
+        }
 
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
