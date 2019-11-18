@@ -244,6 +244,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrustCircularProgressBar
       objectReference: {fileID: 0}
+    - target: {fileID: 9100220227447898161, guid: 696844682a3c8294185c4d7e2ae962d0,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9100220227447898161, guid: 696844682a3c8294185c4d7e2ae962d0,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9100220227237468996, guid: 696844682a3c8294185c4d7e2ae962d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -349,16 +359,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 9100220226783372060, guid: 696844682a3c8294185c4d7e2ae962d0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 9100220226783372060, guid: 696844682a3c8294185c4d7e2ae962d0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 9100220227447898160, guid: 696844682a3c8294185c4d7e2ae962d0,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -369,15 +369,15 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 9100220227447898161, guid: 696844682a3c8294185c4d7e2ae962d0,
+    - target: {fileID: 9100220226783372060, guid: 696844682a3c8294185c4d7e2ae962d0,
         type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 14
+      propertyPath: m_SizeDelta.x
+      value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 9100220227447898161, guid: 696844682a3c8294185c4d7e2ae962d0,
+    - target: {fileID: 9100220226783372060, guid: 696844682a3c8294185c4d7e2ae962d0,
         type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
+      propertyPath: m_SizeDelta.y
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 696844682a3c8294185c4d7e2ae962d0, type: 3}

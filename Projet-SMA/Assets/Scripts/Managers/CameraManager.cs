@@ -10,12 +10,13 @@ public class CameraManager : MonoBehaviour
     public Camera mainCamera;
     public Camera currentCamera;
     public Agent currentAgent;
+    public AgentManager agentManager;
 
     // Start is called before the first frame update
     void Start()
     {
         currentCamera = mainCamera;
-        currentAgent = FindObjectOfType<Agent>();
+        mainCameraButton.interactable = false;
         mainCameraButton.onClick.AddListener(DisplayMainCamera);
         agentCameraButton.onClick.AddListener(DisplayAgentCamera);
     }
@@ -23,25 +24,48 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mainCamera == currentCamera)
+        // Update currentAgent
+        if (currentAgent == null)
         {
-            mainCameraButton.interactable = false;
-            agentCameraButton.interactable = true;
+            currentAgent = agentManager.agents[0];
+        }
+        
+        //if (mainCamera == currentCamera)
+        //{
+        //    mainCameraButton.interactable = false;
+        //    agentCameraButton.interactable = true;
+        //}
+        //else
+        //{
+        //    mainCameraButton.interactable = true;
+        //    agentCameraButton.interactable = false;
+        //}
+    }
+
+    public void SwitchCamera()
+    {
+        currentCamera.enabled = false;
+
+        if (currentCamera == mainCamera)
+        {
+            DisplayAgentCamera();
         }
         else
         {
-            mainCameraButton.interactable = true;
-            agentCameraButton.interactable = false;
+            // currentCamera == currentAgent._camera
+            DisplayMainCamera();
         }
     }
 
     public void DisplayMainCamera()
     {
+        mainCamera.enabled = true;
         currentCamera = mainCamera;
     }
 
     public void DisplayAgentCamera()
     {
+        currentAgent._camera.enabled = true;
         currentCamera = currentAgent._camera;
     }
 }
