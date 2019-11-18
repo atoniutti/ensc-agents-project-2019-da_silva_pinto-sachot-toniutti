@@ -8,8 +8,10 @@ public class CameraButton : MonoBehaviour
     public Button currentButton;
     public Button otherButton;
 
-    public void SetCurrentCamera (CameraManager cameraManager)
+    public void SetCurrentCamera ()
     {
+        CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+        Debug.LogError(cameraManager.currentAgent);
         cameraManager.SwitchCamera();
 
         // Set Interactable to false

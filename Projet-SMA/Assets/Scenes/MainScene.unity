@@ -206,10 +206,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 41832466}
         m_MethodName: SetCurrentCamera
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 384011354}
-          m_ObjectArgumentAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 384011356}
   m_Layer: 0
   m_Name: CameraManager
-  m_TagString: Untagged
+  m_TagString: CameraManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -402,8 +402,9 @@ MonoBehaviour:
   mainCameraButton: {fileID: 2076705040}
   agentCameraButton: {fileID: 41832463}
   mainCamera: {fileID: 963194227}
-  currentCamera: {fileID: 0}
+  currentCamera: {fileID: 963194227}
   currentAgent: {fileID: 0}
+  agentManager: {fileID: 2010744429}
 --- !u!82 &384011355
 AudioSource:
   m_ObjectHideFlags: 0
@@ -970,7 +971,7 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!1001 &1093353253
+--- !u!1001 &1142489742
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -981,11 +982,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Agent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2622002020163438949, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: dialogue
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6996777689335691323, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
@@ -1062,11 +1058,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5730342100259990073, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
-      objectReference: {fileID: 0}
     - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1075,11 +1066,6 @@ PrefabInstance:
     - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8510454936737143643, guid: ea247fed1d32d354c897b62297e3c9dd,
-        type: 3}
-      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1198,41 +1184,6 @@ PrefabInstance:
     - target: {fileID: 3788058530260868831, guid: b13f8abb07d4df34b88fe38077f1eb8f,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 201178678208539852, guid: b13f8abb07d4df34b88fe38077f1eb8f,
@@ -1543,10 +1494,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2076705043}
         m_MethodName: SetCurrentCamera
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 384011354}
-          m_ObjectArgumentAssemblyTypeName: CameraManager, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1649,41 +1600,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Environment
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
         type: 3}

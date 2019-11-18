@@ -44,7 +44,6 @@ public class Agent : MonoBehaviour
         currentState = AgentStates.Start;
         _precCode = _code;
         animator = GetComponent<Animator>();
-        _camera.targetDisplay = 1;
         _camera.enabled = false;
         currentState = AgentStates.Start;
         BoolStartTrust = true;
@@ -194,7 +193,6 @@ public class Agent : MonoBehaviour
             AnimationMove(currentState);
 
         }
-        
     }
 
     private void InstanciateTrust(float trust)

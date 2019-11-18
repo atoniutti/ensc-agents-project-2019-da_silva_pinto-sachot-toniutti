@@ -12,21 +12,20 @@ public class UIAgent : MonoBehaviour
     public Text _name; // Name of the agent
     public ProgressBar _energyProgressBar;
     public ProgressBar _wasteProgressBar;
+    public CameraManager cameraManager;
 
     public Canvas canvasAgent;
 
     // Start is called before the first frame update
     void Start()
     {
-        owner._camera.targetDisplay = owner._code;
-        owner._camera.enabled = true;
         _name.text = GetNameCode();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Camera.current == owner._camera)
+        if (cameraManager.currentAgent == owner)
         {
             // Point Position
             pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);

@@ -21,4 +21,10 @@ public class AgentButton : MonoBehaviour
         _name.text = _agentTrust.agent.GetComponent<UIAgent>()._name.text;
         _trustProgressBar.UpdateBar(_agentTrust.trust);
     }
+
+    public void SetCurrentAgent()
+    {
+        CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+        cameraManager.SwitchAgent(_agentTrust.agent);
+    }
 }

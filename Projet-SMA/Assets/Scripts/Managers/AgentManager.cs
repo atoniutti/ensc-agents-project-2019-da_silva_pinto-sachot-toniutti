@@ -21,13 +21,13 @@ public class AgentManager : MonoBehaviour
     void Start()
     {
         agents = new List<Agent>();
+
         GenerateRandomSpawnPoints();
 
         foreach (Transform sp in spawnPoints)
         {
             Spawn(sp);
         }
-        
     }
  
 
@@ -64,7 +64,8 @@ public class AgentManager : MonoBehaviour
     void Spawn(Transform spawnPoint)
     {
         // Create an instance of the agent prefab
-        Instantiate(agent, spawnPoint.position, spawnPoint.rotation);
+        agent = Instantiate(agent, spawnPoint.position, spawnPoint.rotation);
         agents.Add(agent);
+
     }
 }

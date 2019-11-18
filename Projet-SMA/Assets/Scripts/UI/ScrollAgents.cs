@@ -10,21 +10,21 @@ public class ScrollAgents : MonoBehaviour
     public GameObject scrollContent;
     public AgentButton agentButton;
 
-    private bool BoolStart;
+    private bool start;
 
     // Start is called before the first frame update
     void Start()
     {
-        BoolStart = true;
+        start = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (BoolStart)
+        if (start)
         {
             GenerateList();
-            BoolStart = false;
+            start = false;
         }
     }
 
