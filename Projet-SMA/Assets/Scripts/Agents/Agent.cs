@@ -26,7 +26,6 @@ public class Agent : MonoBehaviour
     public List<AgentTrust> agentsList = new List<AgentTrust>();
     public float PercentTrustStart;
     private bool BoolStartTrust;
-    private float countDown = 10;
 
     // Corresponding to the battery that the agent can take
     public int canTakeEnergy; //identifiant of the energy that the agent can take
@@ -72,10 +71,7 @@ public class Agent : MonoBehaviour
         // Detection of energy in the field of view of the agent 
         if ((_fieldOfView._energyFront == true && currentState == AgentStates.FindingEnergy))
         {
-            if (_fieldOfView.spawnPoint && countDown <= 0.0f && !listenAnOtherAgent)
-            {
-                TrustUpdate(5);
-            }
+           
             if (_fieldOfView._ownerCombustible == _code)
             {
                 SeeObject();
@@ -118,14 +114,7 @@ public class Agent : MonoBehaviour
         if ((_fieldOfView._energyFront == false && currentState == AgentStates.FindingEnergy)
             || (_fieldOfView._toxicFront == false && currentState == AgentStates.FindingToxic))
         {
-            countDown -= Time.deltaTime;
-            if (_fieldOfView.spawnPoint && countDown <= 0.0f && !listenAnOtherAgent)
-            {
-                TrustUpdate(-5);
-                currentTarget=TargetMostBattery(numberOfBatteryByPlace);
-                countDown = 10;
-                listenAnOtherAgent = true;
-            }
+           
            
             canTakeEnergy = 0;
         }
@@ -140,16 +129,18 @@ public class Agent : MonoBehaviour
             {
                 listenAnOtherAgent = true;
                 currentState = MakeAChoice(PercentOfEnergyPile, PercentOfWastePile);
-                checkPile = true;
             }
             AnimationMove(currentState);
             randomDirection = Random.Range(0, 3);
+            checkPile = true;
         }
-        
+        if (currentState==AgentStates.Idle)
+        {
+            currentState = MakeAChoice(PercentOfEnergyPile, PercentOfWastePile);
+        }
         if (_fieldOfView._pileFront == false)
         {
             checkPile = false;
-
         }
 
         //Destination of the agent if he carry nothing
@@ -162,6 +153,10 @@ public class Agent : MonoBehaviour
                 DestinationAgent((int)currentTarget);
                 AnimationMove(currentState);
                
+            }
+            if (currentState == AgentStates.FindingToxic)
+            {
+                currentTarget = Direction.ToxicPoint;
             }
             if ((dialogue==Discussion.NeedFindEnergy ||dialogue==Discussion.I_Don_t_Know )&&currentState==AgentStates.FindingEnergy)
             {
@@ -179,7 +174,7 @@ public class Agent : MonoBehaviour
                     
                     if ((int)_fieldOfView._agentMemberDialogue!= (int)currentTarget)
                     {
-                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent-1)].trust);
+                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent-_code)-1].trust);
                         
                         if (currentTarget != precedentchoiceTarget)
                         {
@@ -208,10 +203,7 @@ public class Agent : MonoBehaviour
                     listenAnOtherAgent = false;
                 }
             }
-            if(currentState==AgentStates.FindingToxic)
-            {
-                currentTarget = Direction.ToxicPoint;
-            }
+            
             
             DestinationAgent((int)currentTarget);
             AnimationMove(currentState);
@@ -317,7 +309,7 @@ public class Agent : MonoBehaviour
     // Make a choice of Objectif (State) when he see the two pile 
     public AgentStates MakeAChoice(float percentOfEnergy, float percentOfToxic)
     {
-        proba = Random.Range(0f, 1f);
+        float proba = Random.Range(0f, 1f);
         if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic<=10 )
         {
             AgentStates state = AgentStates.FindingEnergy;
@@ -368,10 +360,7 @@ public class Agent : MonoBehaviour
             return (Direction)randomDirection;
         }
     }
-    public void TrustUpdate(int scoreAdd)
-    {
-        agentsList[Mathf.Abs(actualDialogueWithAgent-_code)- 1].trust+= scoreAdd;
-    }
+   
     public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list)
     {
         int maxValue = Mathf.Max(list);

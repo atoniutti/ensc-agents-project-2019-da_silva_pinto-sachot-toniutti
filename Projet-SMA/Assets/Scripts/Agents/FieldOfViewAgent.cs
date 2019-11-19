@@ -14,7 +14,7 @@ public class FieldOfViewAgent : MonoBehaviour
     public bool _energyPickable = false; // boolean if the energy is pickable
 
     //For battery
-    private PickableEnergy _battery;
+    public PickableEnergy _battery;
     public int _identifiant = 0; // name of the energy
     public int _ownerCombustible; // owner of object energy
     public GameObject currentObjet; 
