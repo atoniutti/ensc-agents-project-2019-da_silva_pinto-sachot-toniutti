@@ -21,7 +21,7 @@ public class Agent : MonoBehaviour
     public Discussion dialogue;
 
     // Variable corresponding to the other agents in the scene
-    public int actualDialogueWithAgent;
+    public Agent actualDialogueWithAgent;
     public bool listenAnOtherAgent;
     public List<AgentTrust> agentsList = new List<AgentTrust>();
     public float PercentTrustStart;
@@ -56,10 +56,12 @@ public class Agent : MonoBehaviour
     }
 
     private void Update()
-    { 
-
+    {
+        //list of number of battery seen by the agent by place
         numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
-        dialogue=DialogueUpdtate(currentState, numberOfBatteryByPlace);
+        //actual agent in the fieldOfview
+        dialogue=DialogueUpdtate(currentState, numberOfBatteryByPlace, _fieldOfView._agentMember);
+        actualDialogueWithAgent = _fieldOfView._agentMember;
         // At the beginning the agent trust is the same for everyone
         if (BoolStartTrust)
         {
@@ -114,53 +116,45 @@ public class Agent : MonoBehaviour
         if ((_fieldOfView._energyFront == false && currentState == AgentStates.FindingEnergy)
             || (_fieldOfView._toxicFront == false && currentState == AgentStates.FindingToxic))
         {
-           
-           
             canTakeEnergy = 0;
         }
 
         //Agent choice
-            //Choice in front of the pile : Go check the need of the different pile
-        if (_fieldOfView._pileFront == true &&  checkPile == false)
-        {
-            PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
-            PercentOfWastePile = _fieldOfView.percentOfWaste;
-            listenAnOtherAgent = true;
-            if ((currentState == AgentStates.Idle || currentState == AgentStates.Start))
-            {
-                currentState = MakeAChoice(PercentOfEnergyPile, PercentOfWastePile);
-            }
-            AnimationMove(currentState);
-            randomDirection = Random.Range(0, 3);
-            checkPile = true;
-        }
-        if (currentState==AgentStates.Idle)
-        {
-            currentState = MakeAChoice(PercentOfEnergyPile, PercentOfWastePile);
-        }
-        if (_fieldOfView._pileFront == false)
-        {
-            checkPile = false;
-        }
+       
 
         //Destination of the agent if he carry nothing
         if (_fieldOfView.currentObjet == null)
         {
             //At the start of the simulation
-            if(currentState==AgentStates.Start)
+            if (currentState == AgentStates.Start)
             {
                 currentTarget = Direction.PileEnergyPoint;
                 DestinationAgent((int)currentTarget);
                 AnimationMove(currentState);
-               
+
+            }
+            //Choice in front of the pile : Go check the need of the different pile
+            if (_fieldOfView._pileFront == true && checkPile == false && (currentState==AgentStates.Idle|| currentState == AgentStates.Start))
+            {
+                PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
+                PercentOfWastePile = _fieldOfView.percentOfWaste;
+                listenAnOtherAgent = true;
+                currentState = MakeAChoiceState(PercentOfEnergyPile, PercentOfWastePile);
+                AnimationMove(currentState);
+                randomDirection = Random.Range(0, 3);
+                checkPile = true;
+            }
+            if (_fieldOfView._pileFront == false)
+            {
+                checkPile = false;
             }
             if (currentState == AgentStates.FindingToxic)
             {
                 currentTarget = Direction.ToxicPoint;
             }
-            if ((dialogue==Discussion.NeedFindEnergy ||dialogue==Discussion.I_Don_t_Know )&&currentState==AgentStates.FindingEnergy)
+            if ( currentState == AgentStates.FindingEnergy && listenAnOtherAgent == true)
             {
-                currentTarget = (Direction)randomDirection;
+                currentTarget = MakeAChoiceDirection(numberOfBatteryByPlace);
             }
             // If he meet an other agent 
             if (listenAnOtherAgent &&_fieldOfView._agentFront == true )
@@ -170,11 +164,11 @@ public class Agent : MonoBehaviour
                 if ((int)_fieldOfView._agentMemberDialogue >= 0 && (int)_fieldOfView._agentMemberDialogue <= 3 &&  currentState==AgentStates.FindingEnergy)
                 {
                     Direction precedentchoiceTarget = currentTarget;
-                    actualDialogueWithAgent = _fieldOfView._agentMember._code;
+                    actualDialogueWithAgent = _fieldOfView._agentMember;
                     
                     if ((int)_fieldOfView._agentMemberDialogue!= (int)currentTarget)
                     {
-                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent-_code)-1].trust);
+                        currentTarget = MakeAChoice(precedentchoiceTarget, _fieldOfView._agentMemberDialogue, agentsList[Mathf.Abs(actualDialogueWithAgent._code-_code)-1].trust);
                         
                         if (currentTarget != precedentchoiceTarget)
                         {
@@ -187,9 +181,9 @@ public class Agent : MonoBehaviour
                 if ((int)_fieldOfView._agentMemberDialogue >= 4 && (int)_fieldOfView._agentMemberDialogue <= 7 && currentState == AgentStates.FindingEnergy)
                 {
                     Direction precedentchoiceTarget = currentTarget;
-                    actualDialogueWithAgent = _fieldOfView._agentMember._code;
+                    actualDialogueWithAgent = _fieldOfView._agentMember;
                     //Caution -4 it is in order to have the same correspondance according the AgentBhavior ( enumeration)
-                    if ((int)_fieldOfView._agentMemberDialogue - 4 == (int)currentTarget && MakeAChoice(agentsList[Mathf.Abs(actualDialogueWithAgent - _code) - 1].trust))
+                    if ((int)_fieldOfView._agentMemberDialogue - 4 == (int)currentTarget && MakeAChoiceTrust(agentsList[Mathf.Abs(actualDialogueWithAgent._code - _code) - 1].trust))
                     {
                         numberOfBatteryByPlace[(int)currentTarget] = 0;
                         int maxValue = Mathf.Max(numberOfBatteryByPlace);
@@ -197,7 +191,7 @@ public class Agent : MonoBehaviour
                     }
                 }
                 //Correspond to the Discussion (enumartion) when going to find Toxic 
-                if ((int)_fieldOfView._agentMemberDialogue ==(int)Discussion.NeedFindToxic && currentState == AgentStates.FindingToxic && listenAnOtherAgent)
+                if (actualDialogueWithAgent.dialogue ==Discussion.NeedFindToxic && currentState == AgentStates.FindingToxic && listenAnOtherAgent)
                 {
                     currentTarget = Direction.ToxicPoint;
                     listenAnOtherAgent = false;
@@ -205,8 +199,8 @@ public class Agent : MonoBehaviour
             }
             
             
-            DestinationAgent((int)currentTarget);
-            AnimationMove(currentState);
+            DestinationAgent ((int)currentTarget);
+            AnimationMove (currentState);
 
         }
     }
@@ -263,7 +257,7 @@ public class Agent : MonoBehaviour
   
     
     //boolean if the agent is agree or not with dialogue of the other agent
-    public bool MakeAChoice(float trustOfHim)
+    public bool MakeAChoiceTrust(float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
         if (trustOfHim >= 80)
@@ -307,7 +301,7 @@ public class Agent : MonoBehaviour
     }
 
     // Make a choice of Objectif (State) when he see the two pile 
-    public AgentStates MakeAChoice(float percentOfEnergy, float percentOfToxic)
+    public AgentStates MakeAChoiceState(float percentOfEnergy, float percentOfToxic)
     {
         float proba = Random.Range(0f, 1f);
         if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic<=10 )
@@ -347,10 +341,11 @@ public class Agent : MonoBehaviour
             }
         }
     }
-    public Direction TargetMostBattery(int[]list)
+   
+    // Make a choice of Direction when he see the two pile 
+    public Direction MakeAChoiceDirection(int[] list)
     {
         int maxValue = Mathf.Max(list);
-        int minValue = Mathf.Min(list);
         if(maxValue>=1)
         {
             return (Direction)System.Array.IndexOf(list, maxValue);
@@ -361,8 +356,9 @@ public class Agent : MonoBehaviour
         }
     }
    
-    public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list)
+    public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list, Agent actualDialogueAgent)
     {
+       
         int maxValue = Mathf.Max(list);
         int minValue = Mathf.Min(list);
         if (maxValue > 1)

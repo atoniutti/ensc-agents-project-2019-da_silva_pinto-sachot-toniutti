@@ -6,10 +6,10 @@ public class PickableEnergy : MonoBehaviour
 {
     private List<GameObject> listAgent = new List<GameObject>(); //list of the agent in the scene
     private Transform player;
-    public Agent agent;
+    private Agent agent;
     private float[] distance;
     public bool hasPlayer = false;
-    public static int idPrec = 0;
+    private static int idPrec = 0;
     public int idEnergy; //identifiant of the energy
     public int matriculAgent;
 

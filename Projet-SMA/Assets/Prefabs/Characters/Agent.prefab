@@ -12841,7 +12841,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 15
   field of view: 70
   orthographic: 0
   orthographic size: 5
@@ -12851,7 +12851,7 @@ Camera:
     m_Bits: 1847
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -13157,16 +13157,16 @@ MonoBehaviour:
   _pileFront: 0
   _agentFront: 0
   _energyPickable: 0
-  _battery: {fileID: 0}
   _identifiant: 0
   _ownerCombustible: 0
   currentObjet: {fileID: 0}
   _position: {fileID: 0}
+  spawnPoint: 0
   _agentMember: {fileID: 0}
   _agentMemberTarget: 0
   _agentMemberState: 0
   _agentMemberDialogue: 0
-  numberOfPileByPlace: 
+  numberOfbattery: 
   percentOfEnergy: 0
   percentOfWaste: 0
 --- !u!1 &2622002020901857898
@@ -31742,13 +31742,14 @@ MonoBehaviour:
   currentTarget: 6
   currentState: 0
   dialogue: 2
-  actualDialogueWithAgent: 0
+  actualDialogueWithAgent: {fileID: 0}
   listenAnOtherAgent: 0
   PercentTrustStart: 60
   canTakeEnergy: 0
   PercentOfEnergyPile: 0
   PercentOfWastePile: 0
   checkPile: 0
+  numberOfBatteryByPlace: 
 --- !u!114 &1281074319820868494
 MonoBehaviour:
   m_ObjectHideFlags: 0

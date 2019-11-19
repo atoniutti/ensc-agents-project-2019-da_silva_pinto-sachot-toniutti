@@ -83,7 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualBatteryOut: 0
   numberOfPile: 0
+  listBatteryInArea: 
+  listStart: 0
 --- !u!1 &1347344848409770194
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualBatteryOut: 0
   numberOfPile: 0
+  listBatteryInArea: 
+  listStart: 0
 --- !u!1 &2250906876984645715
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualBatteryOut: 0
   numberOfPile: 0
+  listBatteryInArea: 
+  listStart: 0
 --- !u!1 &6114393509766820457
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,8 +439,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5151253, y: 1.2291188, z: 0.89283663}
-  m_Center: {x: 0.45850754, y: 0.11455953, z: -0.04640004}
+  m_Size: {x: 0.789581, y: 1.2291188, z: 0.89283663}
+  m_Center: {x: 0.095735356, y: 0.11455953, z: -0.04640004}
 --- !u!54 &6220445650449075836
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -460,7 +469,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualBatteryOut: 0
   numberOfPile: 0
+  listBatteryInArea: 
+  listStart: 0
 --- !u!1001 &6114393508036087764
 PrefabInstance:
   m_ObjectHideFlags: 0

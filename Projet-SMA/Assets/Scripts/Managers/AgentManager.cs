@@ -10,10 +10,10 @@ public class AgentManager : MonoBehaviour
     
 
     List<Transform> spawnPoints = new List<Transform>();
-    float maxX = 2f;
-    float maxZ = 2.3f;
+    float maxX = 0f;
+    float maxZ = 0f;
     float minX = -8f;
-    float minZ = -7.8f;
+    float minZ = -5f;
     float labX = -3.5f;
     float labZ = -3.3f;
 
