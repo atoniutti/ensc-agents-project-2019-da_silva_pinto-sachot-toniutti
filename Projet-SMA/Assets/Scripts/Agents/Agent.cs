@@ -125,9 +125,9 @@ public class Agent : MonoBehaviour
         {
             PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
             PercentOfWastePile = _fieldOfView.percentOfWaste;
-            if((currentState == AgentStates.Idle || currentState == AgentStates.Start))
+            listenAnOtherAgent = true;
+            if ((currentState == AgentStates.Idle || currentState == AgentStates.Start))
             {
-                listenAnOtherAgent = true;
                 currentState = MakeAChoice(PercentOfEnergyPile, PercentOfWastePile);
             }
             AnimationMove(currentState);

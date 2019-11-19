@@ -145,10 +145,10 @@ public class FieldOfViewAgent : MonoBehaviour
             }
             
         }
-        if (_owner.listenAnOtherAgent==false)
+        /*if (_owner.listenAnOtherAgent==false)
         {
             _agentFront = false;
-        }
+        }*/
     }
 
     private void View()
