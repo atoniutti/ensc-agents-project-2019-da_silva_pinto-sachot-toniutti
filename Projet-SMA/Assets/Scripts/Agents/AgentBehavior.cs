@@ -7,7 +7,7 @@ public enum AgentType { Liar, honest}
 public enum Discussion
 {
     HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest,
-    DonthaveManyAtNorth, DonthaveManyAtSouth, DonthaveManyAtEast, DonthaveManyAtWest, NeedFindEnergy, NeedFindToxic, I_Don_t_Know
+    DontHaveManyAtNorth, DontHaveManyAtSouth, DontHaveManyAtEast, DontHaveManyAtWest, NeedFindEnergy, NeedFindToxic, IDontKnow
 }
 
 public enum Direction

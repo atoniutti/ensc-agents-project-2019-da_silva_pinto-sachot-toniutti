@@ -83,10 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualBatteryOut: 0
   numberOfPile: 0
-  listBatteryInArea: 
-  listStart: 0
 --- !u!1 &1347344848409770194
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,10 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualBatteryOut: 0
   numberOfPile: 0
-  listBatteryInArea: 
-  listStart: 0
 --- !u!1 &2250906876984645715
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,10 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualBatteryOut: 0
   numberOfPile: 0
-  listBatteryInArea: 
-  listStart: 0
 --- !u!1 &6114393509766820457
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,10 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a80d0b81045ae43a3e39940d62797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualBatteryOut: 0
   numberOfPile: 0
-  listBatteryInArea: 
-  listStart: 0
 --- !u!1001 &6114393508036087764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1293,16 +1281,6 @@ PrefabInstance:
       propertyPath: _energyBoxEnter
       value: 
       objectReference: {fileID: 5360281462355030343}
-    - target: {fileID: 6053234673574578838, guid: e33192f4dbd804b40b7ef5c672da527d,
-        type: 3}
-      propertyPath: PercentQuantiteOff
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6053234673574578838, guid: e33192f4dbd804b40b7ef5c672da527d,
-        type: 3}
-      propertyPath: PercentQuantiteIn
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 6053234673574578838, guid: e33192f4dbd804b40b7ef5c672da527d,
         type: 3}
       propertyPath: nameOfTheObject

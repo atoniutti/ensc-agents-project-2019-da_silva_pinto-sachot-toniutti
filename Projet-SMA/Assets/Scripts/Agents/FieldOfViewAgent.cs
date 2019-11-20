@@ -23,7 +23,7 @@ public class FieldOfViewAgent : MonoBehaviour
     //For agent
     public Agent _agentMember;
     public Direction _agentMemberTarget;
-    public int _agentMemberState;
+    public AgentStates  _agentMemberState;
     public Discussion _agentMemberDialogue;
     public int[] numberOfbattery;
 
@@ -140,7 +140,7 @@ public class FieldOfViewAgent : MonoBehaviour
             if (_agentMember._code != _owner._code )
             {
                 _agentMemberDialogue = _agentMember.dialogue;
-                _agentMemberState = (int)_agentMember.currentState;
+                _agentMemberState = _agentMember.currentState;
                 _agentMemberTarget = _agentMember.currentTarget;
             }
         }

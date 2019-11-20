@@ -311,8 +311,8 @@ MonoBehaviour:
   nameOfTheObject: Toxic
   _rateStart: 0
   currentPercent: 0
-  PercentQuantiteIn: -2
-  PercentQuantiteOff: -1
+  PercentQuantiteIn: -1
+  PercentQuantiteOff: -8
   countDownUtilisateur: 5
   actualBatteryPose: 0
 --- !u!1 &6177810039307238598
