@@ -16,7 +16,7 @@ public class CylinderLevel : MonoBehaviour
     public float countDownUtilisateur;
     private float  _countDown;
    
-    public int actualBatteryPose;
+    private int actualBatteryPose;
     private int batteryPose;
 
     private void Start()

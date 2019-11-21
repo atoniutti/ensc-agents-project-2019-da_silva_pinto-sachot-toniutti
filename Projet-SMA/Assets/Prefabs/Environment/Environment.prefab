@@ -1173,16 +1173,6 @@ PrefabInstance:
       propertyPath: PercentQuantiteOfEnergyIn
       value: 0.14
       objectReference: {fileID: 0}
-    - target: {fileID: 2213865662621170099, guid: f6db62aa17d5d8f47a29fc82f6b912b7,
-        type: 3}
-      propertyPath: PercentQuantiteIn
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2213865662621170099, guid: f6db62aa17d5d8f47a29fc82f6b912b7,
-        type: 3}
-      propertyPath: PercentQuantiteOff
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6641979128755135305, guid: f6db62aa17d5d8f47a29fc82f6b912b7,
         type: 3}
       propertyPath: m_StaticEditorFlags

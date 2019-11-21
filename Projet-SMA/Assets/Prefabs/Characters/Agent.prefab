@@ -31732,17 +31732,18 @@ MonoBehaviour:
   _code: 0
   _fieldOfView: {fileID: 2622002020843932829}
   target:
-  - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
   - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
+  - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
   - {fileID: 6622306575045670967, guid: cb22802e2934f634ea928c200ab4fda0, type: 3}
   - {fileID: 1431829714896668889, guid: 2130fd16d3a389446af98de5d49e7f66, type: 3}
   - {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13, type: 3}
   - {fileID: 1602671006598870460, guid: 0f4873711c0fc584ea17318af3a015e7, type: 3}
   - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
   currentTarget: 6
+  previousTarget: 0
   currentState: 0
   dialogue: 2
-  actualDialogueWithAgent: {fileID: 0}
+  actualInteractionAgent: {fileID: 0}
   listenAnOtherAgent: 0
   PercentTrustStart: 60
   canTakeEnergy: 0

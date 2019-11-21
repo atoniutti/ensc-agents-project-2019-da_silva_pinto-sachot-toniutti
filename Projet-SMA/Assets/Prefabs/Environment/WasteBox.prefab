@@ -64,7 +64,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986768567201488019}
   m_LocalRotation: {x: 0, y: -0.023298705, z: -0, w: -0.99972856}
-  m_LocalPosition: {x: -3.73, y: 0.1, z: 3.7}
+  m_LocalPosition: {x: -3.73, y: 0.1, z: 4.3}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 3374901201432290492}
@@ -309,12 +309,11 @@ MonoBehaviour:
   _cylinder: {fileID: 7758780819920879658}
   _energyBoxEnter: {fileID: 0}
   nameOfTheObject: Toxic
-  _rateStart: 0
+  _rateStart: 20
   currentPercent: 0
-  PercentQuantiteIn: -1
-  PercentQuantiteOff: -8
+  PercentQuantiteIn: -5
+  PercentQuantiteOff: -1
   countDownUtilisateur: 5
-  actualBatteryPose: 0
 --- !u!1 &6177810039307238598
 GameObject:
   m_ObjectHideFlags: 0

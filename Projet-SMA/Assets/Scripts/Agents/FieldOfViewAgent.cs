@@ -53,23 +53,23 @@ public class FieldOfViewAgent : MonoBehaviour
     {
         if (col.gameObject.name == "EastInformationBox")
         {
-            numberOfbattery[2] = col.GetComponent<SpawnListener>().numberOfPile;
+            numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
             spawnPoint = true;
         }
         if (col.gameObject.name == "NorthInformationBox")
         {
-            numberOfbattery[0] = col.GetComponent<SpawnListener>().numberOfPile;
+            numberOfbattery[(int)Direction.NorthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
             spawnPoint = true;
         }
         if (col.gameObject.name == "SouthInformationBox")
         {
-            numberOfbattery[1] = col.GetComponent<SpawnListener>().numberOfPile;
+            numberOfbattery[(int)Direction.SouthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
             spawnPoint = true;
 
         }
         if (col.gameObject.name == "WestInformationBox")
         {
-            numberOfbattery[3] = col.GetComponent<SpawnListener>().numberOfPile;
+            numberOfbattery[(int)Direction.WestPoint] = col.GetComponent<SpawnListener>().numberOfPile;
             spawnPoint = true;
         }
         
@@ -151,7 +151,6 @@ public class FieldOfViewAgent : MonoBehaviour
         if (col.gameObject.tag == "agent")
         {
             _agentFront = false;
-            
         }
         if (col.gameObject.name == "PileInformationBox" && _owner.checkPile)
         {
@@ -162,6 +161,7 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             spawnPoint = false;
             _pileFront = false;
+            _agentFront = true;
         }
     }
         private void View()

@@ -38,7 +38,7 @@ public class PickableEnergy : MonoBehaviour
                 distance[i]= Vector3.Distance(transform.position, listAgent[i].transform.position);
 
                 //If agent has near of the pile and he want this type of pile
-                if (distance[i]<=2  )
+                if (distance[i]<=1)
                 {
                     if(name == "EnergyCoil(Clone)" && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingEnergy)
                     {
@@ -57,7 +57,7 @@ public class PickableEnergy : MonoBehaviour
         }
         
       //if there is an agnet near and he want this energy pile
-        if (player != null  )
+        if (player != null )
         {
             if  (agent.canTakeEnergy == idEnergy )
             {
@@ -78,6 +78,7 @@ public class PickableEnergy : MonoBehaviour
                 if (hasPlayer==true)
                 {
                     GetComponent<Rigidbody>().isKinematic = true;
+                    matriculAgent = agent._code;
                     transform.parent = player;
                     transform.localPosition = new Vector3(0.6f,6, 4);
                     transform.localRotation = new Quaternion(0f,0f,180f,0f );
