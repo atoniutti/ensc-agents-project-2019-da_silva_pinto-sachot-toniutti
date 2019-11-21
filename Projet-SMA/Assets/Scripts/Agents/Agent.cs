@@ -66,6 +66,7 @@ public class Agent : MonoBehaviour
 
     private void Update()
     {
+
         //list of number of battery seen by the agent by place
         numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
         actualInteractionAgent = _fieldOfView._agentMember;
@@ -74,6 +75,7 @@ public class Agent : MonoBehaviour
         {
             dialogue = DialogueUpdtate(currentState, numberOfBatteryByPlace);
         }
+
         // At the beginning the agent trust is the same for everyone
         if (BoolStartTrust)
         {
@@ -98,7 +100,7 @@ public class Agent : MonoBehaviour
                     TakeObject(currentState);
                     currentState = AgentStates.GoToPileEnergy;
 
-                    if (currentTarget!=Direction.PileEnergyPoint||currentTarget!=Direction.PileWastePoint)
+                    if (currentTarget!=Direction.PileEnergyPoint && currentTarget!=Direction.PileWastePoint)
                     {
                         previousTarget = currentTarget;
                     }
@@ -125,7 +127,7 @@ public class Agent : MonoBehaviour
                     currentState = AgentStates.HavingToxic;
                     TakeObject(currentState);
                     currentState = AgentStates.GoToPileToxic;
-                    if (currentTarget != Direction.PileEnergyPoint || currentTarget != Direction.PileWastePoint)
+                    if (currentTarget != Direction.PileEnergyPoint && currentTarget != Direction.PileWastePoint)
                     {
                         previousTarget = currentTarget;
                     }
@@ -176,7 +178,7 @@ public class Agent : MonoBehaviour
             if (currentState == AgentStates.FindingToxic && doneHistoric==false
                 && _fieldOfView._energyPickable == false)
             {
-                if (currentTarget!=Direction.PileEnergyPoint || currentTarget!= Direction.PileWastePoint)
+                if (currentTarget!=Direction.PileEnergyPoint && currentTarget!= Direction.PileWastePoint)
                 {
                     previousTarget = currentTarget;
                 }
@@ -188,7 +190,7 @@ public class Agent : MonoBehaviour
             {
                 
                 Direction newTarget= MakeAChoiceDirection(numberOfBatteryByPlace, previousTarget, currentTarget);
-                if (currentTarget != Direction.PileEnergyPoint || currentTarget != Direction.PileWastePoint)
+                if (currentTarget != Direction.PileEnergyPoint && currentTarget != Direction.PileWastePoint)
                 {
                     previousTarget = currentTarget;
                 }
@@ -210,7 +212,7 @@ public class Agent : MonoBehaviour
                         
                         if (newTarget != precedentchoiceTarget )
                         {
-                            if(precedentchoiceTarget != Direction.PileEnergyPoint || precedentchoiceTarget != Direction.PileWastePoint)
+                            if(precedentchoiceTarget != Direction.PileEnergyPoint && precedentchoiceTarget != Direction.PileWastePoint)
                             {
                                 previousTarget = currentTarget;
                             }
@@ -232,7 +234,7 @@ public class Agent : MonoBehaviour
                        
                         numberOfBatteryByPlace[(int)currentTarget] = 0;
                         Direction newTarget =MakeAChoiceDirection(numberOfBatteryByPlace, previousTarget,currentTarget);
-                        if (precedentchoiceTarget != Direction.PileEnergyPoint || precedentchoiceTarget != Direction.PileWastePoint)
+                        if (precedentchoiceTarget != Direction.PileEnergyPoint && precedentchoiceTarget != Direction.PileWastePoint)
                         {
                             previousTarget = currentTarget;
                         }
@@ -255,7 +257,7 @@ public class Agent : MonoBehaviour
         {
             listenAnOtherAgent = false;
             currentState = AgentStates.GoToPileEnergy;
-            if ((currentTarget != Direction.PileEnergyPoint || currentTarget!= Direction.PileWastePoint ) && doneHistoric == false)
+            if ((currentTarget != Direction.PileEnergyPoint && currentTarget!= Direction.PileWastePoint ) && doneHistoric == false)
             {
                 previousTarget = currentTarget;
                 doneHistoric = true;
@@ -269,7 +271,7 @@ public class Agent : MonoBehaviour
         {
             listenAnOtherAgent = false;
             currentState = AgentStates.GoToPileToxic;
-            if ((currentTarget != Direction.PileEnergyPoint || currentTarget != Direction.PileWastePoint) && doneHistoric == false)
+            if ((currentTarget != Direction.PileEnergyPoint && currentTarget != Direction.PileWastePoint) && doneHistoric == false)
             {
                 previousTarget = currentTarget;
                 doneHistoric = true;
@@ -423,7 +425,7 @@ public class Agent : MonoBehaviour
     {
         int maxValue = Mathf.Max(list);
         int direction = System.Array.IndexOf(list, maxValue);
-        if (maxValue >= 1 && (int)precTarget!=direction)
+        if (maxValue >= 2 )
         {
             return (Direction)direction;
         }
@@ -459,19 +461,21 @@ public class Agent : MonoBehaviour
                 {
                     return (Discussion)friendTarget;
                 }
-                else return (Discussion)friendTarget + 4;
+                else return (Discussion)(friendTarget + 4);
             }
             else
             {
-                return (Discussion)System.Array.IndexOf(list, maxValue);
+                if (maxValue>=1)
+                {
+                    return (Discussion)System.Array.IndexOf(list, maxValue);
+                }
+                else
+                {
+                    return (Discussion)previousTarget+4;
+                }
             }
         }
         if (_fieldOfView.currentObjet == null && maxValue==0 && stateAgent == AgentStates.FindingEnergy)
-        {
-            return Discussion.NeedFindEnergy;
-        }
-       if(dialogue == Discussion.HaveManyAtSouth && list[(int)Direction.SouthPoint]==0
-            && currentTarget!=Direction.SouthPoint )
         {
             return Discussion.NeedFindEnergy;
         }
