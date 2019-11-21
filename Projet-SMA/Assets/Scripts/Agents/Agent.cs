@@ -30,7 +30,7 @@ public class Agent : MonoBehaviour
 
     // Corresponding to the battery that the agent can take
     public int canTakeEnergy; //identifiant of the energy that the agent can take
-    public bool doneHistoric;
+    private bool doneHistoric;
     // Corresponding to the parametre of the two pile
     public float PercentOfEnergyPile;
     public float PercentOfWastePile;
