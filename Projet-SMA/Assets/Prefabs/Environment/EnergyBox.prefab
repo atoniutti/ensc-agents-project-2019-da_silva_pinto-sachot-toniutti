@@ -406,7 +406,7 @@ MonoBehaviour:
   _rateStart: 50
   currentPercent: 0
   PercentQuantiteIn: 5
-  PercentQuantiteOff: 1
+  PercentQuantiteOff: 3
   countDownUtilisateur: 3
 --- !u!1 &1616932682240808393
 GameObject:

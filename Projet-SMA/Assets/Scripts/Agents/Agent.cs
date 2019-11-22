@@ -163,9 +163,9 @@ public class Agent : MonoBehaviour
             //Choice in front of the pile : Go check the need of the different pile
             if (_fieldOfView._pileFront == true && checkPile == false && (currentState==AgentStates.Idle|| currentState == AgentStates.Start))
             {
+                listenAnOtherAgent = true;
                 PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
                 PercentOfWastePile = _fieldOfView.percentOfWaste;
-                listenAnOtherAgent = true;
                 currentState = MakeAChoiceState(PercentOfEnergyPile, PercentOfWastePile);
                 AnimationMove(currentState);
                 randomDirection = Random.Range(0, 4);
@@ -182,6 +182,7 @@ public class Agent : MonoBehaviour
                 {
                     previousTarget = currentTarget;
                 }
+                listenAnOtherAgent = false;
                 currentTarget = Direction.ToxicPoint;
                 doneHistoric = true;
             }
@@ -219,7 +220,6 @@ public class Agent : MonoBehaviour
                             currentTarget = newTarget;
                             listenAnOtherAgent = false;
                         }
-                        
                     }
                 }
                 //Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
@@ -380,25 +380,25 @@ public class Agent : MonoBehaviour
     public AgentStates MakeAChoiceState(float percentOfEnergy, float percentOfToxic)
     {
         float proba = Random.Range(0f, 1f);
-        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic<=10 )
+        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic<=20 )
         {
             AgentStates state = AgentStates.FindingEnergy;
             return state;
         }
-        if (percentOfEnergy >= 20 && percentOfEnergy <= 99 && percentOfToxic > 20 && percentOfToxic < 50)
+        if (percentOfEnergy >= 20 && percentOfEnergy <= 99 && percentOfToxic > 20 && percentOfToxic < 70)
         {
-            if (proba>=0.5f)
+            if (proba>=0.6f)
             {
                 AgentStates state = AgentStates.FindingToxic;
                 return state;
             }
-            if (proba < 0.5f)
+            if (proba < 0.6f)
             {
                 AgentStates state = AgentStates.FindingEnergy;
                 return state;
             }
         }
-        if (percentOfToxic >= 80)
+        if (percentOfToxic >= 70)
         {
             AgentStates state = AgentStates.FindingToxic;
             return state;
