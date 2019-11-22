@@ -418,8 +418,6 @@ public class Agent : MonoBehaviour
         }
     }
    
-   
-
     // Make a choice of Direction according the historic
     public Direction MakeAChoiceDirection(int[] list, Direction precTarget, Direction curTarget)
     {
@@ -461,7 +459,7 @@ public class Agent : MonoBehaviour
                 {
                     return (Discussion)friendTarget;
                 }
-                else return (Discussion)(friendTarget + 4);
+                else return (Discussion)(friendTarget + 4); //correwpond of the no presence of battery in this point
             }
             else
             {
@@ -471,7 +469,7 @@ public class Agent : MonoBehaviour
                 }
                 else
                 {
-                    return (Discussion)previousTarget+4;
+                    return (Discussion)previousTarget+4; //correwpond of the no presence of battery in this point
                 }
             }
         }
@@ -479,7 +477,7 @@ public class Agent : MonoBehaviour
         {
             return Discussion.NeedFindEnergy;
         }
-        else return Discussion.NothingToSay;
+        else return Discussion.NothingToSay;//If the agent have no historic about the place
 
 
     }
