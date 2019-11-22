@@ -89,12 +89,12 @@ public class Agent : MonoBehaviour
         {
             if (_fieldOfView._ownerCombustible == _code)
             {
+                listenAnOtherAgent = false;
                 SeeObject();
                 bool go = _agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z));
                 // if the agent enough near of the energy 
                 if (_fieldOfView._energyPickable == true && go)
                 {
-                    listenAnOtherAgent = false;
                     doneHistoric = false;
                     currentState = AgentStates.HavingEnergy;
                     TakeObject(currentState);
@@ -116,13 +116,13 @@ public class Agent : MonoBehaviour
         {
             if (_fieldOfView._ownerCombustible == _code)
             {
+                listenAnOtherAgent = false;
                 SeeObject();
                 bool go=_agent.SetDestination(new Vector3(_fieldOfView._position.position.x, transform.position.y, _fieldOfView._position.position.z));
                 
                 // If the agent enough near of the energy 
                 if (_fieldOfView._energyPickable == true && go)
                 {
-                    listenAnOtherAgent = false;
                     doneHistoric = false;
                     currentState = AgentStates.HavingToxic;
                     TakeObject(currentState);
@@ -231,7 +231,6 @@ public class Agent : MonoBehaviour
                     if ((int)_fieldOfView._agentMemberDialogue - 4 == (int)currentTarget 
                         && MakeAChoiceTrust(agentsList[Mathf.Abs(actualInteractionAgent._code - _code) - 1].trust))
                     {
-                       
                         numberOfBatteryByPlace[(int)currentTarget] = 0;
                         Direction newTarget =MakeAChoiceDirection(numberOfBatteryByPlace, previousTarget,currentTarget);
                         if (precedentchoiceTarget != Direction.PileEnergyPoint && precedentchoiceTarget != Direction.PileWastePoint)
