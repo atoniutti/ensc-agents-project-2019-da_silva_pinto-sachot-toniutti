@@ -337,7 +337,7 @@ public class Agent : MonoBehaviour
     public bool MakeAChoiceTrust(float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
-        if (trustOfHim >= 60)
+        if (trustOfHim >= 80)
         {
             return (true); //if agent agree with dialogue of the other agent
         }
