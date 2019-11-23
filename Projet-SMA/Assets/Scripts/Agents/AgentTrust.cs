@@ -14,4 +14,5 @@ public class AgentTrust
         this.agent = agent;
         this.trust = trust;
     }
+
 }

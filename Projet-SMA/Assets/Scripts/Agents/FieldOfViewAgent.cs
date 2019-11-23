@@ -19,7 +19,6 @@ public class FieldOfViewAgent : MonoBehaviour
     public int _ownerCombustible; // owner of object energy
     public GameObject currentObjet; 
     public Transform _position; //position of the objet enr
-    public bool spawnPoint;
     //For agent
     public Agent _agentMember;
     public Direction _agentMemberTarget;
@@ -42,7 +41,6 @@ public class FieldOfViewAgent : MonoBehaviour
         _toxicFront = false;
         _pileFront = false;
         numberOfbattery = new int[4];
-        spawnPoint = false;
 
     }
     private void Update()
@@ -54,27 +52,20 @@ public class FieldOfViewAgent : MonoBehaviour
         if (col.gameObject.name == "EastInformationBox")
         {
             numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
         }
         if (col.gameObject.name == "NorthInformationBox")
         {
             numberOfbattery[(int)Direction.NorthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
         }
         if (col.gameObject.name == "SouthInformationBox")
         {
             numberOfbattery[(int)Direction.SouthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
-
         }
         if (col.gameObject.name == "WestInformationBox")
         {
             numberOfbattery[(int)Direction.WestPoint] = col.GetComponent<SpawnListener>().numberOfPile;
-            spawnPoint = true;
         }
         
-        
-
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
             //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
@@ -83,8 +74,8 @@ public class FieldOfViewAgent : MonoBehaviour
             // If the energy enter in the field of view
             if(_battery.hasPlayer==false)
             {
-                currentObjet = col.gameObject;
                 _energyFront = true;
+                currentObjet = col.gameObject;
                 _position = col.transform;
                 _identifiant = _battery.idEnergy;
             }
@@ -96,8 +87,8 @@ public class FieldOfViewAgent : MonoBehaviour
             _battery = col.GetComponent<PickableEnergy>();
             if (_battery.hasPlayer == false)
             {
-                currentObjet = col.gameObject;
                 _toxicFront = true;
+                currentObjet = col.gameObject;
                 _position = col.transform;
                 _identifiant = _battery.idEnergy;
             }
@@ -124,12 +115,9 @@ public class FieldOfViewAgent : MonoBehaviour
         // If the box informationBox enter in the field of view 
         if (col.gameObject.name == "PileInformationBox")
         {
-            
             percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;
             percentOfWaste = col.GetComponent<InformationPiles>().toxicRate;
             _pileFront = true;
-            spawnPoint = false;
-
         }
 
         // If an agent enter in the field of view 
@@ -144,27 +132,36 @@ public class FieldOfViewAgent : MonoBehaviour
                 _agentMemberTarget = _agentMember.currentTarget;
             }
         }
-        
+
+        //Check if the Agent Friend is near enough to consider if he is front of him or not
+        if (_agentMember != null)
+        {
+            if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) > 2)
+            {
+                _agentFront = false;
+            }
+            if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) <= 2)
+            {
+                _agentFront = true;
+            }
+        }
+
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "agent")
-        {
-            _agentFront = false;
-        }
         if (col.gameObject.name == "PileInformationBox" && _owner.checkPile)
         {
             _pileFront = false;
         }
-        if (col.gameObject.name == "EastInformationBox" || col.gameObject.name == "NorthInformationBox"||
+        if (col.gameObject.name == "EastInformationBox" || col.gameObject.name == "NorthInformationBox" ||
            col.gameObject.name == "SouthInformationBox" || col.gameObject.name == "WestInformationBox")
         {
-            spawnPoint = false;
             _pileFront = false;
-            _agentFront = true;
         }
+        
     }
-        private void View()
+
+    private void View()
     {
         if (_identifiant != 0 && _owner._code == _battery.matriculAgent )
         {
@@ -182,9 +179,8 @@ public class FieldOfViewAgent : MonoBehaviour
         _battery = null;
         _toxicFront = false;
         _energyFront = false;
-        _pileFront = true;
         _energyPickable = false;
-        _owner.currentState = AgentStates.Idle;
+        _owner.currentState = AgentStates.Pose;
     }
 
 }

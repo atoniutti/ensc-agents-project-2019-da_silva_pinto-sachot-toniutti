@@ -45,7 +45,6 @@ public class SpawnListener : MonoBehaviour
                     batteryHere = true;
                 }
             }
-               
         }
         if (col.gameObject.tag == "agent" && listBatteryInArea.Count>0  )
         {

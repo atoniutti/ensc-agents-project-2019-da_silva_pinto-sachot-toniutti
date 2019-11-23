@@ -403,10 +403,10 @@ MonoBehaviour:
   _cylinder: {fileID: 1046248898748356033}
   _energyBoxEnter: {fileID: 0}
   nameOfTheObject: EnergyCoil(Clone)
-  _rateStart: 50
+  _rateStart: 35
   currentPercent: 0
-  PercentQuantiteIn: 5
-  PercentQuantiteOff: 3
+  PercentQuantiteIn: 8
+  PercentQuantiteOff: 2
   countDownUtilisateur: 3
 --- !u!1 &1616932682240808393
 GameObject:

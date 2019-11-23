@@ -13050,7 +13050,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 15
+  far clip plane: 25
   field of view: 70
   orthographic: 0
   orthographic size: 5
@@ -13371,7 +13371,6 @@ MonoBehaviour:
   _ownerCombustible: 0
   currentObjet: {fileID: 0}
   _position: {fileID: 0}
-  spawnPoint: 0
   _agentMember: {fileID: 0}
   _agentMemberTarget: 0
   _agentMemberState: 0
@@ -31955,7 +31954,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6287823205103929896}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 5
+  m_Radius: 3
   m_Speed: 0.6
   m_Acceleration: 0.8
   avoidancePriority: 50
@@ -31983,7 +31982,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &6523346343367042829
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32027,8 +32026,7 @@ MonoBehaviour:
   currentState: 0
   dialogue: 2
   actualInteractionAgent: {fileID: 0}
-  listenAnOtherAgent: 0
-  PercentTrustStart: 60
+  PercentTrustStart: 40
   canTakeEnergy: 0
   PercentOfEnergyPile: 0
   PercentOfWastePile: 0
