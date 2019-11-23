@@ -22,7 +22,7 @@ public class CylinderLevel : MonoBehaviour
     private void Start()
     {
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        if (_rateStart > 50 || _rateStart < 0)
+        if (_rateStart > 100 || _rateStart < 0)
         {
             _ratePercent = 50;
         }

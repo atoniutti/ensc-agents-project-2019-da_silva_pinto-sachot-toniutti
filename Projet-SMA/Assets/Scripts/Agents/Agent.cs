@@ -22,9 +22,11 @@ public class Agent : MonoBehaviour
     public Discussion dialogue;
 
     // Variable corresponding to the other agents in the scene
-    public Agent actualInteractionAgent;
+    private Agent actualInteractionAgent;
+    public Agent agentListen;
+    public Discussion agentListenDialogue;
     private AgentTrust actualAgentTrust;
-    private bool listenAnOtherAgent;
+    public bool listenAnOtherAgent;
     public List<AgentTrust> agentsList = new List<AgentTrust>();
     public float PercentTrustStart;
     private bool BoolStartTrust;
@@ -71,6 +73,11 @@ public class Agent : MonoBehaviour
         //list of number of battery seen by the agent by place
         numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
         actualInteractionAgent = _fieldOfView._agentMember;
+        if (listenAnOtherAgent==true)
+        {
+            agentListen = actualInteractionAgent;
+            agentListenDialogue = _fieldOfView._agentMemberDialogue;
+        }
         //actual agent in the fieldOfview
         if(actualInteractionAgent!=null )
         {
@@ -176,7 +183,7 @@ public class Agent : MonoBehaviour
                 checkPile = false;
             }
             if (currentState == AgentStates.FindingToxic && doneHistoric==false
-                && _fieldOfView._energyPickable == false)
+                && _fieldOfView._energyPickable == false && _fieldOfView.currentObjet==null)
             {
                 listenAnOtherAgent = false;
                 if (currentTarget!=Direction.PileEnergyPoint && currentTarget!= Direction.PileWastePoint)
@@ -186,6 +193,7 @@ public class Agent : MonoBehaviour
                 currentTarget = Direction.ToxicPoint;
                 doneHistoric = true;
             }
+            
             if ( currentState == AgentStates.FindingEnergy && listenAnOtherAgent == true && doneHistoric==false 
                 && _fieldOfView._energyPickable==false)
             {
@@ -270,7 +278,7 @@ public class Agent : MonoBehaviour
            
         }
         if (_fieldOfView.currentObjet != null && currentState == AgentStates.FindingToxic
-            && _fieldOfView._energyPickable && _fieldOfView._ownerCombustible == _code)
+            && _fieldOfView._energyPickable && _fieldOfView._ownerCombustible == _code && currentTarget==Direction.ToxicPoint )
         {
             listenAnOtherAgent = false;
             currentState = AgentStates.GoToPileToxic;

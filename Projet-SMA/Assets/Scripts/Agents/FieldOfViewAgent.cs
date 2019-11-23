@@ -163,7 +163,7 @@ public class FieldOfViewAgent : MonoBehaviour
 
     private void View()
     {
-        if (_identifiant != 0 && _owner._code == _battery.matriculAgent )
+        if (_identifiant != 0 &&  _battery.matriculAgent== _owner._code )
         {
             _energyPickable = _battery.hasPlayer;
             _ownerCombustible = _battery.matriculAgent;
