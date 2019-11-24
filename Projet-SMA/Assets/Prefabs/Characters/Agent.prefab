@@ -13020,7 +13020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2622002020204325310}
   m_LocalRotation: {x: 0.06104851, y: 0, z: 0, w: 0.99813485}
-  m_LocalPosition: {x: 0, y: 16, z: -20.1}
+  m_LocalPosition: {x: 0, y: 16, z: -18}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 6996777689335691323}
@@ -32011,6 +32011,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 2622002020163438954}
   _camera: {fileID: 2622002020204325305}
+  friendEnvironnement: {fileID: 8484157336182942506, guid: 0fb00291fb7089842a522280f4c6bbce,
+    type: 3}
   _code: 0
   _fieldOfView: {fileID: 2622002020843932829}
   target:
@@ -32025,8 +32027,9 @@ MonoBehaviour:
   previousTarget: 0
   currentState: 0
   dialogue: 2
-  actualInteractionAgent: {fileID: 0}
-  PercentTrustStart: 40
+  listenAnOtherAgent: 
+  PercentTrustStart: 50
+  fluctuationTrust: 3
   canTakeEnergy: 0
   PercentOfEnergyPile: 0
   PercentOfWastePile: 0

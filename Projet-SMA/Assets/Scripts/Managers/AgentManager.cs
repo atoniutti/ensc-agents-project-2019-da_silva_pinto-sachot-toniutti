@@ -6,7 +6,7 @@ public class AgentManager : MonoBehaviour
 {
     public Agent agent;
     public List<Agent> agents;
-    public int numberOfAgents = 10;
+    public int numberOfAgents = 5;
     
 
     List<Transform> spawnPoints = new List<Transform>();

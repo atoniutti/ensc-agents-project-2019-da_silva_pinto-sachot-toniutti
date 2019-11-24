@@ -13,20 +13,19 @@ public class FieldOfViewAgent : MonoBehaviour
     public bool _agentFront; //agent enter in the fieldOfView
     public bool _energyPickable = false; // boolean if the energy is pickable
 
-    //For battery
+    //For battery(Toxic and energy)
     private PickableEnergy _battery;
-    public int _identifiant = 0; // name of the energy
-    public int _ownerCombustible; // owner of object energy
+    public int _identifiant = 0; // name of the combustible
+    public int _ownerCombustible; // owner of combustible
     public GameObject currentObjet; 
-    public Transform _position; //position of the objet enr
+    public Transform _position; //position of combustible
+
     //For agent
     public Agent _agentMember;
     public Direction _agentMemberTarget;
     public AgentStates  _agentMemberState;
     public Discussion _agentMemberDialogue;
     public int[] numberOfbattery;
-
-
 
     //Look pile
     public float percentOfEnergy ;
@@ -43,15 +42,25 @@ public class FieldOfViewAgent : MonoBehaviour
         numberOfbattery = new int[4];
 
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        View();
+        View(_battery);
+        if(currentObjet!=null)
+        {
+            if (currentObjet.transform.parent == _owner.transform  )
+            {
+                _energyPickable = true;
+                _ownerCombustible = currentObjet.GetComponent<PickableEnergy>().matriculAgent;
+            }
+        }
+        
     }
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.name == "EastInformationBox")
         {
             numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
+
         }
         if (col.gameObject.name == "NorthInformationBox")
         {
@@ -161,12 +170,12 @@ public class FieldOfViewAgent : MonoBehaviour
         
     }
 
-    private void View()
+    private void View(PickableEnergy battery)
     {
-        if (_identifiant != 0 &&  _battery.matriculAgent== _owner._code )
+        if (_identifiant != 0 &&  battery.matriculAgent== _owner._code )
         {
-            _energyPickable = _battery.hasPlayer;
-            _ownerCombustible = _battery.matriculAgent;
+            _energyPickable = battery.hasPlayer;
+            _ownerCombustible = battery.matriculAgent;
         }
     }
     public void PoseEnergy()
