@@ -45,6 +45,8 @@ public class FieldOfViewAgent : MonoBehaviour
     private void FixedUpdate()
     {
         View(_battery);
+
+        // allow to reload boolean energyPickable when the agent take the object because sometime he stay false while he have to be true 
         if(currentObjet!=null)
         {
             if (currentObjet.transform.parent == _owner.transform  )
@@ -170,6 +172,7 @@ public class FieldOfViewAgent : MonoBehaviour
         
     }
 
+    //check if the battery is taked or not 
     private void View(PickableEnergy battery)
     {
         if (_identifiant != 0 &&  battery.matriculAgent== _owner._code )

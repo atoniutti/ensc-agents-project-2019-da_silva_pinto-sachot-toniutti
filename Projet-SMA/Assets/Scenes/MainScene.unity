@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 2622002020163438949, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
   agents: []
-  numberOfAgents: 8
+  numberOfAgents: 5
 --- !u!1 &2076705038
 GameObject:
   m_ObjectHideFlags: 0

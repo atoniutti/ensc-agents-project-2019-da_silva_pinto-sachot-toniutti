@@ -9,12 +9,11 @@ public class Agent : MonoBehaviour
     public NavMeshAgent _agent;
     private Animator animator;
     public Camera _camera; // Camera of the agent in order to modified display
-
     private static int _precCode;
     public int _code; // Code name of the agent
     public FieldOfViewAgent _fieldOfView; // Field of view of the agent
 
-    // Agent
+    // Agent communication and mouvement 
     public Transform[] target; // An array where he have to go
     public Direction currentTarget; // Diection of the agent
     public Direction previousTarget; // Previous direction of the agent
@@ -30,9 +29,11 @@ public class Agent : MonoBehaviour
     private bool BoolStartTrust;
     public int fluctuationTrust;
     private int numberOfAgent;
+
     // Corresponding to the battery that the agent can take
     public int canTakeEnergy; //identifiant of the energy that the agent can take
     private bool doneHistoric;
+    public int[] numberOfBatteryByPlace;
 
     // Corresponding to the parametre of the two pile
     public float PercentOfEnergyPile;
@@ -40,7 +41,6 @@ public class Agent : MonoBehaviour
     private float probability ;
     public bool checkPile;
     private int randomDirection;
-    public int[] numberOfBatteryByPlace;
 
     private void Start()
     {
@@ -90,8 +90,8 @@ public class Agent : MonoBehaviour
         {
             dialogue = DialogueUpdtate(currentState, numberOfBatteryByPlace);
         }
-        
-        // Pickable Objet
+
+        // PICKABLE OBJECT
         // Detection of energy in the field of view of the agent 
         if ((_fieldOfView._energyFront == true && currentState == AgentStates.FindingEnergy))
         {
@@ -117,7 +117,7 @@ public class Agent : MonoBehaviour
             }
             else canTakeEnergy = 0;
         }
-        
+
         // Detection of toxic in the field of view of the agent 
         if (_fieldOfView._toxicFront == true && currentState == AgentStates.FindingToxic)
         {
@@ -142,7 +142,7 @@ public class Agent : MonoBehaviour
             }
             else canTakeEnergy = 0;
         }
-        
+
         // If nothing in front look for energy or toxic battery
         if ((_fieldOfView._energyFront == false && currentState == AgentStates.FindingEnergy)
             || (_fieldOfView._toxicFront == false && currentState == AgentStates.FindingToxic))
@@ -150,7 +150,7 @@ public class Agent : MonoBehaviour
             canTakeEnergy = 0;
         }
 
-        //Agent choice
+        //AGENT CHOICE
         //Destination of the agent if he carry nothing
         if (_fieldOfView.currentObjet == null)
         {
@@ -180,7 +180,7 @@ public class Agent : MonoBehaviour
                 checkPile = false;
             }
 
-            //Target if currentState=findingToxic
+            //Target if currentState = findingToxic
             if (currentState == AgentStates.FindingToxic && doneHistoric==false
                 && _fieldOfView._energyPickable == false && _fieldOfView.currentObjet==null)
             {
@@ -193,9 +193,10 @@ public class Agent : MonoBehaviour
                 doneHistoric = true;
             }
             
+            // if the agent have an interaction with an other agent
             if(actualInteractionAgent!=null)
             {
-                //Target if currentState=findingEnergy
+                //Target if currentState = findingEnergy
                 if (currentState == AgentStates.FindingEnergy && listenAnOtherAgent[actualInteractionAgent._code - 1] == true && doneHistoric == false
                     && _fieldOfView._energyPickable == false)
                 {
@@ -325,7 +326,7 @@ public class Agent : MonoBehaviour
         }
     }
 
-    // When the see the object he can take this one and he wlak to him
+    // When the see the object he can take this one and he walk to him
     public void SeeObject()
     {
         canTakeEnergy = _fieldOfView._identifiant;
@@ -379,11 +380,22 @@ public class Agent : MonoBehaviour
     }
 
     // Make a choice of Direction/Objectif(States) if an other agent tell him something in the discussion
-    public Direction MakeAChoice(Direction yourTarget, Discussion dialogue,float trustOfHim)
+    public Direction MakeAChoice(Direction yourTarget, Discussion dialogue, float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
-       
-        if (proba <=(trustOfHim / 100))
+        float distanceToYourTarget = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target[(int)currentTarget].position.x, target[(int)currentTarget].position.z));
+        float distanceyToHisTarget =Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target[(int)dialogue].position.x, target[(int)dialogue].position.z));
+        float percentAdd = 0;
+        if (distanceToYourTarget - distanceyToHisTarget > 0)
+        {
+            percentAdd= (distanceyToHisTarget/17)*(trustOfHim/10); //equivalant of 10% max of the trust in this agent
+        }
+        else
+        {
+            percentAdd = -(distanceToYourTarget / 17) * (trustOfHim / 10); //equivalant of -10% max of the trust in this agent and 17 represent the longer distance between to spawnPoint
+        }
+
+        if (proba <=((trustOfHim + percentAdd) / 100))
         {
             return ((Direction)(dialogue)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
         }
@@ -514,6 +526,7 @@ public class Agent : MonoBehaviour
         }
     }
 
+    //the agent don't listen the other agent 
     public void SilenceDialogue()
     {
         for (int i = 0; i < numberOfAgent; i++)
@@ -521,13 +534,14 @@ public class Agent : MonoBehaviour
             listenAnOtherAgent[i] = false;
         }
     }
-
+    //the agent don't listen an agent
     public void SilenceDialogue(int codeAgent)
     {
         
             listenAnOtherAgent[codeAgent-1] = false;
         
     }
+    //the agent can listen all the agent
     public void ListenDialogue()
     {
         for (int i = 0; i <numberOfAgent; i++)
@@ -535,7 +549,7 @@ public class Agent : MonoBehaviour
             listenAnOtherAgent[i] = true;
         }
     }
-
+    //Manage to have a trust >0% and <100%
     public void TrustManager()
     {
         foreach(AgentTrust element in agentsList)
