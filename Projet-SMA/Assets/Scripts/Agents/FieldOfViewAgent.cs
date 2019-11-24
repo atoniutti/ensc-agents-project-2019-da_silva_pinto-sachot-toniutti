@@ -59,10 +59,10 @@ public class FieldOfViewAgent : MonoBehaviour
     }
     void OnTriggerEnter(Collider col)
     {
+        //Allow to check the number of battery in the zone
         if (col.gameObject.name == "EastInformationBox")
         {
             numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
-
         }
         if (col.gameObject.name == "NorthInformationBox")
         {
@@ -181,6 +181,7 @@ public class FieldOfViewAgent : MonoBehaviour
             _ownerCombustible = battery.matriculAgent;
         }
     }
+    //when the agent pose energy in the pile
     public void PoseEnergy()
     {
         Destroy(currentObjet);
