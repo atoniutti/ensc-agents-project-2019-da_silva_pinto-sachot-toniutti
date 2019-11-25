@@ -21,7 +21,7 @@ public class Agent : MonoBehaviour
     public Discussion dialogue;
 
     // Variable corresponding to the other agents in the scene
-    private Agent actualInteractionAgent;
+    public Agent actualInteractionAgent;
     private AgentTrust actualAgentTrust;
     public bool[] listenAnOtherAgent;
     public List<AgentTrust> agentsList = new List<AgentTrust>();
@@ -83,10 +83,11 @@ public class Agent : MonoBehaviour
 
         //list of number of battery seen by the agent by place
         numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
-        actualInteractionAgent = _fieldOfView._agentMember;
         
+        actualInteractionAgent = _fieldOfView._agentMember;
+
         //actual agent in the fieldOfview
-        if(actualInteractionAgent!=null )
+        if (actualInteractionAgent!=null )
         {
             dialogue = DialogueUpdtate(currentState, numberOfBatteryByPlace);
         }
@@ -239,8 +240,8 @@ public class Agent : MonoBehaviour
                                 agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
                             }
                         }
-                        listenAnOtherAgent[actualInteractionAgent._code - 1] = false;
-                        actualInteractionAgent = null;
+                       SilenceDialogue(actualInteractionAgent._code );
+                       actualInteractionAgent = null;
                     }
                     //Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
                     //Caution -4 it is in order to have the same correspondance according the AgentBhavior (North, south,...)
@@ -268,7 +269,7 @@ public class Agent : MonoBehaviour
                             agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
 
                         }
-                        listenAnOtherAgent[actualInteractionAgent._code - 1] = false;
+                        SilenceDialogue(actualInteractionAgent._code);
                         actualInteractionAgent = null;
 
                     }
@@ -537,8 +538,15 @@ public class Agent : MonoBehaviour
     //the agent don't listen an agent
     public void SilenceDialogue(int codeAgent)
     {
-        
-            listenAnOtherAgent[codeAgent-1] = false;
+        for (int i = 0; i < numberOfAgent; i++)
+        {
+            if(i==codeAgent-1)
+            {
+                listenAnOtherAgent[i] = false;
+            }
+            else listenAnOtherAgent[i] = true;
+        }
+       
         
     }
     //the agent can listen all the agent

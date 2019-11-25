@@ -42,7 +42,7 @@ public class FieldOfViewAgent : MonoBehaviour
         numberOfbattery = new int[4];
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
         View(_battery);
 
