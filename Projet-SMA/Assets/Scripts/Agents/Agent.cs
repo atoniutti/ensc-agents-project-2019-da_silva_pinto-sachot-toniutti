@@ -235,6 +235,10 @@ public class Agent : MonoBehaviour
                                 currentTarget = newTarget;
                                 agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust += fluctuationTrust;
                             }
+                            else
+                            {
+                                agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
+                            }
                         }
                        SilenceDialogue(actualInteractionAgent._code);
                        actualInteractionAgent = null;
@@ -262,6 +266,8 @@ public class Agent : MonoBehaviour
                         if (MakeAChoiceTrust(agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust)==false)
                         {
                             currentTarget = precedentchoiceTarget;
+                            agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
+
                         }
                         SilenceDialogue(actualInteractionAgent._code);
                         actualInteractionAgent = null;
@@ -337,7 +343,7 @@ public class Agent : MonoBehaviour
         }
     }
 
-    //Manage to have a trust >0% and <100%
+    // Manage to have a trust >0% and <100%
     public void TrustManager()
     {
         foreach (AgentTrust element in agentsList)
@@ -353,7 +359,7 @@ public class Agent : MonoBehaviour
         }
     }
 
-    //boolean if the agent is agree or not with dialogue of the other agent
+    // boolean if the agent is agree or not with dialogue of the other agent
     public bool MakeAChoiceTrust(float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
@@ -368,7 +374,7 @@ public class Agent : MonoBehaviour
         }
     }
 
-    //return the index agentTrust of the the actual interaction agent
+    // return the index agentTrust of the the actual interaction agent
     public void IndexOfAgentTrust(Agent actualInteraction)
     {
         foreach (AgentTrust element in agentsList)
@@ -489,7 +495,7 @@ public class Agent : MonoBehaviour
         }
     }
    
-    //Generate dialogue according of the need of the other agent
+    // Generate dialogue according of the need of the other agent
     public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list)
     {
         int maxValue = Mathf.Max(list);
@@ -535,7 +541,7 @@ public class Agent : MonoBehaviour
 
     }
    
-    //the agent don't listen the other agent 
+    // the agent don't listen the other agent 
     public void SilenceDialogue()
     {
         for (int i = 0; i < numberOfAgent; i++)
@@ -544,13 +550,13 @@ public class Agent : MonoBehaviour
         }
     }
 
-    //the agent don't listen an agent
+    // the agent don't listen an agent
     public void SilenceDialogue(int codeAgent)
     {
         listenAnOtherAgent[codeAgent-1] = false;
     }
        
-    //the agent can listen all the agent
+    // the agent can listen all the agent
     public void ListenDialogue()
     {
         for (int i = 0; i <numberOfAgent; i++)
@@ -559,7 +565,6 @@ public class Agent : MonoBehaviour
         }
     }
 
-    
 }
   
 
