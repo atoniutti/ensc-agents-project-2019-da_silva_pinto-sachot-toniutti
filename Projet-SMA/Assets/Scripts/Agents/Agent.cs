@@ -235,10 +235,6 @@ public class Agent : MonoBehaviour
                                 currentTarget = newTarget;
                                 agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust += fluctuationTrust;
                             }
-                            else
-                            {
-                                agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
-                            }
                         }
                        SilenceDialogue(actualInteractionAgent._code);
                        actualInteractionAgent = null;
@@ -266,12 +262,9 @@ public class Agent : MonoBehaviour
                         if (MakeAChoiceTrust(agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust)==false)
                         {
                             currentTarget = precedentchoiceTarget;
-                            agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
-
                         }
                         SilenceDialogue(actualInteractionAgent._code);
                         actualInteractionAgent = null;
-
                     }
                 }
             }
@@ -313,7 +306,24 @@ public class Agent : MonoBehaviour
             DestinationAgent(currentTarget);
         }
     }
-
+    // Agent animation manager
+    public void AnimationMove(AgentStates agentStates)
+    {
+        if (agentStates == AgentStates.Pose || (_agent.SetDestination(target[(int)currentTarget].position) == false && agentStates == AgentStates.FindingEnergy))
+        {
+            animator.SetBool("walk", false);
+        }
+        if ((agentStates == AgentStates.FindingEnergy || agentStates == AgentStates.FindingToxic
+            || agentStates == AgentStates.Start || agentStates == AgentStates.GoToPileEnergy || agentStates == AgentStates.GoToPileToxic) && _agent.SetDestination(target[(int)currentTarget].position) == true)
+        {
+            animator.SetBool("walk", true);
+        }
+        if (agentStates == AgentStates.HavingEnergy || agentStates == AgentStates.HavingToxic)
+        {
+            animator.SetTrigger("takeRessource");
+        }
+    }
+    //instanciate trust for each agent friend
     private void InstanciateTrust(float trust)
     {
         foreach (GameObject agentOther in GameObject.FindGameObjectsWithTag("agent"))
@@ -323,6 +333,49 @@ public class Agent : MonoBehaviour
                 AgentTrust trustInAgent = new AgentTrust(agentOther.GetComponent<Agent>(), trust);
                 agentsList.Add(trustInAgent);
                 //Debug.Log("L'agent " + _code + " a une confiance en " + trustInAgent.agent._code + " de : " + trustInAgent.trust);
+            }
+        }
+    }
+
+    //Manage to have a trust >0% and <100%
+    public void TrustManager()
+    {
+        foreach (AgentTrust element in agentsList)
+        {
+            if (element.trust > 100)
+            {
+                element.trust = 100;
+            }
+            if (element.trust < 0)
+            {
+                element.trust = 0;
+            }
+        }
+    }
+
+    //boolean if the agent is agree or not with dialogue of the other agent
+    public bool MakeAChoiceTrust(float trustOfHim)
+    {
+        float proba = Random.Range(0f, 1f);
+
+        if (proba < (trustOfHim / 100))
+        {
+            return (true);  //if agent agree with dialogue of the other agent
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //return the index agentTrust of the the actual interaction agent
+    public void IndexOfAgentTrust(Agent actualInteraction)
+    {
+        foreach (AgentTrust element in agentsList)
+        {
+            if (actualInteraction == element.agent)
+            {
+                actualAgentTrust = element;
             }
         }
     }
@@ -345,39 +398,6 @@ public class Agent : MonoBehaviour
     public void DestinationAgent(Direction TargetAgent)
     {
         _agent.SetDestination(target[(int)TargetAgent].position);
-    }
-
-    // Agent animation manager
-    public void AnimationMove(AgentStates agentStates)
-    {
-        if (agentStates==AgentStates.Pose ||(_agent.SetDestination(target[(int)currentTarget].position)==false && agentStates==AgentStates.FindingEnergy))
-        {
-            animator.SetBool("walk", false);
-        }
-        if((agentStates==AgentStates.FindingEnergy||agentStates==AgentStates.FindingToxic 
-            || agentStates==AgentStates.Start || agentStates==AgentStates.GoToPileEnergy||agentStates==AgentStates.GoToPileToxic) && _agent.SetDestination(target[(int)currentTarget].position)==true)
-        {
-            animator.SetBool("walk", true);
-        }
-        if (agentStates==AgentStates.HavingEnergy|| agentStates==AgentStates.HavingToxic)
-        {
-            animator.SetTrigger("takeRessource");
-        }
-    }
-  
-    //boolean if the agent is agree or not with dialogue of the other agent
-    public bool MakeAChoiceTrust(float trustOfHim)
-    {
-        float proba = Random.Range(0f, 1f);
-        
-        if (proba < (trustOfHim / 100))
-        {
-            return (true);  //if agent agree with dialogue of the other agent
-        }
-        else
-        {
-            return false;
-        }
     }
 
     // Make a choice of Direction/Objectif(States) if an other agent tell him something in the discussion
@@ -515,18 +535,6 @@ public class Agent : MonoBehaviour
 
     }
    
-    //return the index agentTrust of the the actual interaction agent
-    public void IndexOfAgentTrust(Agent actualInteraction)
-    {
-        foreach (AgentTrust element in agentsList)
-        {
-            if (actualInteraction == element.agent)
-            {
-                actualAgentTrust=element;
-            }
-        }
-    }
-
     //the agent don't listen the other agent 
     public void SilenceDialogue()
     {
@@ -535,10 +543,11 @@ public class Agent : MonoBehaviour
             listenAnOtherAgent[i] = false;
         }
     }
+
     //the agent don't listen an agent
     public void SilenceDialogue(int codeAgent)
     {
-        listenAnOtherAgent[codeAgent-1] = true;
+        listenAnOtherAgent[codeAgent-1] = false;
     }
        
     //the agent can listen all the agent
@@ -549,21 +558,8 @@ public class Agent : MonoBehaviour
             listenAnOtherAgent[i] = true;
         }
     }
-    //Manage to have a trust >0% and <100%
-    public void TrustManager()
-    {
-        foreach(AgentTrust element in agentsList)
-        {
-            if(element.trust>100)
-            {
-                element.trust = 100;
-            }
-            if(element.trust<0)
-            {
-                element.trust = 0;
-            }
-        }
-    }
+
+    
 }
   
 
