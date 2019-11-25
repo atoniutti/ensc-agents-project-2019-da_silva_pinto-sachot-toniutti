@@ -240,7 +240,7 @@ public class Agent : MonoBehaviour
                                 agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
                             }
                         }
-                       SilenceDialogue(actualInteractionAgent._code );
+                       SilenceDialogue(actualInteractionAgent._code);
                        actualInteractionAgent = null;
                     }
                     //Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
@@ -538,17 +538,9 @@ public class Agent : MonoBehaviour
     //the agent don't listen an agent
     public void SilenceDialogue(int codeAgent)
     {
-        for (int i = 0; i < numberOfAgent; i++)
-        {
-            if(i==codeAgent-1)
-            {
-                listenAnOtherAgent[i] = false;
-            }
-            else listenAnOtherAgent[i] = true;
-        }
-       
-        
+        listenAnOtherAgent[codeAgent-1] = true;
     }
+       
     //the agent can listen all the agent
     public void ListenDialogue()
     {
