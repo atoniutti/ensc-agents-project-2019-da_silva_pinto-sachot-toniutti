@@ -12,7 +12,7 @@ public class UIAgent : MonoBehaviour
     public Text _name; // Name of the agent
     public ProgressBar _energyProgressBar;
     public ProgressBar _wasteProgressBar;
-    public CameraManager cameraManager;
+    CameraManager cameraManager;
 
     public Canvas canvasAgent;
 

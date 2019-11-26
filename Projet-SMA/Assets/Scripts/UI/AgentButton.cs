@@ -19,7 +19,6 @@ public class AgentButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         _trustProgressBar.UpdateBar(_agentTrust.trust);
     }
 
@@ -28,6 +27,5 @@ public class AgentButton : MonoBehaviour
         CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         Debug.LogError(cameraManager.currentAgent._code);
         cameraManager.SwitchAgent(_agentTrust.agent);
-
     }
 }

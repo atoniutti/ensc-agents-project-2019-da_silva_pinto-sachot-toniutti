@@ -57,7 +57,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            // currentCamera == currentAgent._camera
+            // currentCamera != mainCamera
             DisplayMainCamera();
         }
     }
@@ -65,12 +65,14 @@ public class CameraManager : MonoBehaviour
     public void DisplayMainCamera()
     {
         mainCamera.enabled = true;
+        mainCamera.depth = 0;
         currentCamera = mainCamera;
     }
 
     public void DisplayAgentCamera()
     {
         currentAgent._camera.enabled = true;
+        mainCamera.depth = -1;
         currentCamera = currentAgent._camera;
     }
 }
