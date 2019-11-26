@@ -43,9 +43,9 @@ public class CameraManager : MonoBehaviour
     }
     public void SwitchAgent(Agent agent)
     {
-        currentCamera.enabled = false;
+        currentAgent._camera.enabled = false;
         currentAgent = agent;
-        currentAgent._camera.enabled = true;
+        DisplayAgentCamera();
     }
     public void SwitchCamera()
     {

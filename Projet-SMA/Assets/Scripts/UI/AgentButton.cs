@@ -12,13 +12,14 @@ public class AgentButton : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-
+        _name.text = _agentTrust.agent.GetComponent<UIAgent>()._name.text;
+        _trustProgressBar.UpdateBar(_agentTrust.trust);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _name.text = _agentTrust.agent.GetComponent<UIAgent>()._name.text;
+
         _trustProgressBar.UpdateBar(_agentTrust.trust);
     }
 
