@@ -121,28 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 74cfb7139cd3cd04fb48c16680513552, type: 2}
---- !u!1 &40421705 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7047060773074183484, guid: 5ac65a0fdd8756d4198ca4f298590303,
-    type: 3}
-  m_PrefabInstance: {fileID: 6114393509139046563}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &40421709
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40421705}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &41832461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1492,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047060773074183484, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_Name
+      value: Barriels
       objectReference: {fileID: 0}
     - target: {fileID: 1347344848409770194, guid: 5ac65a0fdd8756d4198ca4f298590303,
         type: 3}
@@ -4979,6 +4962,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Barriel (1)(1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453272089137628901, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084798402849703519, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084798402849703519, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ac65a0fdd8756d4198ca4f298590303, type: 3}
