@@ -14,13 +14,13 @@ public class UIAgent : MonoBehaviour
     public ProgressBar _wasteProgressBar;
     public CameraManager cameraManager;
 
-
     public Canvas canvasAgent;
 
     // Start is called before the first frame update
     void Start()
     {
         _name.text = GetNameCode();
+        cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
     }
 
     // Update is called once per frame
