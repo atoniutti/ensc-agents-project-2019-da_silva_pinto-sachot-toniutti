@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnergyManager : MonoBehaviour
 {
     public GameObject energy; // The energy prefab to be spawned.
-    public float spawnTime = 0.5f;            // How long between each spawn.
-    public Transform[] spawnPoints;         // An array of the spawn points this object can spawn from.
+    public float spawnTime = 0.5f; // How long between each spawn.
+    public Transform[] spawnPoints; // An array of the spawn points this object can spawn from.
 
     // Start is called before the first frame update
     void Start()

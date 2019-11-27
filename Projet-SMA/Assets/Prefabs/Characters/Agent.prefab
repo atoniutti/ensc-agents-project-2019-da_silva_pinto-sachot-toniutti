@@ -13047,7 +13047,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -13176,6 +13176,7 @@ GameObject:
   - component: {fileID: 2622002020577534154}
   - component: {fileID: 2622002020577534155}
   - component: {fileID: 2622002020577534152}
+  - component: {fileID: 6180381913419848337}
   m_Layer: 9
   m_Name: CanvasCameraAgent
   m_TagString: Untagged
@@ -13263,6 +13264,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &6180381913419848337
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622002020577534158}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2622002020843932802
 GameObject:
   m_ObjectHideFlags: 0
@@ -32059,8 +32072,6 @@ MonoBehaviour:
   _name: {fileID: 2622002021166081497}
   _energyProgressBar: {fileID: 8038498337240924253}
   _wasteProgressBar: {fileID: 3756298790110836378}
-  cameraManager: {fileID: 6918046970985349077, guid: c11a41a5c46cc8a44becae7ee2625a8e,
-    type: 3}
   canvasAgent: {fileID: 606636061290355057}
 --- !u!1 &6292880258573172290
 GameObject:
@@ -35577,7 +35588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00079345703}
+  m_AnchoredPosition: {x: 0, y: -0.00018310547}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2578161112224721622
@@ -49069,6 +49080,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d29fb6b1c256694f9f5dfa73d86d673, type: 3}
+--- !u!224 &4732925653031131780 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2228034020530086077, guid: 6d29fb6b1c256694f9f5dfa73d86d673,
+    type: 3}
+  m_PrefabInstance: {fileID: 6864941504917371449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8038498337240924253 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3515992208064854628, guid: 6d29fb6b1c256694f9f5dfa73d86d673,
@@ -49081,9 +49098,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038c83d2c5e17514ea1399cf0827a5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &4732925653031131780 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2228034020530086077, guid: 6d29fb6b1c256694f9f5dfa73d86d673,
-    type: 3}
-  m_PrefabInstance: {fileID: 6864941504917371449}
-  m_PrefabAsset: {fileID: 0}

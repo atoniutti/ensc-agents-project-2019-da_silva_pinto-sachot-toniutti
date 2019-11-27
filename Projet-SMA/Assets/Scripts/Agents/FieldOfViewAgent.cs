@@ -6,33 +6,31 @@ public class FieldOfViewAgent : MonoBehaviour
 {
     public Agent _owner;
 
-    //For pickable Object(Toxic and energy)
-    public bool _energyFront; // boolean if gamObject energy enter in the fieldOfView
-    public bool _toxicFront; // boolean if gamObject toxic enter in the fieldOfView
-    public bool _pileFront; // boolean if gamObjects pile enter in the fieldOfView
-    public bool _agentFront; //agent enter in the fieldOfView
-    public bool _energyPickable = false; // boolean if the energy is pickable
+    // For pickable Object(Toxic and energy)
+    public bool _energyFront; // Boolean if gamObject energy enter in the fieldOfView
+    public bool _toxicFront; // Boolean if gamObject toxic enter in the fieldOfView
+    public bool _pileFront; // Boolean if gamObjects pile enter in the fieldOfView
+    public bool _agentFront; // Agent enter in the fieldOfView
+    public bool _energyPickable = false; // Boolean if the energy is pickable
 
-    //For battery(Toxic and energy)
+    // For battery(Toxic and energy)
     private PickableEnergy _battery;
-    public int _identifiant = 0; // name of the combustible
-    public int _ownerCombustible; // owner of combustible
-    public GameObject currentObjet; 
-    public Transform _position; //position of combustible
+    public int _identifiant = 0; // Name of the combustible
+    public int _ownerCombustible; // Owner of combustible
+    public GameObject currentObjet;
+    public Transform _position; // Position of combustible
 
-    //For agent
+    // For agent
     public Agent _agentMember;
     public Direction _agentMemberTarget;
-    public AgentStates  _agentMemberState;
+    public AgentStates _agentMemberState;
     public Discussion _agentMemberDialogue;
     public int[] numberOfbattery;
 
-    //Look pile
-    public float percentOfEnergy ;
+    // Look pile
+    public float percentOfEnergy;
     public float percentOfWaste;
-     
 
-    
     public void Start()
     {
         gameObject.GetComponent<CapsuleCollider>().isTrigger = true;
@@ -42,24 +40,26 @@ public class FieldOfViewAgent : MonoBehaviour
         numberOfbattery = new int[4];
 
     }
+
     private void Update()
     {
         View(_battery);
 
-        // allow to reload boolean energyPickable when the agent take the object because sometime he stay false while he have to be true 
-        if(currentObjet!=null)
+        // Allow to reload boolean energyPickable when the agent take the object because sometime he stay false while he have to be true 
+        if (currentObjet != null)
         {
-            if (currentObjet.transform.parent == _owner.transform  )
+            if (currentObjet.transform.parent == _owner.transform)
             {
                 _energyPickable = true;
                 _ownerCombustible = currentObjet.GetComponent<PickableEnergy>().matriculAgent;
             }
         }
-        
+
     }
+
     void OnTriggerEnter(Collider col)
     {
-        //Allow to check the number of battery in the zone
+        // Allow to check the number of battery in the zone
         if (col.gameObject.name == "EastInformationBox")
         {
             numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
@@ -76,14 +76,14 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             numberOfbattery[(int)Direction.WestPoint] = col.GetComponent<SpawnListener>().numberOfPile;
         }
-        
+
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
         {
-            //Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
+            // Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
             _battery = col.GetComponent<PickableEnergy>();
-            
+
             // If the energy enter in the field of view
-            if(_battery.hasPlayer==false)
+            if (_battery.hasPlayer == false)
             {
                 _energyFront = true;
                 currentObjet = col.gameObject;
@@ -104,7 +104,7 @@ public class FieldOfViewAgent : MonoBehaviour
                 _identifiant = _battery.idEnergy;
             }
         }
-        
+
         // If the box Energy enter in the field of view 
         if (col.gameObject.name == "EnergyBoxEnterAgent")
         {
@@ -136,7 +136,7 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             _agentFront = true;
             _agentMember = col.GetComponent<Agent>();
-            if (_agentMember._code != _owner._code )
+            if (_agentMember._code != _owner._code)
             {
                 _agentMemberDialogue = _agentMember.dialogue;
                 _agentMemberState = _agentMember.currentState;
@@ -144,7 +144,7 @@ public class FieldOfViewAgent : MonoBehaviour
             }
         }
 
-        //Check if the Agent Friend is near enough to consider if he is front of him or not
+        // Check if the Agent Friend is near enough to consider if he is front of him or not
         if (_agentMember != null)
         {
             if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) > 2)
@@ -158,6 +158,7 @@ public class FieldOfViewAgent : MonoBehaviour
         }
 
     }
+
     void OnTriggerExit(Collider col)
     {
         if (col.gameObject.name == "PileInformationBox" && _owner.checkPile)
@@ -169,19 +170,20 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             _pileFront = false;
         }
-        
+
     }
 
-    //check if the battery is taked or not 
+    // Check if the battery is taked or not 
     private void View(PickableEnergy battery)
     {
-        if (_identifiant != 0 &&  battery.matriculAgent== _owner._code )
+        if (_identifiant != 0 && battery.matriculAgent == _owner._code)
         {
             _energyPickable = battery.hasPlayer;
             _ownerCombustible = battery.matriculAgent;
         }
     }
-    //when the agent pose energy in the pile
+
+    // When the agent pose energy in the pile
     public void PoseEnergy()
     {
         Destroy(currentObjet);
@@ -193,7 +195,6 @@ public class FieldOfViewAgent : MonoBehaviour
         _toxicFront = false;
         _energyFront = false;
         _energyPickable = false;
-        _owner.currentState = AgentStates.Pose;
+        _owner.currentState = AgentStates.Standby;
     }
-
 }

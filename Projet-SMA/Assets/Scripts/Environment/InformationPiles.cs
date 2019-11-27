@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InformationPiles : MonoBehaviour
 {
-
     public CylinderLevel energyBoxEnter;
     public CylinderLevel wasteBoxEnter;
     public float energyRate;

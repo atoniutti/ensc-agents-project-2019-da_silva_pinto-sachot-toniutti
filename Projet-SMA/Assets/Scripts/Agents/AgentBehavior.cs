@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AgentStates {Pose, FindingEnergy, FindingToxic, HavingEnergy, HavingToxic, GoToPileEnergy, GoToPileToxic, Start}
-public enum AgentType { NotVeryTalkative, Talkative}
+public enum AgentStates { Standby, FindingEnergy, FindingToxic, HavingEnergy, HavingToxic, GoToPileEnergy, GoToPileToxic, Start }
+public enum AgentType { NotVeryTalkative, Talkative }
 public enum Discussion
 {
-     HaveManyAtSouth, HaveManyAtNorth, HaveManyAtEast, HaveManyAtWest,
-     DontHaveManyAtSouth, DontHaveManyAtNorth, DontHaveManyAtEast, DontHaveManyAtWest, NeedFindEnergy, NeedFindToxic, NothingToSay
+    HaveManyAtSouth, HaveManyAtNorth, HaveManyAtEast, HaveManyAtWest,
+    DontHaveManyAtSouth, DontHaveManyAtNorth, DontHaveManyAtEast, DontHaveManyAtWest, 
+    NeedFindEnergy, NeedFindToxic, 
+    NothingToSay
 }
 
 public enum Direction
 {
-     SouthPoint, NorthPoint, EastPoint, WestPoint,ToxicPoint, PileWastePoint, PileEnergyPoint
+    SouthPoint, NorthPoint, EastPoint, WestPoint, ToxicPoint, PileWastePoint, PileEnergyPoint
 }

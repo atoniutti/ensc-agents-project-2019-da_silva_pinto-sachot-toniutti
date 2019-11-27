@@ -44,7 +44,4 @@ public class ToxicManager : MonoBehaviour
             listAgentInArea.Remove(actualAgentOut);
         }
     }
-   
-
-
 }

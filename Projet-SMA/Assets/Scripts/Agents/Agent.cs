@@ -17,7 +17,7 @@ public class Agent : MonoBehaviour
     public Transform[] target; // An array where he have to go
     public Direction currentTarget; // Diection of the agent
     public Direction previousTarget; // Previous direction of the agent
-    public AgentStates currentState;// State of the agent
+    public AgentStates currentState; // State of the agent
     public Discussion dialogue;
 
     // Variable corresponding to the other agents in the scene
@@ -31,14 +31,14 @@ public class Agent : MonoBehaviour
     private int numberOfAgent;
 
     // Corresponding to the battery that the agent can take
-    public int canTakeEnergy; //identifiant of the energy that the agent can take
+    public int canTakeEnergy; // Identifiant of the energy that the agent can take
     private bool doneHistoric;
     public int[] numberOfBatteryByPlace;
 
     // Corresponding to the parametre of the two pile
     public float PercentOfEnergyPile;
     public float PercentOfWastePile;
-    private float probability ;
+    private float probability;
     public bool checkPile;
     private int randomDirection;
 
@@ -63,7 +63,7 @@ public class Agent : MonoBehaviour
         numberOfBatteryByPlace = new int[4];
         actualInteractionAgent = null;
         doneHistoric = false;
-        if(fluctuationTrust>10 &&fluctuationTrust<0)
+        if (fluctuationTrust > 10 && fluctuationTrust < 0)
         {
             fluctuationTrust = 5;
         }
@@ -78,21 +78,21 @@ public class Agent : MonoBehaviour
             BoolStartTrust = false;
         }
 
-        //Look if the percent of trust is >0 and <100
+        // Look if the percent of trust is >0 and <100
         TrustManager();
 
-        //list of number of battery seen by the agent by place
+        // List of number of battery seen by the agent by place
         numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
-        
+
         actualInteractionAgent = _fieldOfView._agentMember;
 
-        //actual agent in the fieldOfview
-        if (actualInteractionAgent!=null )
+        // Actual agent in the fieldOfview
+        if (actualInteractionAgent != null)
         {
             dialogue = DialogueUpdtate(currentState, numberOfBatteryByPlace);
         }
 
-        // PICKABLE OBJECT
+        #region PICKABLE OBJECT
         // Detection of energy in the field of view of the agent 
         if ((_fieldOfView._energyFront == true && currentState == AgentStates.FindingEnergy))
         {
@@ -101,14 +101,14 @@ public class Agent : MonoBehaviour
                 SilenceDialogue();
                 SeeObject();
                 // if the agent enough near of the energy 
-                if (_fieldOfView._energyPickable == true )
+                if (_fieldOfView._energyPickable == true)
                 {
                     doneHistoric = false;
                     currentState = AgentStates.HavingEnergy;
                     TakeObject(currentState);
                     currentState = AgentStates.GoToPileEnergy;
 
-                    if (currentTarget!=Direction.PileEnergyPoint && currentTarget!=Direction.PileWastePoint)
+                    if (currentTarget != Direction.PileEnergyPoint && currentTarget != Direction.PileWastePoint)
                     {
                         previousTarget = currentTarget;
                     }
@@ -150,23 +150,23 @@ public class Agent : MonoBehaviour
         {
             canTakeEnergy = 0;
         }
+        #endregion
 
-        //AGENT CHOICE
-        //Destination of the agent if he carry nothing
+        #region AGENT CHOICE
+        // Destination of the agent if he carry nothing
         if (_fieldOfView.currentObjet == null)
         {
-            //At the start of the simulation
+            // At the start of the simulation
             if (currentState == AgentStates.Start)
             {
                 previousTarget = (Direction)randomDirection;
                 currentTarget = Direction.PileEnergyPoint;
                 DestinationAgent(currentTarget);
                 AnimationMove(currentState);
-
             }
 
-            //Choice in front of the pile : Go check the need of the different pile
-            if (_fieldOfView._pileFront == true && checkPile == false && (currentState==AgentStates.Pose|| currentState == AgentStates.Start))
+            // Choice in front of the pile : Go check the need of the different pile
+            if (_fieldOfView._pileFront == true && checkPile == false && (currentState == AgentStates.Standby || currentState == AgentStates.Start))
             {
                 ListenDialogue();
                 PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
@@ -176,28 +176,29 @@ public class Agent : MonoBehaviour
                 randomDirection = Random.Range(0, 4);
                 checkPile = true;
             }
+
             if (_fieldOfView._pileFront == false)
             {
                 checkPile = false;
             }
 
-            //Target if currentState = findingToxic
-            if (currentState == AgentStates.FindingToxic && doneHistoric==false
-                && _fieldOfView._energyPickable == false && _fieldOfView.currentObjet==null)
+            // Target if currentState = findingToxic
+            if (currentState == AgentStates.FindingToxic && doneHistoric == false
+                && _fieldOfView._energyPickable == false && _fieldOfView.currentObjet == null)
             {
                 SilenceDialogue();
-                if (currentTarget!=Direction.PileEnergyPoint && currentTarget!= Direction.PileWastePoint)
+                if (currentTarget != Direction.PileEnergyPoint && currentTarget != Direction.PileWastePoint)
                 {
                     previousTarget = currentTarget;
                 }
                 currentTarget = Direction.ToxicPoint;
                 doneHistoric = true;
             }
-            
-            // if the agent have an interaction with an other agent
-            if(actualInteractionAgent!=null)
+
+            // If the agent have an interaction with an other agent
+            if (actualInteractionAgent != null)
             {
-                //Target if currentState = findingEnergy
+                // Target if currentState = findingEnergy
                 if (currentState == AgentStates.FindingEnergy && listenAnOtherAgent[actualInteractionAgent._code - 1] == true && doneHistoric == false
                     && _fieldOfView._energyPickable == false)
                 {
@@ -215,12 +216,12 @@ public class Agent : MonoBehaviour
                 if (listenAnOtherAgent[actualInteractionAgent._code - 1] == true && _fieldOfView._agentFront == true && _fieldOfView._agentMember == actualInteractionAgent
                && currentState != AgentStates.FindingToxic && currentState != AgentStates.GoToPileToxic)
                 {
-                    //Correspond to the Discussion (enumartion) about presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
+                    // Correspond to the Discussion (enumartion) about presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
                     if ((int)_fieldOfView._agentMemberDialogue >= 0 && (int)_fieldOfView._agentMemberDialogue < 4 && (currentState == AgentStates.FindingEnergy || dialogue == Discussion.NeedFindEnergy))
                     {
                         Direction precedentchoiceTarget = currentTarget;
                         actualInteractionAgent = _fieldOfView._agentMember;
-                        IndexOfAgentTrust(actualInteractionAgent); //attribute the value to actualAgentTrust 
+                        IndexOfAgentTrust(actualInteractionAgent); // Attribute the value to actualAgentTrust 
 
                         if ((int)_fieldOfView._agentMemberDialogue != (int)currentTarget)
                         {
@@ -240,19 +241,19 @@ public class Agent : MonoBehaviour
                                 agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
                             }
                         }
-                       SilenceDialogue(actualInteractionAgent._code);
-                       actualInteractionAgent = null;
+                        SilenceDialogue(actualInteractionAgent._code);
+                        actualInteractionAgent = null;
                     }
-                    //Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
-                    //Caution -4 it is in order to have the same correspondance according the AgentBhavior (North, south,...)
+                    // Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
+                    // Caution -4 it is in order to have the same correspondance according the AgentBhavior (North, south,...)
                     if ((int)_fieldOfView._agentMemberDialogue >= 4 && (int)_fieldOfView._agentMemberDialogue <= 7 && currentState == AgentStates.FindingEnergy)
                     {
                         Direction precedentchoiceTarget = currentTarget;
                         actualInteractionAgent = _fieldOfView._agentMember;
-                        IndexOfAgentTrust(actualInteractionAgent);//attribute the value to actualAgentTrust 
+                        IndexOfAgentTrust(actualInteractionAgent); // Attribute the value to actualAgentTrust 
 
                         if ((int)_fieldOfView._agentMemberDialogue - 4 == (int)currentTarget
-                            && MakeAChoiceTrust(agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust)==true)
+                            && MakeAChoiceTrust(agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust) == true)
                         {
                             numberOfBatteryByPlace[(int)currentTarget] = 0;
                             Direction newTarget = MakeAChoiceDirection(numberOfBatteryByPlace, previousTarget, currentTarget);
@@ -263,7 +264,7 @@ public class Agent : MonoBehaviour
                             currentTarget = newTarget;
                             agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust += fluctuationTrust;
                         }
-                        if (MakeAChoiceTrust(agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust)==false)
+                        if (MakeAChoiceTrust(agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust) == false)
                         {
                             currentTarget = precedentchoiceTarget;
                             agentsList[System.Array.IndexOf(agentsList.ToArray(), actualAgentTrust)].trust -= fluctuationTrust;
@@ -274,32 +275,33 @@ public class Agent : MonoBehaviour
                     }
                 }
             }
-           
-            //animation and  destination if currentState !=GoToPileEnergy and GoToPileToxic
-            if (currentState!=AgentStates.GoToPileEnergy && currentState!=AgentStates.GoToPileToxic)
+
+            // Animation and  destination if currentState != GoToPileEnergy and GoToPileToxic
+            if (currentState != AgentStates.GoToPileEnergy && currentState != AgentStates.GoToPileToxic)
             {
                 DestinationAgent(currentTarget);
                 AnimationMove(currentState);
             }
         }
 
-        //Destination of the agent if he carry something (Toxic/Energy)
-        if (_fieldOfView.currentObjet!=null && currentState==AgentStates.FindingEnergy 
-            && _fieldOfView._energyPickable==true && _fieldOfView._ownerCombustible == _code)
+        // Destination of the agent if he carry something (Toxic/Energy)
+        if (_fieldOfView.currentObjet != null && currentState == AgentStates.FindingEnergy
+            && _fieldOfView._energyPickable == true && _fieldOfView._ownerCombustible == _code)
         {
             SilenceDialogue();
             currentState = AgentStates.GoToPileEnergy;
-            if ((currentTarget != Direction.PileEnergyPoint && currentTarget!= Direction.PileWastePoint ) && doneHistoric == false)
+            if ((currentTarget != Direction.PileEnergyPoint && currentTarget != Direction.PileWastePoint) && doneHistoric == false)
             {
                 previousTarget = currentTarget;
                 doneHistoric = true;
             }
             currentTarget = Direction.PileEnergyPoint;
             DestinationAgent(currentTarget);
-           
+
         }
+
         if (_fieldOfView.currentObjet != null && currentState == AgentStates.FindingToxic
-            && _fieldOfView._energyPickable==true && _fieldOfView._ownerCombustible == _code && currentTarget==Direction.ToxicPoint )
+            && _fieldOfView._energyPickable == true && _fieldOfView._ownerCombustible == _code && currentTarget == Direction.ToxicPoint)
         {
             SilenceDialogue();
             currentState = AgentStates.GoToPileToxic;
@@ -311,11 +313,13 @@ public class Agent : MonoBehaviour
             currentTarget = Direction.PileWastePoint;
             DestinationAgent(currentTarget);
         }
+        #endregion 
     }
+
     // Agent animation manager
     public void AnimationMove(AgentStates agentStates)
     {
-        if (agentStates == AgentStates.Pose || (_agent.SetDestination(target[(int)currentTarget].position) == false && agentStates == AgentStates.FindingEnergy))
+        if (agentStates == AgentStates.Standby || (_agent.SetDestination(target[(int)currentTarget].position) == false && agentStates == AgentStates.FindingEnergy))
         {
             animator.SetBool("walk", false);
         }
@@ -329,7 +333,8 @@ public class Agent : MonoBehaviour
             animator.SetTrigger("takeRessource");
         }
     }
-    //instanciate trust for each agent friend
+
+    // Instanciate trust for each agent friend
     private void InstanciateTrust(float trust)
     {
         foreach (GameObject agentOther in GameObject.FindGameObjectsWithTag("agent"))
@@ -338,7 +343,7 @@ public class Agent : MonoBehaviour
             {
                 AgentTrust trustInAgent = new AgentTrust(agentOther.GetComponent<Agent>(), trust);
                 agentsList.Add(trustInAgent);
-                //Debug.Log("L'agent " + _code + " a une confiance en " + trustInAgent.agent._code + " de : " + trustInAgent.trust);
+                // Debug.Log("L'agent " + _code + " a une confiance en " + trustInAgent.agent._code + " de : " + trustInAgent.trust);
             }
         }
     }
@@ -359,14 +364,14 @@ public class Agent : MonoBehaviour
         }
     }
 
-    // boolean if the agent is agree or not with dialogue of the other agent
+    // Boolean if the agent is agree or not with dialogue of the other agent
     public bool MakeAChoiceTrust(float trustOfHim)
     {
         float proba = Random.Range(0f, 1f);
 
         if (proba < (trustOfHim / 100))
         {
-            return (true);  //if agent agree with dialogue of the other agent
+            return (true);  // If agent agree with dialogue of the other agent
         }
         else
         {
@@ -374,7 +379,7 @@ public class Agent : MonoBehaviour
         }
     }
 
-    // return the index agentTrust of the the actual interaction agent
+    // Return the index agentTrust of the the actual interaction agent
     public void IndexOfAgentTrust(Agent actualInteraction)
     {
         foreach (AgentTrust element in agentsList)
@@ -411,40 +416,39 @@ public class Agent : MonoBehaviour
     {
         float proba = Random.Range(0f, 1f);
         float distanceToYourTarget = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target[(int)currentTarget].position.x, target[(int)currentTarget].position.z));
-        float distanceyToHisTarget =Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target[(int)dialogue].position.x, target[(int)dialogue].position.z));
+        float distanceyToHisTarget = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target[(int)dialogue].position.x, target[(int)dialogue].position.z));
         float percentAdd = 0;
         if (distanceToYourTarget - distanceyToHisTarget > 0)
         {
-            percentAdd= (distanceyToHisTarget/17)*(trustOfHim/10); //equivalant of 10% max of the trust in this agent
+            percentAdd = (distanceyToHisTarget / 17) * (trustOfHim / 10); // Equivalant of 10% max of the trust in this agent
         }
         else
         {
-            percentAdd = -(distanceToYourTarget / 17) * (trustOfHim / 10); //equivalant of -10% max of the trust in this agent and 17 represent the longer distance between to spawnPoint
+            percentAdd = -(distanceToYourTarget / 17) * (trustOfHim / 10); // Equivalant of -10% max of the trust in this agent and 17 represent the longer distance between to spawnPoint
         }
 
-        if (proba <=((trustOfHim + percentAdd) / 100))
+        if (proba <= ((trustOfHim + percentAdd) / 100))
         {
             return ((Direction)(dialogue)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
         }
         else
         {
-            return yourTarget ;
+            return yourTarget;
         }
-       
     }
-    
+
     // Make a choice of Objectif (State) when he see the two pile 
     public AgentStates MakeAChoiceState(float percentOfEnergy, float percentOfToxic)
     {
         float proba = Random.Range(0f, 1f);
-        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic<=20 )
+        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic <= 20)
         {
             AgentStates state = AgentStates.FindingEnergy;
             return state;
         }
         if (percentOfEnergy >= 20 && percentOfEnergy <= 99 && percentOfToxic > 20 && percentOfToxic < 70)
         {
-            if (proba>=0.6f)
+            if (proba >= 0.6f)
             {
                 AgentStates state = AgentStates.FindingToxic;
                 return state;
@@ -474,19 +478,19 @@ public class Agent : MonoBehaviour
             }
         }
     }
-    
+
     // Make a choice of Direction according the historic
     public Direction MakeAChoiceDirection(int[] list, Direction precTarget, Direction curTarget)
     {
         int maxValue = Mathf.Max(list);
         int direction = System.Array.IndexOf(list, maxValue);
-        if (maxValue >= 2 )
+        if (maxValue >= 2)
         {
             return (Direction)direction;
         }
         else
         {
-            while(direction ==(int)precTarget || direction==(int)curTarget)
+            while (direction == (int)precTarget || direction == (int)curTarget)
             {
                 int random = Random.Range(0, 4);
                 direction = random;
@@ -494,16 +498,16 @@ public class Agent : MonoBehaviour
             return (Direction)direction;
         }
     }
-   
+
     // Generate dialogue according of the need of the other agent
     public Discussion DialogueUpdtate(AgentStates stateAgent, int[] list)
     {
         int maxValue = Mathf.Max(list);
-        
+
         Direction friendTarget = _fieldOfView._agentMemberTarget;
         Discussion friendDialogue = _fieldOfView._agentMemberDialogue;
         AgentStates friendState = _fieldOfView._agentMemberState;
-        if (stateAgent == AgentStates.Start || stateAgent==AgentStates.Pose)
+        if (stateAgent == AgentStates.Start || stateAgent == AgentStates.Standby)
         {
             return Discussion.NothingToSay;
         }
@@ -511,37 +515,38 @@ public class Agent : MonoBehaviour
             || (currentState == AgentStates.GoToPileToxic || currentState == AgentStates.GoToPileEnergy)
             && maxValue >= 1)
         {
-            
-            if ((previousTarget == friendTarget || currentTarget == friendTarget) && (int)friendTarget <4)
+
+            if ((previousTarget == friendTarget || currentTarget == friendTarget) && (int)friendTarget < 4)
             {
                 if (list[(int)friendTarget] >= 1)
                 {
                     return (Discussion)friendTarget;
                 }
-                else return (Discussion)(friendTarget + 4); //correwpond of the no presence of battery in this point
+                else return (Discussion)(friendTarget + 4); // Correwpond of the no presence of battery in this point
             }
             else
             {
-                if (maxValue>=1)
+                if (maxValue >= 1)
                 {
                     return (Discussion)System.Array.IndexOf(list, maxValue);
                 }
                 else
                 {
-                    return (Discussion)previousTarget+4; //correwpond of the no presence of battery in this point
+                    return (Discussion)previousTarget + 4; // Correwpond of the no presence of battery in this point
                 }
             }
         }
-        if (_fieldOfView.currentObjet == null && maxValue==0 && stateAgent == AgentStates.FindingEnergy)
+        if (_fieldOfView.currentObjet == null && maxValue == 0 && stateAgent == AgentStates.FindingEnergy)
         {
             return Discussion.NeedFindEnergy;
         }
-        else return Discussion.NothingToSay;//If the agent have no historic about the place
-
-
+        else
+        {
+            return Discussion.NothingToSay; // If the agent have no historic about the place
+        }
     }
-   
-    // the agent don't listen the other agent 
+
+    // The agent don't listen the other agent 
     public void SilenceDialogue()
     {
         for (int i = 0; i < numberOfAgent; i++)
@@ -550,21 +555,18 @@ public class Agent : MonoBehaviour
         }
     }
 
-    // the agent don't listen an agent
+    // The agent don't listen an agent
     public void SilenceDialogue(int codeAgent)
     {
-        listenAnOtherAgent[codeAgent-1] = false;
+        listenAnOtherAgent[codeAgent - 1] = false;
     }
-       
-    // the agent can listen all the agent
+
+    // The agent can listen all the agent
     public void ListenDialogue()
     {
-        for (int i = 0; i <numberOfAgent; i++)
+        for (int i = 0; i < numberOfAgent; i++)
         {
             listenAnOtherAgent[i] = true;
         }
     }
-
 }
-  
-

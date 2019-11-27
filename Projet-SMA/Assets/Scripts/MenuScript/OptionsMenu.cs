@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-
-    // toggle buttons
+    // Toggle buttons
     public GameObject difficultynormaltext;
     public GameObject difficultynormaltextLINE;
     public GameObject difficultyhardcoretext;
@@ -17,14 +16,13 @@ public class OptionsMenu : MonoBehaviour
     public GameObject notext;
     public GameObject notextLINE;
 
-    // sliders
+    // Sliders
     public GameObject musicSlider;
     private float sliderMusicValue = 0.0f;
 
     public void Start()
     {
-
-        // choix de la difficultée
+        // Choix de la difficultée
         if (PlayerPrefs.GetInt("Normal") == 1)
         {
             difficultynormaltextLINE.gameObject.SetActive(true);
@@ -50,7 +48,7 @@ public class OptionsMenu : MonoBehaviour
             yestextLINE.gameObject.SetActive(false);
         }
 
-        // choix du niveau sonor
+        // Choix du niveau sonor
         musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
     }
 
@@ -61,7 +59,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void MusicSlider()
     {
-        PlayerPrefs.SetFloat("MusicVolume", sliderMusicValue/4);
+        PlayerPrefs.SetFloat("MusicVolume", sliderMusicValue / 4);
     }
 
     public void NormalDifficulty()

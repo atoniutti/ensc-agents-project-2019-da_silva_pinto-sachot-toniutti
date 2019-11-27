@@ -29,7 +29,6 @@ public class AgentManager : MonoBehaviour
             Spawn(sp);
         }
     }
- 
 
     void GenerateRandomSpawnPoints()
     {
@@ -66,6 +65,5 @@ public class AgentManager : MonoBehaviour
         // Create an instance of the agent prefab
         agent = Instantiate(agent, spawnPoint.position, spawnPoint.rotation);
         agents.Add(agent);
-
     }
 }

@@ -5,17 +5,17 @@ using UnityEngine;
 public class CylinderLevel : MonoBehaviour
 {
     public GameObject _cylinder;
-    public CylinderLevel _energyBoxEnter;//only for WasteBoxEnter
+    public CylinderLevel _energyBoxEnter; // Only for WasteBoxEnter
     public string nameOfTheObject;
 
-    public float _rateStart;//level of the battery at the beggining
+    public float _rateStart; // Level of the battery at the beggining
     private float _ratePercent;
     public float currentPercent;
     public float PercentQuantiteIn;
     public float PercentQuantiteOff;
     public float countDownUtilisateur;
-    private float  _countDown;
-   
+    private float _countDown;
+
     private int actualBatteryPose;
     private int batteryPose;
 
@@ -36,16 +36,16 @@ public class CylinderLevel : MonoBehaviour
         batteryPose = 1000;
         currentPercent = _ratePercent;
     }
-    
+
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.name == nameOfTheObject)
         {
-            batteryPose =col.GetComponent<PickableEnergy>().idEnergy;
-            //Allow to verify to not put more energy that the QuantiteOfEnergy allow
-            if(actualBatteryPose != batteryPose)
+            batteryPose = col.GetComponent<PickableEnergy>().idEnergy;
+            // Allow to verify to not put more energy that the QuantiteOfEnergy allow
+            if (actualBatteryPose != batteryPose)
             {
-                if (_ratePercent <= 100-PercentQuantiteIn && _ratePercent >= 0 )
+                if (_ratePercent <= 100 - PercentQuantiteIn && _ratePercent >= 0)
                 {
                     _ratePercent += PercentQuantiteIn;
                 }
@@ -54,13 +54,14 @@ public class CylinderLevel : MonoBehaviour
             }
         }
     }
-    //probleme a la premiere pile mise
+
+    // Probleme a la premiere pile mise
     private void Update()
     {
         currentPercent = _ratePercent;
-        if (_cylinder.name== "energy-cylinder")
+        if (_cylinder.name == "energy-cylinder")
         {
-            //Decrease/ Increase lecel in fonction of time
+            // Decrease/Increase lecel in fonction of time
             countDownUtilisateur -= Time.deltaTime;
             if (countDownUtilisateur <= 0.0f && _ratePercent >= PercentQuantiteOff)
             {
@@ -71,9 +72,9 @@ public class CylinderLevel : MonoBehaviour
         }
         if (_cylinder.name == "waste-cylinder")
         {
-            if (_energyBoxEnter!=null)
+            if (_energyBoxEnter != null)
             {
-                if(_energyBoxEnter._ratePercent >= _energyBoxEnter.PercentQuantiteOff )
+                if (_energyBoxEnter._ratePercent >= _energyBoxEnter.PercentQuantiteOff)
                 {
                     countDownUtilisateur -= Time.deltaTime;
                     if (countDownUtilisateur <= 0.0f && _ratePercent <= 100 + PercentQuantiteIn)
@@ -84,9 +85,9 @@ public class CylinderLevel : MonoBehaviour
                     }
                 }
             }
-            if(_cylinder.transform.position.y > 1.6f)
+            if (_cylinder.transform.position.y > 1.6f)
             {
-                _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x,1.6f, _cylinder.transform.localPosition.z);
+                _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, 1.6f, _cylinder.transform.localPosition.z);
             }
             if (_cylinder.transform.position.y < -5.7f)
             {
@@ -94,15 +95,14 @@ public class CylinderLevel : MonoBehaviour
             }
         }
     }
+
     private float PercentConverter(float valReal)
     {
-        return((valReal+5.7f)/0.071f);
+        return ((valReal + 5.7f) / 0.071f);
     }
+
     private float FloatConverter(float valPercent)
     {
-        return (valPercent*0.071f-5.7f);
+        return (valPercent * 0.071f - 5.7f);
     }
-
 }
-
- 
