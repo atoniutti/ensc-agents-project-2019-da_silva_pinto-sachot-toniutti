@@ -92,6 +92,7 @@ public class FieldOfViewAgent : MonoBehaviour
             }
 
         }
+
         // If the toxic enter in the field of view
         if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic && _owner.canTakeEnergy == 0)
         {
@@ -110,7 +111,7 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             if (currentObjet != null && currentObjet.name == "EnergyCoil(Clone)")
             {
-                PoseEnergy();
+                PutEnergy();
             }
         }
 
@@ -119,7 +120,7 @@ public class FieldOfViewAgent : MonoBehaviour
         {
             if (currentObjet != null && currentObjet.name == "Toxic(Clone)")
             {
-                PoseEnergy();
+                PutEnergy();
             }
         }
 
@@ -183,8 +184,8 @@ public class FieldOfViewAgent : MonoBehaviour
         }
     }
 
-    // When the agent pose energy in the pile
-    public void PoseEnergy()
+    // When the agent put energy in the pile
+    public void PutEnergy()
     {
         Destroy(currentObjet);
         _identifiant = 0;
@@ -195,6 +196,6 @@ public class FieldOfViewAgent : MonoBehaviour
         _toxicFront = false;
         _energyFront = false;
         _energyPickable = false;
-        _owner.currentState = AgentStates.Standby;
+        _owner.currentState = AgentStates.PutObject;
     }
 }

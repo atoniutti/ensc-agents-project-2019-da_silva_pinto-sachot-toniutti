@@ -166,7 +166,7 @@ public class Agent : MonoBehaviour
             }
 
             // Choice in front of the pile : Go check the need of the different pile
-            if (_fieldOfView._pileFront == true && checkPile == false && (currentState == AgentStates.Standby || currentState == AgentStates.Start))
+            if (_fieldOfView._pileFront == true && checkPile == false && (currentState == AgentStates.PutObject || currentState == AgentStates.Start))
             {
                 ListenDialogue();
                 PercentOfEnergyPile = _fieldOfView.percentOfEnergy;
@@ -319,7 +319,7 @@ public class Agent : MonoBehaviour
     // Agent animation manager
     public void AnimationMove(AgentStates agentStates)
     {
-        if (agentStates == AgentStates.Standby || (_agent.SetDestination(target[(int)currentTarget].position) == false && agentStates == AgentStates.FindingEnergy))
+        if (agentStates == AgentStates.PutObject)
         {
             animator.SetBool("walk", false);
         }
@@ -507,7 +507,7 @@ public class Agent : MonoBehaviour
         Direction friendTarget = _fieldOfView._agentMemberTarget;
         Discussion friendDialogue = _fieldOfView._agentMemberDialogue;
         AgentStates friendState = _fieldOfView._agentMemberState;
-        if (stateAgent == AgentStates.Start || stateAgent == AgentStates.Standby)
+        if (stateAgent == AgentStates.Start || stateAgent == AgentStates.PutObject)
         {
             return Discussion.NothingToSay;
         }
