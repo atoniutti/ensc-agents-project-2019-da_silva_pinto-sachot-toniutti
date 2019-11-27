@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIAgent : MonoBehaviour
 {
-    //UI
+    // UI
     public Agent owner;
     public GameObject pointPosition;
     public Text _name; // Name of the agent

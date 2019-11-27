@@ -13211,7 +13211,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2622002020577534158}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2622002020204325305}
@@ -32034,6 +32034,7 @@ MonoBehaviour:
   _camera: {fileID: 2622002020204325305}
   _code: 0
   _fieldOfView: {fileID: 2622002020843932829}
+  _canvas: {fileID: 2622002020577534154}
   target:
   - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
   - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}

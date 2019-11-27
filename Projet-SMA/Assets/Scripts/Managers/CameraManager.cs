@@ -22,13 +22,12 @@ public class CameraManager : MonoBehaviour
         mainCameraButton.onClick.AddListener(DisplayMainCamera);
         agentCameraButton.onClick.AddListener(DisplayAgentCamera);
         audioMusic = GetComponent<AudioSource>();
-
+        audioMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     // Update is called once per frame
     void Update()
     {
-        audioMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
         // First Initialisation after starting project
         if (!start)
         {
@@ -41,12 +40,15 @@ public class CameraManager : MonoBehaviour
             start = true;
         }
     }
+
     public void SwitchAgent(Agent agent)
     {
         currentAgent._camera.enabled = false;
+        currentAgent._canvas.enabled = false;
         currentAgent = agent;
         DisplayAgentCamera();
     }
+
     public void SwitchCamera()
     {
         currentCamera.enabled = false;
@@ -72,7 +74,10 @@ public class CameraManager : MonoBehaviour
     public void DisplayAgentCamera()
     {
         currentAgent._camera.enabled = true;
+        currentAgent._canvas.enabled = true;
         mainCamera.depth = -1;
         currentCamera = currentAgent._camera;
+        Debug.LogError(currentAgent._code);
+        Debug.LogError("Display Agent");
     }
 }

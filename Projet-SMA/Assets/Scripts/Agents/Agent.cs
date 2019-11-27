@@ -12,6 +12,7 @@ public class Agent : MonoBehaviour
     private static int _precCode;
     public int _code; // Code name of the agent
     public FieldOfViewAgent _fieldOfView; // Field of view of the agent
+    public Canvas _canvas;
 
     // Agent communication and mouvement 
     public Transform[] target; // An array where he have to go
