@@ -57,6 +57,7 @@ public class Agent : MonoBehaviour
         _precCode = _code;
         animator = GetComponent<Animator>();
         _camera.enabled = false;
+        _canvas.enabled = false;
         BoolStartTrust = true;
         checkPile = false;
         dialogue = Discussion.NothingToSay;

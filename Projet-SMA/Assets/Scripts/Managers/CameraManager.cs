@@ -77,7 +77,5 @@ public class CameraManager : MonoBehaviour
         currentAgent._canvas.enabled = true;
         mainCamera.depth = -1;
         currentCamera = currentAgent._camera;
-        Debug.LogError(currentAgent._code);
-        Debug.LogError("Display Agent");
     }
 }
