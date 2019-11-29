@@ -19,7 +19,8 @@ public class Agent : MonoBehaviour
     public Direction currentTarget; // Diection of the agent
     public Direction previousTarget; // Previous direction of the agent
     public AgentStates currentState; // State of the agent
-    public Discussion dialogue;
+    public AgentMovement mouvement;  // current mouvement 
+    public Discussion currentDialogue;
 
     // Variable corresponding to the other agents in the scene
     public Agent actualInteractionAgent;
@@ -60,7 +61,7 @@ public class Agent : MonoBehaviour
         _canvas.enabled = false;
         BoolStartTrust = true;
         checkPile = false;
-        dialogue = Discussion.NothingToSay;
+        currentDialogue = Discussion.NothingToSay;
         randomDirection = Random.Range(0, 4);
         numberOfBatteryByPlace = new int[4];
         actualInteractionAgent = null;
@@ -83,6 +84,9 @@ public class Agent : MonoBehaviour
         // Look if the percent of trust is >0 and <100
         TrustManager();
 
+        // set the mouvement (walk or idle) of the agent
+        SetAgentMovement(currentTarget);
+
         // List of number of battery seen by the agent by place
         numberOfBatteryByPlace = _fieldOfView.numberOfbattery;
 
@@ -91,7 +95,7 @@ public class Agent : MonoBehaviour
         // Actual agent in the fieldOfview
         if (actualInteractionAgent != null)
         {
-            dialogue = DialogueUpdtate(currentState, numberOfBatteryByPlace);
+            currentDialogue = DialogueUpdtate(currentState, numberOfBatteryByPlace);
         }
 
         #region PICKABLE OBJECT
@@ -219,7 +223,7 @@ public class Agent : MonoBehaviour
                && currentState != AgentStates.FindingToxic && currentState != AgentStates.GoToPileToxic)
                 {
                     // Correspond to the Discussion (enumartion) about presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
-                    if ((int)_fieldOfView._agentMemberDialogue >= 0 && (int)_fieldOfView._agentMemberDialogue < 4 && (currentState == AgentStates.FindingEnergy || dialogue == Discussion.NeedFindEnergy))
+                    if ((int)_fieldOfView._agentMemberDialogue >= 0 && (int)_fieldOfView._agentMemberDialogue < 4 && (currentState == AgentStates.FindingEnergy || currentDialogue == Discussion.NeedFindEnergy))
                     {
                         Direction precedentchoiceTarget = currentTarget;
                         actualInteractionAgent = _fieldOfView._agentMember;
@@ -321,21 +325,36 @@ public class Agent : MonoBehaviour
     // Agent animation manager
     public void AnimationMove(AgentStates agentStates)
     {
-        if (agentStates == AgentStates.PutObject)
+        if(mouvement==AgentMovement.Standby && (agentStates == AgentStates.PutObject || currentState==AgentStates.FindingEnergy))
         {
             animator.SetBool("walk", false);
         }
-        if ((agentStates == AgentStates.FindingEnergy || agentStates == AgentStates.FindingToxic
-            || agentStates == AgentStates.Start || agentStates == AgentStates.GoToPileEnergy || agentStates == AgentStates.GoToPileToxic) && _agent.SetDestination(target[(int)currentTarget].position) == true)
+        else
         {
-            animator.SetBool("walk", true);
+            if (agentStates == AgentStates.FindingEnergy || agentStates == AgentStates.FindingToxic
+            || agentStates == AgentStates.Start || agentStates == AgentStates.GoToPileEnergy || agentStates == AgentStates.GoToPileToxic)
+            {
+                animator.SetBool("walk", true);
+            }
+            if (agentStates == AgentStates.HavingEnergy || agentStates == AgentStates.HavingToxic)
+            {
+                animator.SetTrigger("takeRessource");
+            }
         }
-        if (agentStates == AgentStates.HavingEnergy || agentStates == AgentStates.HavingToxic)
-        {
-            animator.SetTrigger("takeRessource");
-        }
+        
     }
 
+    private void SetAgentMovement(Direction currenTarget)
+    {
+        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target[(int)currenTarget].position.x, target[(int)currenTarget].position.z)) <0.5)
+        {
+            mouvement=AgentMovement.Standby;
+        }
+        else
+        {
+            mouvement = AgentMovement.Move;
+        }
+    }
     // Instanciate trust for each agent friend
     private void InstanciateTrust(float trust)
     {

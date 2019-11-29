@@ -139,7 +139,7 @@ public class FieldOfViewAgent : MonoBehaviour
             _agentMember = col.GetComponent<Agent>();
             if (_agentMember._code != _owner._code)
             {
-                _agentMemberDialogue = _agentMember.dialogue;
+                _agentMemberDialogue = _agentMember.currentDialogue;
                 _agentMemberState = _agentMember.currentState;
                 _agentMemberTarget = _agentMember.currentTarget;
             }
