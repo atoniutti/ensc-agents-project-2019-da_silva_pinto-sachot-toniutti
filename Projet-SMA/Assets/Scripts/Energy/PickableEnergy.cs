@@ -38,13 +38,13 @@ public class PickableEnergy : MonoBehaviour
                 // If agent has near of the pile and he want this type of pile
                 if (distance[i] <= 1)
                 {
-                    if (name == "EnergyCoil(Clone)" && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingEnergy)
+                    if (name == "EnergyCoil(Clone)" && listAgent[i].GetComponent<Agent>()._currentState == AgentStates.FindingEnergy)
                     {
                         agent = listAgent[i].GetComponent<Agent>();
                         player = agent.transform;
                         matriculAgent = agent._code;
                     }
-                    if (name == "Toxic(Clone)" && listAgent[i].GetComponent<Agent>().currentState == AgentStates.FindingToxic)
+                    if (name == "Toxic(Clone)" && listAgent[i].GetComponent<Agent>()._currentState == AgentStates.FindingToxic)
                     {
                         agent = listAgent[i].GetComponent<Agent>();
                         player = agent.transform;
@@ -57,7 +57,7 @@ public class PickableEnergy : MonoBehaviour
         // If there is an agnet near and he want this energy pile
         if (player != null)
         {
-            if (agent.canTakeEnergy == idEnergy)
+            if (agent._canTakeEnergy == idEnergy)
             {
                 // Check distance between objet and player
                 float dist = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(player.position.x, player.position.z));
@@ -83,7 +83,7 @@ public class PickableEnergy : MonoBehaviour
                 }
             }
 
-            if (agent.canTakeEnergy != idEnergy && (agent.currentState == AgentStates.GoToPileEnergy || agent.currentState == AgentStates.GoToPileToxic))
+            if (agent._canTakeEnergy != idEnergy && (agent._currentState == AgentStates.GoToPileEnergy || agent._currentState == AgentStates.GoToPileToxic))
             {
                 agent = null;
                 matriculAgent = 0;

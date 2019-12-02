@@ -30,7 +30,7 @@ public class ScrollAgents : MonoBehaviour
 
     public void GenerateList()
     {
-        foreach (AgentTrust a in currentAgent.agentsList)
+        foreach (AgentTrust a in currentAgent._agentsList)
         {
             GenerateItem(a);
         }

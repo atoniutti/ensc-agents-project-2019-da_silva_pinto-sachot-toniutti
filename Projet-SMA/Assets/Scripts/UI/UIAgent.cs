@@ -46,8 +46,8 @@ public class UIAgent : MonoBehaviour
         }
 
         // Update Percent Of Energy & Toxic Piles
-        _energyProgressBar.UpdateBar(owner.PercentOfEnergyPile);
-        _wasteProgressBar.UpdateBar(owner.PercentOfWastePile);
+        _energyProgressBar.UpdateBar(owner._percentOfEnergyPile);
+        _wasteProgressBar.UpdateBar(owner._percentOfWastePile);
     }
 
     private string GetNameCode()

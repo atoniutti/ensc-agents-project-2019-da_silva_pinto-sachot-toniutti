@@ -32035,6 +32035,7 @@ MonoBehaviour:
   _code: 0
   _fieldOfView: {fileID: 2622002020843932829}
   _canvas: {fileID: 2622002020577534154}
+  _countDownUtilisateur: 12
   target:
   - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
   - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
@@ -32043,19 +32044,20 @@ MonoBehaviour:
   - {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13, type: 3}
   - {fileID: 1602671006598870460, guid: 0f4873711c0fc584ea17318af3a015e7, type: 3}
   - {fileID: 3351995630227406907, guid: c94e4a7ceea817848b3bf546b59fb9af, type: 3}
-  currentTarget: 6
-  previousTarget: 0
-  currentState: 0
-  dialogue: 2
-  actualInteractionAgent: {fileID: 0}
-  listenAnOtherAgent: 
-  PercentTrustStart: 60
-  fluctuationTrust: 3
-  canTakeEnergy: 0
-  numberOfBatteryByPlace: 
-  PercentOfEnergyPile: 0
-  PercentOfWastePile: 0
-  checkPile: 0
+  _currentTarget: 0
+  _previousTarget: 0
+  _currentState: 0
+  _mouvement: 0
+  _currentDialogue: 0
+  _actualInteractionAgent: {fileID: 0}
+  _listenAnOtherAgent: 
+  _percentTrustStart: 0
+  _fluctuationTrust: 0
+  _canTakeEnergy: 0
+  _numberOfBatteryByPlace: 
+  _percentOfEnergyPile: 0
+  _percentOfWastePile: 0
+  _checkPile: 0
 --- !u!114 &1281074319820868494
 MonoBehaviour:
   m_ObjectHideFlags: 0

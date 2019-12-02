@@ -48,10 +48,10 @@ public class SpawnListener : MonoBehaviour
         if (col.gameObject.tag == "agent" && listBatteryInArea.Count > 0)
         {
             actualAgent = col.GetComponent<Agent>();
-            if ((actualAgent.currentState == AgentStates.GoToPileEnergy || actualAgent.currentState == AgentStates.FindingEnergy)
-                && actualAgent.canTakeEnergy != 0)
+            if ((actualAgent._currentState == AgentStates.GoToPileEnergy || actualAgent._currentState == AgentStates.FindingEnergy)
+                && actualAgent._canTakeEnergy != 0)
             {
-                actualBatteryOut = col.GetComponent<Agent>().canTakeEnergy;
+                actualBatteryOut = col.GetComponent<Agent>()._canTakeEnergy;
                 listBatteryInArea.Remove(actualBatteryOut);
             }
         }

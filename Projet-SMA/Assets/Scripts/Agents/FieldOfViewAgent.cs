@@ -77,7 +77,7 @@ public class FieldOfViewAgent : MonoBehaviour
             numberOfbattery[(int)Direction.WestPoint] = col.GetComponent<SpawnListener>().numberOfPile;
         }
 
-        if (col.gameObject.name == "EnergyCoil(Clone)" && _owner.currentState == AgentStates.FindingEnergy && _owner.canTakeEnergy == 0)
+        if (col.gameObject.name == "EnergyCoil(Clone)" && _owner._currentState == AgentStates.FindingEnergy && _owner._canTakeEnergy == 0)
         {
             // Look roughly the number of pile there are in the area if there are many or not( A VOIR PLUS TARD!!!)
             _battery = col.GetComponent<PickableEnergy>();
@@ -94,7 +94,7 @@ public class FieldOfViewAgent : MonoBehaviour
         }
 
         // If the toxic enter in the field of view
-        if (col.gameObject.name == "Toxic(Clone)" && _owner.currentState == AgentStates.FindingToxic && _owner.canTakeEnergy == 0)
+        if (col.gameObject.name == "Toxic(Clone)" && _owner._currentState == AgentStates.FindingToxic && _owner._canTakeEnergy == 0)
         {
             _battery = col.GetComponent<PickableEnergy>();
             if (_battery.hasPlayer == false)
@@ -139,9 +139,9 @@ public class FieldOfViewAgent : MonoBehaviour
             _agentMember = col.GetComponent<Agent>();
             if (_agentMember._code != _owner._code)
             {
-                _agentMemberDialogue = _agentMember.currentDialogue;
-                _agentMemberState = _agentMember.currentState;
-                _agentMemberTarget = _agentMember.currentTarget;
+                _agentMemberDialogue = _agentMember._currentDialogue;
+                _agentMemberState = _agentMember._currentState;
+                _agentMemberTarget = _agentMember._currentTarget;
             }
         }
 
@@ -162,7 +162,7 @@ public class FieldOfViewAgent : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "PileInformationBox" && _owner.checkPile)
+        if (col.gameObject.name == "PileInformationBox" && _owner._checkPile)
         {
             _pileFront = false;
         }
@@ -196,6 +196,6 @@ public class FieldOfViewAgent : MonoBehaviour
         _toxicFront = false;
         _energyFront = false;
         _energyPickable = false;
-        _owner.currentState = AgentStates.PutObject;
+        _owner._currentState = AgentStates.PutObject;
     }
 }

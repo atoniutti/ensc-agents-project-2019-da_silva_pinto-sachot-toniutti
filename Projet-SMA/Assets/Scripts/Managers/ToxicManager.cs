@@ -19,7 +19,7 @@ public class ToxicManager : MonoBehaviour
     // If the agent enter in the area spawn toxic 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>().currentState == AgentStates.FindingToxic)
+        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>()._currentState == AgentStates.FindingToxic)
         {
             bool here = false;
             actualAgent = col.GetComponent<Agent>()._code;
@@ -38,7 +38,7 @@ public class ToxicManager : MonoBehaviour
                 here = false;
             }
         }
-        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>().currentState == AgentStates.GoToPileToxic)
+        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>()._currentState == AgentStates.GoToPileToxic)
         {
             actualAgentOut = col.GetComponent<Agent>()._code;
             listAgentInArea.Remove(actualAgentOut);
