@@ -5893,7 +5893,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4427873969473293604}
-        m_MethodName: SwitchToMainCamera
+        m_MethodName: SwitchCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5912,7 +5912,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177266944227623465}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0025e26a588806a4d9c1aaba533ac311, type: 3}
+  m_Script: {fileID: 11500000, guid: f37d6fa351e88154788ed92574669e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1186155379652082634

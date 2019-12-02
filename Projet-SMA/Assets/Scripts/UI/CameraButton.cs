@@ -5,16 +5,9 @@ using UnityEngine.UI;
 
 public class CameraButton : MonoBehaviour
 {
-    public Button currentButton;
-    public Button otherButton;
-
-    public void SetCurrentCamera ()
+    public void SwitchCamera ()
     {
         CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         cameraManager.SwitchCamera();
-
-        // Set Interactable to false
-        currentButton.interactable = false;
-        otherButton.interactable = true;
     }
 }

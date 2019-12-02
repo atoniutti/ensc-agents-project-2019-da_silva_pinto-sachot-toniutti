@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour
 {
-    public Button _mainCameraButton;
     public Button _agentCameraButton;
     public Camera _mainCamera;
     public Camera _currentCamera;
@@ -18,8 +17,6 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         _currentCamera = _mainCamera;
-        _mainCameraButton.interactable = false;
-        _mainCameraButton.onClick.AddListener(DisplayMainCamera);
         _agentCameraButton.onClick.AddListener(DisplayAgentCamera);
         _audioMusic = GetComponent<AudioSource>();
         _audioMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
