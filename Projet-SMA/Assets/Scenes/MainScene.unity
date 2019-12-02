@@ -1369,7 +1369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 2622002020163438949, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
   _agents: []
-  _numberOfAgents: 5
+  _numberOfAgents: 6
 --- !u!1 &2076705038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _energy: {fileID: 8609793076345268679, guid: ecef8506331791d48b17d458a41b4eac, type: 3}
-  _spawnTime: 4
+  _spawnTime: 5
   _spawnPoints:
   - {fileID: 6622306575045670967, guid: cb22802e2934f634ea928c200ab4fda0, type: 3}
   - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
