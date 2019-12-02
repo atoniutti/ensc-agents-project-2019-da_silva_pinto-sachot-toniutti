@@ -29,18 +29,18 @@ public class SpawnListener : MonoBehaviour
 
             bool batteryHere = false;
             actualBattery = col.GetComponent<PickableEnergy>();
-            if (actualBattery.hasPlayer == false)
+            if (actualBattery._hasPlayer == false)
             {
                 foreach (int batteryPresence in listBatteryInArea)
                 {
-                    if (batteryPresence == actualBattery.idEnergy)
+                    if (batteryPresence == actualBattery._idEnergy)
                     {
                         batteryHere = true;
                     }
                 }
                 if (batteryHere == false)
                 {
-                    listBatteryInArea.Add(actualBattery.idEnergy);
+                    listBatteryInArea.Add(actualBattery._idEnergy);
                     batteryHere = true;
                 }
             }
@@ -48,7 +48,7 @@ public class SpawnListener : MonoBehaviour
         if (col.gameObject.tag == "agent" && listBatteryInArea.Count > 0)
         {
             actualAgent = col.GetComponent<Agent>();
-            if ((actualAgent._currentState == AgentStates.GoToPileEnergy || actualAgent._currentState == AgentStates.FindingEnergy)
+            if ((actualAgent._currentState == AgentStates.WantFeedPileEnergy || actualAgent._currentState == AgentStates.FindingEnergy)
                 && actualAgent._canTakeEnergy != 0)
             {
                 actualBatteryOut = col.GetComponent<Agent>()._canTakeEnergy;

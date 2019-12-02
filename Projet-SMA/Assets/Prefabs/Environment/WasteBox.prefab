@@ -308,12 +308,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cylinder: {fileID: 7758780819920879658}
   _energyBoxEnter: {fileID: 0}
-  nameOfTheObject: Toxic
+  _nameOfTheObject: 
   _rateStart: 20
-  currentPercent: 0
-  PercentQuantiteIn: -5
-  PercentQuantiteOff: -3
-  countDownUtilisateur: 5
+  _currentPercent: 0
+  _percentQuantiteIn: -5
+  _percentQuantiteOff: -3
+  _countDownUtilisateur: 5
 --- !u!1 &6177810039307238598
 GameObject:
   m_ObjectHideFlags: 0

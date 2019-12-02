@@ -12,19 +12,19 @@ public class AgentButton : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        _name.text = _agentTrust.agent.GetComponent<UIAgent>()._name.text;
-        _trustProgressBar.UpdateBar(_agentTrust.trust);
+        _name.text = _agentTrust._agent.GetComponent<UIAgent>()._name.text;
+        _trustProgressBar.UpdateBar(_agentTrust._trust);
     }
 
     // Update is called once per frame
     void Update()
     {
-        _trustProgressBar.UpdateBar(_agentTrust.trust);
+        _trustProgressBar.UpdateBar(_agentTrust._trust);
     }
 
     public void SetCurrentAgent()
     {
         CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
-        cameraManager.SwitchAgent(_agentTrust.agent);
+        cameraManager.SwitchAgent(_agentTrust._agent);
     }
 }

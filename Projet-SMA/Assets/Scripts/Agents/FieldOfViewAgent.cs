@@ -17,7 +17,7 @@ public class FieldOfViewAgent : MonoBehaviour
     private PickableEnergy _battery;
     public int _identifiant = 0; // Name of the combustible
     public int _ownerCombustible; // Owner of combustible
-    public GameObject currentObjet;
+    public GameObject _currentObjet;
     public Transform _position; // Position of combustible
 
     // For agent
@@ -25,11 +25,11 @@ public class FieldOfViewAgent : MonoBehaviour
     public Direction _agentMemberTarget;
     public AgentStates _agentMemberState;
     public Discussion _agentMemberDialogue;
-    public int[] numberOfbattery;
+    public int[] _numberOfbattery;
 
     // Look pile
-    public float percentOfEnergy;
-    public float percentOfWaste;
+    public float _percentOfEnergy;
+    public float _percentOfWaste;
 
     public void Start()
     {
@@ -37,7 +37,7 @@ public class FieldOfViewAgent : MonoBehaviour
         _energyFront = false;
         _toxicFront = false;
         _pileFront = false;
-        numberOfbattery = new int[4];
+        _numberOfbattery = new int[4];
 
     }
 
@@ -46,12 +46,12 @@ public class FieldOfViewAgent : MonoBehaviour
         View(_battery);
 
         // Allow to reload boolean energyPickable when the agent take the object because sometime he stay false while he have to be true 
-        if (currentObjet != null)
+        if (_currentObjet != null)
         {
-            if (currentObjet.transform.parent == _owner.transform)
+            if (_currentObjet.transform.parent == _owner.transform)
             {
                 _energyPickable = true;
-                _ownerCombustible = currentObjet.GetComponent<PickableEnergy>().matriculAgent;
+                _ownerCombustible = _currentObjet.GetComponent<PickableEnergy>()._matriculAgent;
             }
         }
 
@@ -62,19 +62,19 @@ public class FieldOfViewAgent : MonoBehaviour
         // Allow to check the number of battery in the zone
         if (col.gameObject.name == "EastInformationBox")
         {
-            numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
+            _numberOfbattery[(int)Direction.EastPoint] = col.GetComponent<SpawnListener>().numberOfPile;
         }
         if (col.gameObject.name == "NorthInformationBox")
         {
-            numberOfbattery[(int)Direction.NorthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
+            _numberOfbattery[(int)Direction.NorthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
         }
         if (col.gameObject.name == "SouthInformationBox")
         {
-            numberOfbattery[(int)Direction.SouthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
+            _numberOfbattery[(int)Direction.SouthPoint] = col.GetComponent<SpawnListener>().numberOfPile;
         }
         if (col.gameObject.name == "WestInformationBox")
         {
-            numberOfbattery[(int)Direction.WestPoint] = col.GetComponent<SpawnListener>().numberOfPile;
+            _numberOfbattery[(int)Direction.WestPoint] = col.GetComponent<SpawnListener>().numberOfPile;
         }
 
         if (col.gameObject.name == "EnergyCoil(Clone)" && _owner._currentState == AgentStates.FindingEnergy && _owner._canTakeEnergy == 0)
@@ -83,12 +83,12 @@ public class FieldOfViewAgent : MonoBehaviour
             _battery = col.GetComponent<PickableEnergy>();
 
             // If the energy enter in the field of view
-            if (_battery.hasPlayer == false)
+            if (_battery._hasPlayer == false)
             {
                 _energyFront = true;
-                currentObjet = col.gameObject;
+                _currentObjet = col.gameObject;
                 _position = col.transform;
-                _identifiant = _battery.idEnergy;
+                _identifiant = _battery._idEnergy;
             }
 
         }
@@ -97,19 +97,19 @@ public class FieldOfViewAgent : MonoBehaviour
         if (col.gameObject.name == "Toxic(Clone)" && _owner._currentState == AgentStates.FindingToxic && _owner._canTakeEnergy == 0)
         {
             _battery = col.GetComponent<PickableEnergy>();
-            if (_battery.hasPlayer == false)
+            if (_battery._hasPlayer == false)
             {
                 _toxicFront = true;
-                currentObjet = col.gameObject;
+                _currentObjet = col.gameObject;
                 _position = col.transform;
-                _identifiant = _battery.idEnergy;
+                _identifiant = _battery._idEnergy;
             }
         }
 
         // If the box Energy enter in the field of view 
         if (col.gameObject.name == "EnergyBoxEnterAgent")
         {
-            if (currentObjet != null && currentObjet.name == "EnergyCoil(Clone)")
+            if (_currentObjet != null && _currentObjet.name == "EnergyCoil(Clone)")
             {
                 PutEnergy();
             }
@@ -118,7 +118,7 @@ public class FieldOfViewAgent : MonoBehaviour
         // If the box Waste enter in the field of view 
         if (col.gameObject.name == "WasteBoxEnterAgent")
         {
-            if (currentObjet != null && currentObjet.name == "Toxic(Clone)")
+            if (_currentObjet != null && _currentObjet.name == "Toxic(Clone)")
             {
                 PutEnergy();
             }
@@ -127,8 +127,8 @@ public class FieldOfViewAgent : MonoBehaviour
         // If the box informationBox enter in the field of view 
         if (col.gameObject.name == "PileInformationBox")
         {
-            percentOfEnergy = col.GetComponent<InformationPiles>().energyRate;
-            percentOfWaste = col.GetComponent<InformationPiles>().toxicRate;
+            _percentOfEnergy = col.GetComponent<InformationPiles>()._energyRate;
+            _percentOfWaste = col.GetComponent<InformationPiles>()._toxicRate;
             _pileFront = true;
         }
 
@@ -177,19 +177,19 @@ public class FieldOfViewAgent : MonoBehaviour
     // Check if the battery is taked or not 
     private void View(PickableEnergy battery)
     {
-        if (_identifiant != 0 && battery.matriculAgent == _owner._code)
+        if (_identifiant != 0 && battery._matriculAgent == _owner._code)
         {
-            _energyPickable = battery.hasPlayer;
-            _ownerCombustible = battery.matriculAgent;
+            _energyPickable = battery._hasPlayer;
+            _ownerCombustible = battery._matriculAgent;
         }
     }
 
     // When the agent put energy in the pile
     public void PutEnergy()
     {
-        Destroy(currentObjet);
+        Destroy(_currentObjet);
         _identifiant = 0;
-        currentObjet = null;
+        _currentObjet = null;
         _ownerCombustible = 0;
         _position = null;
         _battery = null;

@@ -6,18 +6,18 @@ public class CylinderLevel : MonoBehaviour
 {
     public GameObject _cylinder;
     public CylinderLevel _energyBoxEnter; // Only for WasteBoxEnter
-    public string nameOfTheObject;
+    public string _nameOfTheObject;
 
     public float _rateStart; // Level of the battery at the beggining
     private float _ratePercent;
-    public float currentPercent;
-    public float PercentQuantiteIn;
-    public float PercentQuantiteOff;
-    public float countDownUtilisateur;
+    public float _currentPercent;
+    public float _percentQuantiteIn;
+    public float _percentQuantiteOff;
+    public float _countDownUtilisateur;
     private float _countDown;
 
-    private int actualBatteryPose;
-    private int batteryPose;
+    private int _actualBatteryPose;
+    private int _batteryPose;
 
     private void Start()
     {
@@ -30,27 +30,27 @@ public class CylinderLevel : MonoBehaviour
         {
             _ratePercent = _rateStart;
         }
-        _countDown = countDownUtilisateur;
+        _countDown = _countDownUtilisateur;
         _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, FloatConverter(_ratePercent), _cylinder.transform.localPosition.z);
-        actualBatteryPose = 0;
-        batteryPose = 1000;
-        currentPercent = _ratePercent;
+        _actualBatteryPose = 0;
+        _batteryPose = 1000;
+        _currentPercent = _ratePercent;
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == nameOfTheObject)
+        if (col.gameObject.name == _nameOfTheObject)
         {
-            batteryPose = col.GetComponent<PickableEnergy>().idEnergy;
+            _batteryPose = col.GetComponent<PickableEnergy>()._idEnergy;
             // Allow to verify to not put more energy that the QuantiteOfEnergy allow
-            if (actualBatteryPose != batteryPose)
+            if (_actualBatteryPose != _batteryPose)
             {
-                if (_ratePercent <= 100 - PercentQuantiteIn && _ratePercent >= 0)
+                if (_ratePercent <= 100 - _percentQuantiteIn && _ratePercent >= 0)
                 {
-                    _ratePercent += PercentQuantiteIn;
+                    _ratePercent += _percentQuantiteIn;
                 }
                 _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, FloatConverter(_ratePercent), _cylinder.transform.localPosition.z);
-                actualBatteryPose = batteryPose;
+                _actualBatteryPose = _batteryPose;
             }
         }
     }
@@ -58,30 +58,30 @@ public class CylinderLevel : MonoBehaviour
     // Probleme a la premiere pile mise
     private void Update()
     {
-        currentPercent = _ratePercent;
+        _currentPercent = _ratePercent;
         if (_cylinder.name == "energy-cylinder")
         {
             // Decrease/Increase lecel in fonction of time
-            countDownUtilisateur -= Time.deltaTime;
-            if (countDownUtilisateur <= 0.0f && _ratePercent >= PercentQuantiteOff)
+            _countDownUtilisateur -= Time.deltaTime;
+            if (_countDownUtilisateur <= 0.0f && _ratePercent >= _percentQuantiteOff)
             {
-                _ratePercent -= PercentQuantiteOff;
+                _ratePercent -= _percentQuantiteOff;
                 _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, FloatConverter(_ratePercent), _cylinder.transform.localPosition.z);
-                countDownUtilisateur = _countDown;
+                _countDownUtilisateur = _countDown;
             }
         }
         if (_cylinder.name == "waste-cylinder")
         {
             if (_energyBoxEnter != null)
             {
-                if (_energyBoxEnter._ratePercent >= _energyBoxEnter.PercentQuantiteOff)
+                if (_energyBoxEnter._ratePercent >= _energyBoxEnter._percentQuantiteOff)
                 {
-                    countDownUtilisateur -= Time.deltaTime;
-                    if (countDownUtilisateur <= 0.0f && _ratePercent <= 100 + PercentQuantiteIn)
+                    _countDownUtilisateur -= Time.deltaTime;
+                    if (_countDownUtilisateur <= 0.0f && _ratePercent <= 100 + _percentQuantiteIn)
                     {
-                        _ratePercent -= PercentQuantiteOff;
+                        _ratePercent -= _percentQuantiteOff;
                         _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, FloatConverter(_ratePercent), _cylinder.transform.localPosition.z);
-                        countDownUtilisateur = _countDown;
+                        _countDownUtilisateur = _countDown;
                     }
                 }
             }

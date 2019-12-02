@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class InformationPiles : MonoBehaviour
 {
-    public CylinderLevel energyBoxEnter;
-    public CylinderLevel wasteBoxEnter;
-    public float energyRate;
-    public float toxicRate;
+    public CylinderLevel _energyBoxEnter;
+    public CylinderLevel _wasteBoxEnter;
+    public float _energyRate;
+    public float _toxicRate;
 
     // Start is called before the first frame update
     private void Start()
     {
-        energyRate = energyBoxEnter.currentPercent;
-        toxicRate = wasteBoxEnter.currentPercent;
+        _energyRate = _energyBoxEnter._currentPercent;
+        _toxicRate = _wasteBoxEnter._currentPercent;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        energyRate = energyBoxEnter.currentPercent;
-        toxicRate = wasteBoxEnter.currentPercent;
+        _energyRate = _energyBoxEnter._currentPercent;
+        _toxicRate = _wasteBoxEnter._currentPercent;
     }
 }

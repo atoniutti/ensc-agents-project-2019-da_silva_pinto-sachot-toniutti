@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 public class AgentTrust
 {
-    public Agent agent;
-    public float trust;
+    public Agent _agent;
+    public float _trust;
 
     public AgentTrust(Agent agent, float trust)
     {
-        this.agent = agent;
-        this.trust = trust;
+        this._agent = agent;
+        this._trust = trust;
     }
 }

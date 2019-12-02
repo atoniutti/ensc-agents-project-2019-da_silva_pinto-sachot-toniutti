@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class AgentManager : MonoBehaviour
 {
-    public Agent agent;
-    public List<Agent> agents;
-    public int numberOfAgents = 5;
+    public Agent _agent;
+    public List<Agent> _agents;
+    public int _numberOfAgents = 5;
     
 
-    List<Transform> spawnPoints = new List<Transform>();
-    float maxX = 0f;
-    float maxZ = 0f;
-    float minX = -8f;
-    float minZ = -5f;
-    float labX = -3.5f;
-    float labZ = -3.3f;
+    List<Transform> _spawnPoints = new List<Transform>();
+    float _maxX = 0f;
+    float _maxZ = 0f;
+    float _minX = -8f;
+    float _minZ = -5f;
+    float _labX = -3.5f;
+    float _labZ = -3.3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        agents = new List<Agent>();
+        _agents = new List<Agent>();
 
         GenerateRandomSpawnPoints();
 
-        foreach (Transform sp in spawnPoints)
+        foreach (Transform sp in _spawnPoints)
         {
             Spawn(sp);
         }
@@ -32,18 +32,18 @@ public class AgentManager : MonoBehaviour
 
     void GenerateRandomSpawnPoints()
     {
-        for (int i = 0; i < numberOfAgents; i++)
+        for (int i = 0; i < _numberOfAgents; i++)
         {
             GameObject point = new GameObject();
 
             // Find a random position and rotation
-            float positionX = Random.Range(minX, maxX);
-            float positionZ = Random.Range(minZ, maxZ);
-            if (positionX > labX)
+            float positionX = Random.Range(_minX, _maxX);
+            float positionZ = Random.Range(_minZ, _maxZ);
+            if (positionX > _labX)
             {
-                while (positionZ > labZ)
+                while (positionZ > _labZ)
                 {
-                    positionZ = Random.Range(minZ, maxZ);
+                    positionZ = Random.Range(_minZ, _maxZ);
                 }
             }
 
@@ -54,7 +54,7 @@ public class AgentManager : MonoBehaviour
 
             point.transform.SetPositionAndRotation(position, rotation);
 
-            spawnPoints.Add(point.transform);
+            _spawnPoints.Add(point.transform);
 
             Destroy(point);
         }
@@ -63,7 +63,7 @@ public class AgentManager : MonoBehaviour
     void Spawn(Transform spawnPoint)
     {
         // Create an instance of the agent prefab
-        agent = Instantiate(agent, spawnPoint.position, spawnPoint.rotation);
-        agents.Add(agent);
+        _agent = Instantiate(_agent, spawnPoint.position, spawnPoint.rotation);
+        _agents.Add(_agent);
     }
 }
