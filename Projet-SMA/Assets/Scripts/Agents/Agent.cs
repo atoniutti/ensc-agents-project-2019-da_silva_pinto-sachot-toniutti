@@ -266,7 +266,11 @@ public class Agent : MonoBehaviour
                                 _agentsList[System.Array.IndexOf(_agentsList.ToArray(), _actualAgentTrust)]._trust -= _fluctuationTrust;
                             }
                         }
-                        SilenceDialogue(_actualInteractionAgent._code);
+                        if ((int)_fieldOfView._agentMemberDialogue == (int)_currentTarget)
+                        {
+                            _agentsList[System.Array.IndexOf(_agentsList.ToArray(), _actualAgentTrust)]._trust += _fluctuationTrust;
+                        }
+                            SilenceDialogue(_actualInteractionAgent._code);
                         _actualInteractionAgent = null;
                     }
                     // Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
@@ -462,7 +466,7 @@ public class Agent : MonoBehaviour
         {
             percentAdd = (distanceyToHisTarget / 17) * (trustOfHim / 10); // Equivalant of 10% max of the trust in this agent
         }
-        else
+        if (distanceToYourTarget - distanceyToHisTarget < 0)
         {
             percentAdd = -(distanceToYourTarget / 17) * (trustOfHim / 10); // Equivalant of -10% max of the trust in this agent and 17 represent the longer distance between to spawnPoint
         }
@@ -482,6 +486,11 @@ public class Agent : MonoBehaviour
     {
         float proba = Random.Range(0f, 1f);
         if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic <= 20)
+        {
+            AgentStates state = AgentStates.FindingEnergy;
+            return state;
+        }
+        if (percentOfEnergy <= 10)
         {
             AgentStates state = AgentStates.FindingEnergy;
             return state;

@@ -9,6 +9,7 @@ TagManager:
   - CameraManager
   - MainCameraButton
   - AgentCameraButton
+  - InformationBox
   layers:
   - Default
   - TransparentFX

@@ -25,7 +25,7 @@ public class CylinderLevel : MonoBehaviour
         {
             _nameOfTheObject = "EnergyCoil(Clone)";
         }
-        else
+        if (_cylinder.name == "waste-cylinder")
         {
             _nameOfTheObject = "Toxic(Clone)";
         }

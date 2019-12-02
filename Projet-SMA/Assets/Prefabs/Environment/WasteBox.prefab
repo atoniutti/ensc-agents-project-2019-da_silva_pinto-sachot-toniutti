@@ -308,8 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cylinder: {fileID: 7758780819920879658}
   _energyBoxEnter: {fileID: 0}
-  _nameOfTheObject: Toxic(Clone)
-  _rateStart: 20
+  _rateStart: 25
   _currentPercent: 0
   _percentQuantiteIn: -5
   _percentQuantiteOff: -3
