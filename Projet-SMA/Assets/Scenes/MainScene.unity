@@ -1095,6 +1095,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 989061293}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1045624612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2695039642654227932, guid: 5ac65a0fdd8756d4198ca4f298590303,
+    type: 3}
+  m_PrefabInstance: {fileID: 6114393509139046563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687287a1a25b5d74ebc2dd9166230d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1305754120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1750,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PileInformationBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347344848409770194, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: m_TagString
+      value: InformationBox
       objectReference: {fileID: 0}
     - target: {fileID: 6114393509766820456, guid: 5ac65a0fdd8756d4198ca4f298590303,
         type: 3}
@@ -5214,6 +5231,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -7.28
       objectReference: {fileID: 0}
+    - target: {fileID: 61880915764616205, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: _rateStart
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360281462355030343, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: _rateStart
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026762751176396665, guid: 5ac65a0fdd8756d4198ca4f298590303,
+        type: 3}
+      propertyPath: _piles
+      value: 
+      objectReference: {fileID: 1045624612}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ac65a0fdd8756d4198ca4f298590303, type: 3}
 --- !u!4 &7730952039078792476
