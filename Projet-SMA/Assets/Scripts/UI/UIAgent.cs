@@ -26,7 +26,7 @@ public class UIAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraManager.currentAgent == owner)
+        if (cameraManager._currentAgent == owner)
         {
             // Point Position
             pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);

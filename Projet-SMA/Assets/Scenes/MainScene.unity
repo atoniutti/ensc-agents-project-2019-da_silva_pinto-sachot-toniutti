@@ -387,12 +387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce18d7923bc1c74cb29a9a5f4d54638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCameraButton: {fileID: 2076705040}
-  agentCameraButton: {fileID: 41832463}
-  mainCamera: {fileID: 963194227}
-  currentCamera: {fileID: 0}
-  currentAgent: {fileID: 0}
-  agentManager: {fileID: 2010744429}
+  _mainCameraButton: {fileID: 2076705040}
+  _agentCameraButton: {fileID: 41832463}
+  _mainCamera: {fileID: 963194227}
+  _currentCamera: {fileID: 0}
+  _currentAgent: {fileID: 0}
+  _agentManager: {fileID: 2010744429}
 --- !u!82 &384011355
 AudioSource:
   m_ObjectHideFlags: 0
@@ -661,8 +661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c339c08f2717b49a0c84eec0094cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toxic: {fileID: 1999708491803102162, guid: 620dbf3b9c3b77846ba2cd90ca884da3, type: 3}
-  spawnPoint: {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13,
+  _toxic: {fileID: 1999708491803102162, guid: 620dbf3b9c3b77846ba2cd90ca884da3, type: 3}
+  _spawnPoint: {fileID: 1884461505991101532, guid: e3cb69ef2be0c6a44adfcfb72426ff13,
     type: 3}
 --- !u!65 &601563433
 BoxCollider:
@@ -1367,9 +1367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dba4a7ed1e064343b09b86c50f9466d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 2622002020163438949, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
-  agents: []
-  numberOfAgents: 8
+  _agent: {fileID: 2622002020163438949, guid: ea247fed1d32d354c897b62297e3c9dd, type: 3}
+  _agents: []
+  _numberOfAgents: 5
 --- !u!1 &2076705038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,13 +1526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8201e41247d617d4e957308765e9b6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energy: {fileID: 8609793076345268679, guid: ecef8506331791d48b17d458a41b4eac, type: 3}
-  spawnTime: 4
-  spawnPoints:
-  - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
-  - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
-  - {fileID: 6622306575045670967, guid: cb22802e2934f634ea928c200ab4fda0, type: 3}
-  - {fileID: 1431829714896668889, guid: 2130fd16d3a389446af98de5d49e7f66, type: 3}
+  _energy: {fileID: 8609793076345268679, guid: ecef8506331791d48b17d458a41b4eac, type: 3}
+  _spawnTime: 0.5
+  _spawnPoints: []
 --- !u!1 &4579774613123129423
 GameObject:
   m_ObjectHideFlags: 0
