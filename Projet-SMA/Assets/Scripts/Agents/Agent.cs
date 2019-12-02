@@ -93,6 +93,7 @@ public class Agent : MonoBehaviour
             {
                 _currentTarget = MakeAChoiceDirection(_numberOfBatteryByPlace, _previousTarget, _currentTarget);
                 _countDown = _countDownUtilisateur ;
+                ListenDialogue();
             }
             if (_countDown <= 0.0f && stayOrNo == false)
             {

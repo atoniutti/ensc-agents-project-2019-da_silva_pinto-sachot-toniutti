@@ -13390,15 +13390,15 @@ MonoBehaviour:
   _energyPickable: 0
   _identifiant: 0
   _ownerCombustible: 0
-  currentObjet: {fileID: 0}
+  _currentObjet: {fileID: 0}
   _position: {fileID: 0}
   _agentMember: {fileID: 0}
   _agentMemberTarget: 0
   _agentMemberState: 0
   _agentMemberDialogue: 0
-  numberOfbattery: 
-  percentOfEnergy: 0
-  percentOfWaste: 0
+  _numberOfbattery: 
+  _percentOfEnergy: 0
+  _percentOfWaste: 0
 --- !u!1 &2622002020901857898
 GameObject:
   m_ObjectHideFlags: 0
@@ -32036,7 +32036,7 @@ MonoBehaviour:
   _fieldOfView: {fileID: 2622002020843932829}
   _canvas: {fileID: 2622002020577534154}
   _countDownUtilisateur: 10
-  target:
+  _target:
   - {fileID: 4459559609131473602, guid: 113724a591b9a734ab5d541fd5f3869a, type: 3}
   - {fileID: 8115304546002448606, guid: 1db5d2445d60caf408b078c23bc81e91, type: 3}
   - {fileID: 6622306575045670967, guid: cb22802e2934f634ea928c200ab4fda0, type: 3}
