@@ -481,12 +481,12 @@ public class Agent : MonoBehaviour
     public AgentStates MakeAChoiceState(float percentOfEnergy, float percentOfToxic)
     {
         float proba = Random.Range(0f, 1f);
-        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic <= 20)
+        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic <= 30)
         {
             AgentStates state = AgentStates.FindingEnergy;
             return state;
         }
-        if (percentOfEnergy >= 20 && percentOfEnergy <= 99 && percentOfToxic > 20 && percentOfToxic < 70)
+        if (percentOfEnergy >= 0 && percentOfEnergy <= 99 && percentOfToxic > 30 && percentOfToxic < 70)
         {
             if (proba >= 0.6f)
             {
