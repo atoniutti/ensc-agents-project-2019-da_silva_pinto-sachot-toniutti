@@ -344,7 +344,7 @@ public class Agent : MonoBehaviour
     // Agent animation manager
     public void AnimationMove(AgentStates agentStates)
     {
-        if(_mouvement==AgentMovement.Standby && (agentStates == AgentStates.PutObject || _currentState==AgentStates.FindingEnergy))
+        if(_mouvement==AgentMovement.Standby &&  _currentState==AgentStates.FindingEnergy)
         {
             _animator.SetBool("walk", false);
         }

@@ -6,7 +6,7 @@ public class CylinderLevel : MonoBehaviour
 {
     public GameObject _cylinder;
     public CylinderLevel _energyBoxEnter; // Only for WasteBoxEnter
-    public string _nameOfTheObject;
+    private string _nameOfTheObject;
 
     public float _rateStart; // Level of the battery at the beggining
     private float _ratePercent;
@@ -21,6 +21,14 @@ public class CylinderLevel : MonoBehaviour
 
     private void Start()
     {
+        if(_cylinder.name== "energy-cylinder")
+        {
+            _nameOfTheObject = "EnergyCoil(Clone)";
+        }
+        else
+        {
+            _nameOfTheObject = "Toxic(Clone)";
+        }
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
         if (_rateStart > 100 || _rateStart < 0)
         {
