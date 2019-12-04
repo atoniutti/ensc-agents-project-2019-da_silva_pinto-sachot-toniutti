@@ -7,30 +7,30 @@ using UnityEngine.UI;
 public class UIAgent : MonoBehaviour
 {
     // UI
-    public Agent owner;
-    public GameObject pointPosition;
+    public Agent _owner;
+    public GameObject _pointPosition;
     public Text _name; // Name of the agent
     public ProgressBar _energyProgressBar;
     public ProgressBar _wasteProgressBar;
-    CameraManager cameraManager;
-
     public Canvas canvasAgent;
 
+    CameraManager _cameraManager;
+    
     // Start is called before the first frame update
     void Start()
     {
         _name.text = GetNameCode();
-        cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+        _cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cameraManager._currentAgent == owner)
+        if (_cameraManager._currentAgent == _owner)
         {
             // Point Position
-            pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-            pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+            _pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+            _pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
 
             // Canvas Agent
             canvasAgent.enabled = false;
@@ -38,29 +38,29 @@ public class UIAgent : MonoBehaviour
         else
         {
             // Point Position
-            pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
+            _pointPosition.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+            _pointPosition.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
 
             // Canvas Agent
             canvasAgent.enabled = true;
         }
 
         // Update Percent Of Energy & Toxic Piles
-        _energyProgressBar.UpdateBar(owner._percentOfEnergyPile);
-        _wasteProgressBar.UpdateBar(owner._percentOfWastePile);
+        _energyProgressBar.UpdateBar(_owner._percentOfEnergyPile);
+        _wasteProgressBar.UpdateBar(_owner._percentOfWastePile);
     }
 
     private string GetNameCode()
     {
         string name = "Agent ";
 
-        if (owner._code < 10)
+        if (_owner._code < 10)
         {
-            name += "00" + owner._code;
+            name += "00" + _owner._code;
         }
         else
         {
-            name += "0" + owner._code;
+            name += "0" + _owner._code;
         }
 
         return name;

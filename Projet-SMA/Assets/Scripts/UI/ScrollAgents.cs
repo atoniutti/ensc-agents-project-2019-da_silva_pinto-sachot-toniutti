@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ScrollAgents : MonoBehaviour
 {
-    public Agent currentAgent;
-    public ScrollRect scrollView;
-    public GameObject scrollContent;
-    public AgentButton agentButton;
+    public Agent _currentAgent;
+    public ScrollRect _scrollView;
+    public GameObject _scrollContent;
+    public AgentButton _agentButton;
 
     private bool start;
 
@@ -30,7 +30,7 @@ public class ScrollAgents : MonoBehaviour
 
     public void GenerateList()
     {
-        foreach (AgentTrust a in currentAgent._agentsList)
+        foreach (AgentTrust a in _currentAgent._agentsList)
         {
             GenerateItem(a);
         }
@@ -38,8 +38,8 @@ public class ScrollAgents : MonoBehaviour
 
     void GenerateItem(AgentTrust a)
     {
-        AgentButton scrollItem = Instantiate(agentButton);
-        scrollItem.transform.SetParent(scrollContent.transform, false);
+        AgentButton scrollItem = Instantiate(_agentButton);
+        scrollItem.transform.SetParent(_scrollContent.transform, false);
         scrollItem._agentTrust = a;
     }
 }

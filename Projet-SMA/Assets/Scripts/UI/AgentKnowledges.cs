@@ -8,7 +8,7 @@ public class AgentKnowledges : MonoBehaviour
     public Agent _owner;
     public Text _state;
     public Text _target;
-    public Text _InteractionAgent;
+    public Text _interactionAgent;
     public Text _discussion;
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class AgentKnowledges : MonoBehaviour
 
         if (_owner._actualInteractionAgent != null)
         {
-            _InteractionAgent.text = "to " + GetNameCode(_owner._actualInteractionAgent);
+            _interactionAgent.text = "to " + GetNameCode(_owner._actualInteractionAgent);
         }
     }
 
