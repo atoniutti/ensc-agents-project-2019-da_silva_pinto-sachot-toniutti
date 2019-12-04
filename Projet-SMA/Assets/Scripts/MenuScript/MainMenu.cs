@@ -5,31 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    Animator CameraObject;
-    public string sceneName = "";
-    public Light lightMenu;
-    public GameObject panelGame;
-    public GameObject panelareYouSure;
-    public Material skyBox;
+    public string _sceneName = "";
+    public Light _lightMenu;
+    public GameObject _panelGame;
+    public GameObject _panelareYouSure;
+    public Material _skyBox;
+
+    Animator _cameraObject;
 
     void Start()
     {
-        CameraObject = transform.GetComponent<Animator>();
-        lightMenu.intensity = 2;
-        RenderSettings.skybox = skyBox;
+        _cameraObject = transform.GetComponent<Animator>();
+        _lightMenu.intensity = 2;
+        RenderSettings.skybox = _skyBox;
     }
 
     public void Play()
     {
-        panelareYouSure.gameObject.SetActive(false);
+        _panelareYouSure.gameObject.SetActive(false);
         NewGame();
     }
     
     public void NewGame()
     {
-        if (sceneName != "")
+        if (_sceneName != "")
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            SceneManager.LoadScene(_sceneName, LoadSceneMode.Single);
         }
     }
 
@@ -40,29 +41,29 @@ public class MainMenu : MonoBehaviour
 
     public void Position1()
     {
-        lightMenu.intensity = 2;
-        CameraObject.SetFloat("Animate", 0);
+        _lightMenu.intensity = 2;
+        _cameraObject.SetFloat("Animate", 0);
     }
 
     public void Position2()
     {
-        lightMenu.intensity = 2;
+        _lightMenu.intensity = 2;
         DisablePlay();
 
-        panelareYouSure.gameObject.SetActive(false);
-        CameraObject.SetFloat("Animate", 1);
+        _panelareYouSure.gameObject.SetActive(false);
+        _cameraObject.SetFloat("Animate", 1);
     }
     
     // Are You Sure - Quit Panel Pop Up
     public void AreYouSure()
     {
-        panelareYouSure.gameObject.SetActive(true);
+        _panelareYouSure.gameObject.SetActive(true);
         DisablePlay();
     }
 
     public void NoExit()
     {
-        panelareYouSure.gameObject.SetActive(false);
+        _panelareYouSure.gameObject.SetActive(false);
     }
 
     public void YesExit()

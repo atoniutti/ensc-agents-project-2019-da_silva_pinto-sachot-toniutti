@@ -5,102 +5,102 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     // Toggle buttons
-    public GameObject difficultynormaltext;
-    public GameObject difficultynormaltextLINE;
-    public GameObject difficultyhardcoretext;
-    public GameObject difficultyhardcoretextLINE;
-    public GameObject panelDifficulty;
+    public GameObject _difficultyNormalText;
+    public GameObject _difficultyNormalTextLINE;
+    public GameObject _difficultyHardcoreText;
+    public GameObject _difficultyHardcoreTextLINE;
+    public GameObject _panelDifficulty;
 
-    public GameObject yestext;
-    public GameObject yestextLINE;
-    public GameObject notext;
-    public GameObject notextLINE;
+    public GameObject _yesText;
+    public GameObject _yesTextLINE;
+    public GameObject _noText;
+    public GameObject _noTextLINE;
 
     // Sliders
-    public GameObject musicSlider;
-    private float sliderMusicValue = 0.0f;
+    public GameObject _musicSlider;
+    private float _sliderMusicValue = 0.0f;
 
     public void Start()
     {
-        // Choix de la difficultée
+        // Choice of difficulty
         if (PlayerPrefs.GetInt("Normal") == 1)
         {
-            difficultynormaltextLINE.gameObject.SetActive(true);
-            difficultyhardcoretextLINE.gameObject.SetActive(false);
-            panelDifficulty.SetActive(false);
+            _difficultyNormalTextLINE.gameObject.SetActive(true);
+            _difficultyHardcoreTextLINE.gameObject.SetActive(false);
+            _panelDifficulty.SetActive(false);
         }
         else
         {
-            difficultyhardcoretextLINE.gameObject.SetActive(true);
-            difficultynormaltextLINE.gameObject.SetActive(false);
-            panelDifficulty.SetActive(true);
+            _difficultyHardcoreTextLINE.gameObject.SetActive(true);
+            _difficultyNormalTextLINE.gameObject.SetActive(false);
+            _panelDifficulty.SetActive(true);
         }
 
-        // Présence d'effet sonor
+        // Presence of sound effect
         if (PlayerPrefs.GetInt("Yes") == 1)
         {
-            yestextLINE.gameObject.SetActive(true);
-            notextLINE.gameObject.SetActive(false);
+            _yesTextLINE.gameObject.SetActive(true);
+            _noTextLINE.gameObject.SetActive(false);
         }
         else
         {
-            notextLINE.gameObject.SetActive(true);
-            yestextLINE.gameObject.SetActive(false);
+            _noTextLINE.gameObject.SetActive(true);
+            _yesTextLINE.gameObject.SetActive(false);
         }
 
-        // Choix du niveau sonor
-        musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+        // Choice of sound level
+        _musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     public void Update()
     {
-        sliderMusicValue = musicSlider.GetComponent<Slider>().value;
+        _sliderMusicValue = _musicSlider.GetComponent<Slider>().value;
     }
 
     public void MusicSlider()
     {
-        PlayerPrefs.SetFloat("MusicVolume", sliderMusicValue / 4);
+        PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue / 4);
     }
 
     public void NormalDifficulty()
     {
-        difficultynormaltext.GetComponent<Text>().text = "Normal";
-        difficultyhardcoretext.GetComponent<Text>().text = "Difficult";
-        difficultyhardcoretextLINE.gameObject.SetActive(false);
-        difficultynormaltextLINE.gameObject.SetActive(true);
+        _difficultyNormalText.GetComponent<Text>().text = "Normal";
+        _difficultyHardcoreText.GetComponent<Text>().text = "Difficult";
+        _difficultyHardcoreTextLINE.gameObject.SetActive(false);
+        _difficultyNormalTextLINE.gameObject.SetActive(true);
         PlayerPrefs.SetInt("Normal", 1);
         PlayerPrefs.SetInt("Difficult", 0);
 
-        panelDifficulty.SetActive(false);
+        _panelDifficulty.SetActive(false);
     }
 
     public void HardcoreDifficulty()
     {
-        difficultynormaltext.GetComponent<Text>().text = "Normal";
-        difficultyhardcoretext.GetComponent<Text>().text = "Difficult";
-        difficultyhardcoretextLINE.gameObject.SetActive(true);
-        difficultynormaltextLINE.gameObject.SetActive(false);
+        _difficultyNormalText.GetComponent<Text>().text = "Normal";
+        _difficultyHardcoreText.GetComponent<Text>().text = "Difficult";
+        _difficultyHardcoreTextLINE.gameObject.SetActive(true);
+        _difficultyNormalTextLINE.gameObject.SetActive(false);
         PlayerPrefs.SetInt("Normal", 0);
         PlayerPrefs.SetInt("Difficult", 1);
-        panelDifficulty.SetActive(true);
+        _panelDifficulty.SetActive(true);
     }
 
     public void YesEffect()
     {
-        yestext.GetComponent<Text>().text = "Yes";
-        notext.GetComponent<Text>().text = "No";
-        notextLINE.gameObject.SetActive(false);
-        yestextLINE.gameObject.SetActive(true);
+        _yesText.GetComponent<Text>().text = "Yes";
+        _noText.GetComponent<Text>().text = "No";
+        _noTextLINE.gameObject.SetActive(false);
+        _yesTextLINE.gameObject.SetActive(true);
         PlayerPrefs.SetInt("Yes", 1);
         PlayerPrefs.SetInt("No", 0);
     }
 
     public void NoEffect()
     {
-        yestext.GetComponent<Text>().text = "Yes";
-        notext.GetComponent<Text>().text = "No";
-        notextLINE.gameObject.SetActive(true);
-        yestextLINE.gameObject.SetActive(false);
+        _yesText.GetComponent<Text>().text = "Yes";
+        _noText.GetComponent<Text>().text = "No";
+        _noTextLINE.gameObject.SetActive(true);
+        _yesTextLINE.gameObject.SetActive(false);
         PlayerPrefs.SetInt("Yes", 0);
         PlayerPrefs.SetInt("No", 1);
     }

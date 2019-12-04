@@ -13885,7 +13885,7 @@ MonoBehaviour:
   _owner: {fileID: 2622002020163438949}
   _state: {fileID: 4588749661121607177}
   _target: {fileID: 5928509590233786196}
-  _InteractionAgent: {fileID: 2078158429208817728}
+  _interactionAgent: {fileID: 2078158429208817728}
   _discussion: {fileID: 4857634950061891009}
 --- !u!1 &2622002021958473853
 GameObject:
@@ -13975,10 +13975,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d353ac4e88607cf4d90efadc1887bf74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAgent: {fileID: 2622002020163438949}
-  scrollView: {fileID: 5190159524510703912}
-  scrollContent: {fileID: 7076582035792195556}
-  agentButton: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
+  _currentAgent: {fileID: 2622002020163438949}
+  _scrollView: {fileID: 5190159524510703912}
+  _scrollContent: {fileID: 7076582035792195556}
+  _agentButton: {fileID: 6447994955208847749, guid: af4a70dbb77a3ab49af7d8a4bfae919a,
     type: 3}
 --- !u!1 &2629176340441946297
 GameObject:
@@ -32394,8 +32394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177f165705681e5468ded3c2d07500cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 2622002020163438949}
-  pointPosition: {fileID: 2622002021394178104}
+  _owner: {fileID: 2622002020163438949}
+  _pointPosition: {fileID: 2622002021394178104}
   _name: {fileID: 2622002021166081497}
   _energyProgressBar: {fileID: 8038498337240924253}
   _wasteProgressBar: {fileID: 3756298790110836378}

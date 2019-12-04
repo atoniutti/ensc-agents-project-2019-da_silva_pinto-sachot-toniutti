@@ -5,7 +5,7 @@ public class CheckMusicVolume : MonoBehaviour
 {
     public void Start()
     {
-        // Permet de se rappeler du niveau sonor de la derniere session de jeu
+        // Allows you to remember the sound level of the last game session
         GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
