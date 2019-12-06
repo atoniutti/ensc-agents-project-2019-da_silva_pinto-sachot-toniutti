@@ -6,20 +6,20 @@ public class ColorLine : MonoBehaviour
 {
     private Renderer _rend;
     private InformationPiles _piles;
-    private float intensity;
+    private float _intensity;
 
     private void Start()
     {
         _piles = GameObject.FindGameObjectWithTag("InformationBox").GetComponent<InformationPiles>();
         _rend = GetComponent<Renderer>();
-        intensity = 10;
+        _intensity = 10;
     }
 
     void Update()
     {
         if (_piles._toxicRate>_piles._energyRate )
         {
-            _rend.material.SetColor("_EmissionColor", Color.yellow* intensity);
+            _rend.material.SetColor("_EmissionColor", Color.yellow* _intensity);
         }
         if (_piles._toxicRate < _piles._energyRate)
         {
@@ -27,7 +27,7 @@ public class ColorLine : MonoBehaviour
         }
         if ( _piles._energyRate < 20 || _piles._toxicRate > 80)
         {
-            _rend.material.SetColor("_EmissionColor", Color.red* intensity);
+            _rend.material.SetColor("_EmissionColor", Color.red* _intensity);
         }
     }
 }
