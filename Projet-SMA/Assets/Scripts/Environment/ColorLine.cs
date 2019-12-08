@@ -17,17 +17,17 @@ public class ColorLine : MonoBehaviour
 
     void Update()
     {
-        if (_piles._toxicRate>_piles._energyRate && _piles._toxicRate>20)
+        if (_piles._toxicRate>_piles._energyRate )
         {
             _rend.material.SetColor("_EmissionColor", Color.yellow* intensity);
+        }
+        if (_piles._toxicRate < _piles._energyRate)
+        {
+            _rend.material.SetColor("_EmissionColor",new Vector4(0.2235294f,10,10,1) );
         }
         if ( _piles._energyRate < 20 || _piles._toxicRate > 80)
         {
             _rend.material.SetColor("_EmissionColor", Color.red* intensity);
-        }
-        if (_piles._toxicRate < _piles._energyRate && _piles._energyRate >= 20)
-        {
-            _rend.material.SetColor("_EmissionColor", new Vector4(0.2235294f, 10, 10, 1));
         }
     }
 }
