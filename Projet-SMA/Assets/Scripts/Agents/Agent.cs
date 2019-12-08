@@ -539,7 +539,7 @@ public class Agent : MonoBehaviour
         }
         else
         {
-            while (direction == (int)precTarget || direction == (int)curTarget)
+            while (direction == (int)precTarget && direction == (int)curTarget)
             {
                 int random = Random.Range(0, 4);
                 direction = random;
