@@ -7,7 +7,7 @@ public enum AgentStates { PutObject, FindingEnergy, FindingAcid, TakingEnergy, T
 
 public enum AgentMovement { Move, Standby }
 
-public enum AgentType { NotVeryTalkative, clever }
+public enum AgentType { NotVeryClever, Clever }
 
 public enum Discussion
 {
