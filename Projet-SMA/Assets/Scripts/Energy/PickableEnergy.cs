@@ -44,7 +44,7 @@ public class PickableEnergy : MonoBehaviour
                         _player = _agent.transform;
                         _matriculAgent = _agent._code;
                     }
-                    if (name == "Toxic(Clone)" && _listAgent[i].GetComponent<Agent>()._currentState == AgentStates.FindingToxic)
+                    if (name == "Toxic(Clone)" && _listAgent[i].GetComponent<Agent>()._currentState == AgentStates.FindingAcid)
                     {
                         _agent = _listAgent[i].GetComponent<Agent>();
                         _player = _agent.transform;
@@ -83,7 +83,7 @@ public class PickableEnergy : MonoBehaviour
                 }
             }
 
-            if (_agent._canTakeEnergy != _idEnergy && (_agent._currentState == AgentStates.CarryingEnergyToPile || _agent._currentState == AgentStates.CarryingToxicToPile))
+            if (_agent._canTakeEnergy != _idEnergy && (_agent._currentState == AgentStates.CarryingEnergyToPile || _agent._currentState == AgentStates.CarryingAcidToPile))
             {
                 _agent = null;
                 _matriculAgent = 0;

@@ -94,7 +94,7 @@ public class FieldOfViewAgent : MonoBehaviour
         }
 
         // If the toxic enter in the field of view
-        if (col.gameObject.name == "Toxic(Clone)" && _owner._currentState == AgentStates.FindingToxic && _owner._canTakeEnergy == 0)
+        if (col.gameObject.name == "Toxic(Clone)" && _owner._currentState == AgentStates.FindingAcid && _owner._canTakeEnergy == 0)
         {
             _battery = col.GetComponent<PickableEnergy>();
             if (_battery._hasPlayer == false)
