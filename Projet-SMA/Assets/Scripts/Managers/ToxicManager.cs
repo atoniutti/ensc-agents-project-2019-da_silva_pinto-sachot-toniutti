@@ -38,7 +38,7 @@ public class ToxicManager : MonoBehaviour
                 here = false;
             }
         }
-        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>()._currentState == AgentStates.WantFeedPileToxic)
+        if (col.gameObject.tag == "agent" && col.GetComponent<Agent>()._currentState == AgentStates.CarryingToxicToPile)
         {
             _actualAgentOut = col.GetComponent<Agent>()._code;
             _listAgentInArea.Remove(_actualAgentOut);

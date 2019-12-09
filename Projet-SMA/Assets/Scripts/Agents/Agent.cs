@@ -129,9 +129,9 @@ public class Agent : MonoBehaviour
                 if (_fieldOfView._energyPickable == true)
                 {
                     _doneHistoric = false;
-                    _currentState = AgentStates.HavingEnergy;
+                    _currentState = AgentStates.TakingEnergy;
                     TakeObject(_currentState);
-                    _currentState = AgentStates.WantFeedPileEnergy;
+                    _currentState = AgentStates.CarryingEnergyToPile;
 
                     if (_currentTarget != Direction.PileEnergyPoint && _currentTarget != Direction.PileWastePoint)
                     {
@@ -155,9 +155,9 @@ public class Agent : MonoBehaviour
                 if (_fieldOfView._energyPickable == true)
                 {
                     _doneHistoric = false;
-                    _currentState = AgentStates.HavingToxic;
+                    _currentState = AgentStates.TakingToxic;
                     TakeObject(_currentState);
-                    _currentState = AgentStates.WantFeedPileToxic;
+                    _currentState = AgentStates.CarryingToxicToPile;
                     if (_currentTarget != Direction.PileEnergyPoint && _currentTarget != Direction.PileWastePoint)
                     {
                         _previousTarget = _currentTarget;
@@ -239,7 +239,7 @@ public class Agent : MonoBehaviour
 
                 // If he meet an other agent 
                 if (_listenAnOtherAgent[_actualInteractionAgent._code - 1] == true && _fieldOfView._agentFront == true && _fieldOfView._agentMember == _actualInteractionAgent
-               && _currentState != AgentStates.FindingToxic && _currentState != AgentStates.WantFeedPileToxic)
+               && _currentState != AgentStates.FindingToxic && _currentState != AgentStates.CarryingToxicToPile)
                 {
                     // Correspond to the Discussion (enumartion) about presence of battery : HaveManyAtNorth, HaveManyAtSouth, HaveManyAtEast, HaveManyAtWest
                     if ((int)_fieldOfView._agentMemberDialogue >= 0 && (int)_fieldOfView._agentMemberDialogue < 4 && (_currentState == AgentStates.FindingEnergy || _currentDialogue == Discussion.NeedFindEnergy))
@@ -306,7 +306,7 @@ public class Agent : MonoBehaviour
             }
 
             // Animation and  destination if currentState != GoToPileEnergy and GoToPileToxic
-            if (_currentState != AgentStates.WantFeedPileEnergy && _currentState != AgentStates.WantFeedPileToxic)
+            if (_currentState != AgentStates.CarryingEnergyToPile && _currentState != AgentStates.CarryingToxicToPile)
             {
                 DestinationAgent(_currentTarget);
                 AnimationMove(_currentState);
@@ -318,7 +318,7 @@ public class Agent : MonoBehaviour
             && _fieldOfView._energyPickable == true && _fieldOfView._ownerCombustible == _code)
         {
             SilenceDialogue();
-            _currentState = AgentStates.WantFeedPileEnergy;
+            _currentState = AgentStates.CarryingEnergyToPile;
             if ((_currentTarget != Direction.PileEnergyPoint && _currentTarget != Direction.PileWastePoint) && _doneHistoric == false)
             {
                 _previousTarget = _currentTarget;
@@ -333,7 +333,7 @@ public class Agent : MonoBehaviour
             && _fieldOfView._energyPickable == true && _fieldOfView._ownerCombustible == _code && _currentTarget == Direction.ToxicPoint)
         {
             SilenceDialogue();
-            _currentState = AgentStates.WantFeedPileToxic;
+            _currentState = AgentStates.CarryingToxicToPile;
             if ((_currentTarget != Direction.PileEnergyPoint && _currentTarget != Direction.PileWastePoint) && _doneHistoric == false)
             {
                 _previousTarget = _currentTarget;
@@ -355,11 +355,11 @@ public class Agent : MonoBehaviour
         else
         {
             if (agentStates == AgentStates.FindingEnergy || agentStates == AgentStates.FindingToxic
-            || agentStates == AgentStates.Start || agentStates == AgentStates.WantFeedPileEnergy || agentStates == AgentStates.WantFeedPileToxic)
+            || agentStates == AgentStates.Start || agentStates == AgentStates.CarryingEnergyToPile || agentStates == AgentStates.CarryingToxicToPile)
             {
                 _animator.SetBool("walk", true);
             }
-            if (agentStates == AgentStates.HavingEnergy || agentStates == AgentStates.HavingToxic)
+            if (agentStates == AgentStates.TakingEnergy || agentStates == AgentStates.TakingToxic)
             {
                 _animator.SetTrigger("takeRessource");
             }
@@ -561,7 +561,7 @@ public class Agent : MonoBehaviour
             return Discussion.NothingToSay;
         }
         if ((friendState == AgentStates.FindingEnergy || friendDialogue == Discussion.NeedFindEnergy)
-            || (_currentState == AgentStates.WantFeedPileToxic || _currentState == AgentStates.WantFeedPileEnergy)
+            || (_currentState == AgentStates.CarryingToxicToPile || _currentState == AgentStates.CarryingEnergyToPile)
             && maxValue >= 1)
         {
 

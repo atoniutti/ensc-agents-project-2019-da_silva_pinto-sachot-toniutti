@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AgentStates { PutObject, FindingEnergy, FindingToxic, HavingEnergy, HavingToxic, WantFeedPileEnergy,
-    WantFeedPileToxic, Start }
+public enum AgentStates { PutObject, FindingEnergy, FindingToxic, TakingEnergy, TakingToxic,
+    CarryingEnergyToPile,
+    CarryingToxicToPile, Start }
 
 public enum AgentMovement { Move, Standby }
 
-public enum AgentType { NotVeryTalkative, Talkative }
+public enum AgentType { NotVeryTalkative, clever }
 
 public enum Discussion
 {

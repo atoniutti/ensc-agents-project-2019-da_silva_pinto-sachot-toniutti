@@ -19,7 +19,7 @@ public class ColorLine : MonoBehaviour
     {
         if (_piles._toxicRate > _piles._energyRate && _piles._toxicRate > 20)
         {
-            _rend.material.SetColor("_EmissionColor", Color.yellow * intensity);
+            _rend.material.SetColor("_EmissionColor", Color.yellow * _intensity);
         }
         if (_piles._toxicRate < _piles._energyRate && _piles._energyRate >= 20)
         {
@@ -27,7 +27,7 @@ public class ColorLine : MonoBehaviour
         }
         if (_piles._energyRate < 20 || _piles._toxicRate > 80)
         {
-            _rend.material.SetColor("_EmissionColor", Color.red * intensity);
+            _rend.material.SetColor("_EmissionColor", Color.red * _intensity);
         }
     }
 }
