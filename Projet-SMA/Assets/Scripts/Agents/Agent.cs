@@ -206,6 +206,11 @@ public class Agent : MonoBehaviour
             {
                 _checkPile = false;
             }
+            //if none agent front
+            if (_fieldOfView._agentFront == false)
+            {
+                _actualInteractionAgent = null;
+            }
 
             // Target if currentState = findingToxic
             if (_currentState == AgentStates.FindingAcid && _doneHistoric == false
@@ -236,7 +241,7 @@ public class Agent : MonoBehaviour
                     _currentTarget = newTarget;
                     _doneHistoric = true;
                 }
-
+               
                 // If he meet an other agent 
                 if (_listenAnOtherAgent[_actualInteractionAgent._code - 1] == true && _fieldOfView._agentFront == true && _fieldOfView._agentMember == _actualInteractionAgent
                && _currentState != AgentStates.FindingAcid && _currentState != AgentStates.CarryingAcidToPile)
@@ -270,7 +275,7 @@ public class Agent : MonoBehaviour
                         {
                             _agentsList[System.Array.IndexOf(_agentsList.ToArray(), _actualAgentTrust)]._trust += _fluctuationTrust;
                         }
-                            SilenceDialogue(_actualInteractionAgent._code);
+                        SilenceDialogue(_actualInteractionAgent._code);
                         _actualInteractionAgent = null;
                     }
                     // Correspond to the Discussion (enumartion) about no presence of battery :  DonthaveManyAtEast, DonthaveManyAtNorth, DonthaveManyAtWest, DonthaveManyAtSouth
@@ -575,7 +580,7 @@ public class Agent : MonoBehaviour
                 }
                 else return (Discussion)(friendTarget + 4); // Correspond of the no presence of battery in this point
             }
-            if ((_previousTarget != friendTarget && _currentTarget != friendTarget) && (int)friendTarget < 4)
+            else
             {
                 if (maxValue >= 1)
                 {
