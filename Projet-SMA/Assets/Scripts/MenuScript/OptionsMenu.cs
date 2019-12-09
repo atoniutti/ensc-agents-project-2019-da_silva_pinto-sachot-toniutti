@@ -5,84 +5,73 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     // Toggle buttons
-    public GameObject _difficultyNormalText;
-    public GameObject _difficultyNormalTextLINE;
-    public GameObject _difficultyHardcoreText;
-    public GameObject _difficultyHardcoreTextLINE;
-    public GameObject _panelDifficulty;
-
     public GameObject _yesText;
     public GameObject _yesTextLINE;
     public GameObject _noText;
     public GameObject _noTextLINE;
 
     // Sliders
+    public GameObject _agentsSlider;
+    public GameObject _energySlider;
+    public GameObject _wasteSlider;
     public GameObject _musicSlider;
-    private float _sliderMusicValue = 0.0f;
+    public Text _energyText;
+    public Text _wasteText;
+    private int _sliderAgents = 3;
+    private float _sliderEnergyValue = 10.0f;
+    private float _sliderWasteValue = 10.0f;
+    private float _sliderMusicValue = 0.5f;
 
     public void Start()
     {
-        // Choice of difficulty
-        if (PlayerPrefs.GetInt("Normal") == 1)
-        {
-            _difficultyNormalTextLINE.gameObject.SetActive(true);
-            _difficultyHardcoreTextLINE.gameObject.SetActive(false);
-            _panelDifficulty.SetActive(false);
-        }
-        else
-        {
-            _difficultyHardcoreTextLINE.gameObject.SetActive(true);
-            _difficultyNormalTextLINE.gameObject.SetActive(false);
-            _panelDifficulty.SetActive(true);
-        }
-
         // Presence of sound effect
-        if (PlayerPrefs.GetInt("Yes") == 1)
-        {
-            _yesTextLINE.gameObject.SetActive(true);
-            _noTextLINE.gameObject.SetActive(false);
-        }
-        else
-        {
-            _noTextLINE.gameObject.SetActive(true);
-            _yesTextLINE.gameObject.SetActive(false);
-        }
+        YesEffect();
+
+        // Number of Agents Slider
+        PlayerPrefs.SetInt("NumberOfAgents", _sliderAgents);
+        _agentsSlider.GetComponent<Slider>().value = _sliderAgents;
+
+        // Energy percent Slider
+        PlayerPrefs.SetFloat("EnergyPercent", _sliderEnergyValue);
+        _musicSlider.GetComponent<Slider>().value = _sliderEnergyValue;
+
+        // Waste Percent Slider
+        PlayerPrefs.SetFloat("WastePercent", _sliderWasteValue);
+        _musicSlider.GetComponent<Slider>().value = _sliderWasteValue;
 
         // Choice of sound level
-        _musicSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MusicVolume");
+        PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue);
+        _musicSlider.GetComponent<Slider>().value = _sliderMusicValue;
     }
 
     public void Update()
     {
+        _sliderAgents = (int)_agentsSlider.GetComponent<Slider>().value;
+        _sliderEnergyValue = _energySlider.GetComponent<Slider>().value;
+        _sliderWasteValue = _wasteSlider.GetComponent<Slider>().value;
         _sliderMusicValue = _musicSlider.GetComponent<Slider>().value;
+    }
+
+    public void AgentsSlider()
+    {
+        PlayerPrefs.SetInt("NumberOfAgents", _sliderAgents);
+    }
+
+    public void EnergySlider()
+    {
+        PlayerPrefs.SetFloat("EnergyPercent", _sliderEnergyValue);
+        _energyText.text = _sliderEnergyValue.ToString() + "%";
+    }
+
+    public void WasteSlider()
+    {
+        PlayerPrefs.SetFloat("WastePercent", _sliderWasteValue);
+        _wasteText.text = _sliderWasteValue.ToString() + "%";
     }
 
     public void MusicSlider()
     {
-        PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue / 4);
-    }
-
-    public void NormalDifficulty()
-    {
-        _difficultyNormalText.GetComponent<Text>().text = "Normal";
-        _difficultyHardcoreText.GetComponent<Text>().text = "Difficult";
-        _difficultyHardcoreTextLINE.gameObject.SetActive(false);
-        _difficultyNormalTextLINE.gameObject.SetActive(true);
-        PlayerPrefs.SetInt("Normal", 1);
-        PlayerPrefs.SetInt("Difficult", 0);
-
-        _panelDifficulty.SetActive(false);
-    }
-
-    public void HardcoreDifficulty()
-    {
-        _difficultyNormalText.GetComponent<Text>().text = "Normal";
-        _difficultyHardcoreText.GetComponent<Text>().text = "Difficult";
-        _difficultyHardcoreTextLINE.gameObject.SetActive(true);
-        _difficultyNormalTextLINE.gameObject.SetActive(false);
-        PlayerPrefs.SetInt("Normal", 0);
-        PlayerPrefs.SetInt("Difficult", 1);
-        _panelDifficulty.SetActive(true);
+        PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue);
     }
 
     public void YesEffect()
