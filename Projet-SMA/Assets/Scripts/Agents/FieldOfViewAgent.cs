@@ -148,11 +148,11 @@ public class FieldOfViewAgent : MonoBehaviour
         // Check if the Agent Friend is near enough to consider if he is front of him or not
         if (_agentMember != null)
         {
-            if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) > 2)
+            if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) > 2.2)
             {
                 _agentFront = false;
             }
-            if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) <= 2)
+            if (Vector2.Distance(new Vector2(_agentMember.transform.position.x, _agentMember.transform.position.z), new Vector2(transform.position.x, transform.position.z)) <= 2.2)
             {
                 _agentFront = true;
             }
