@@ -573,9 +573,9 @@ public class Agent : MonoBehaviour
                 {
                     return (Discussion)friendTarget;
                 }
-                else return (Discussion)(friendTarget + 4); // Correwpond of the no presence of battery in this point
+                else return (Discussion)(friendTarget + 4); // Correspond of the no presence of battery in this point
             }
-            else
+            if ((_previousTarget != friendTarget && _currentTarget != friendTarget) && (int)friendTarget < 4)
             {
                 if (maxValue >= 1)
                 {
