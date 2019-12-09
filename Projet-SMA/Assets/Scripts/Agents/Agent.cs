@@ -475,10 +475,12 @@ public class Agent : MonoBehaviour
         {
             return ((Direction)(dialogue)); // Caution -2 it is in order to have the same correspondance according the AgentBhavior ( enuration)
         }
-        else
+        if (proba > ((trustOfHim + percentAdd) / 100))
         {
             return yourTarget;
         }
+        else
+            return ((Direction)(dialogue));
     }
 
     // Make a choice of Objectif (State) when he see the two pile 

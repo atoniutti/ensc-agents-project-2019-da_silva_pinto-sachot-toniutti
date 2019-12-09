@@ -32375,7 +32375,7 @@ MonoBehaviour:
   _currentDialogue: 0
   _actualInteractionAgent: {fileID: 0}
   _listenAnOtherAgent: 
-  _percentTrustStart: 60
+  _percentTrustStart: 100
   _fluctuationTrust: 3
   _canTakeEnergy: 0
   _numberOfBatteryByPlace: 
