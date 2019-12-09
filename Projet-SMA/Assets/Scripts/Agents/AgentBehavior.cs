@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AgentStates { PutObject, FindingEnergy, FindingToxic, TakingEnergy, TakingToxic,
-    CarryingEnergyToPile,
+public enum AgentStates { PutObject, FindingEnergy, FindingToxic, TakingEnergy, TakingToxic,CarryingEnergyToPile,
     CarryingToxicToPile, Start }
 
 public enum AgentMovement { Move, Standby }
