@@ -20,6 +20,7 @@ public class AgentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _numberOfAgents = PlayerPrefs.GetInt("NumberOfAgents");
         _agents = new List<Agent>();
 
         GenerateRandomSpawnPoints();

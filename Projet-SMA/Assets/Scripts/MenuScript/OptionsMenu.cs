@@ -18,8 +18,8 @@ public class OptionsMenu : MonoBehaviour
     public Text _energyText;
     public Text _wasteText;
     private int _sliderAgents = 3;
-    private float _sliderEnergyValue = 10.0f;
-    private float _sliderWasteValue = 10.0f;
+    private float _sliderEnergyValue = 50.0f;
+    private float _sliderWasteValue = 30.0f;
     private float _sliderMusicValue = 0.5f;
 
     public void Start()

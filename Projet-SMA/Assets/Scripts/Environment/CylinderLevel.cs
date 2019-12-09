@@ -21,14 +21,18 @@ public class CylinderLevel : MonoBehaviour
 
     private void Start()
     {
+        // Initiate percent
         if(_cylinder.name== "energy-cylinder")
         {
+            _rateStart = PlayerPrefs.GetFloat("EnergyPercent");
             _nameOfTheObject = "EnergyCoil(Clone)";
         }
         if (_cylinder.name == "waste-cylinder")
         {
+            _rateStart = PlayerPrefs.GetFloat("WastePercent");
             _nameOfTheObject = "Toxic(Clone)";
         }
+
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
         if (_rateStart > 90 || _rateStart < 10)
         {
@@ -38,6 +42,7 @@ public class CylinderLevel : MonoBehaviour
         {
             _ratePercent = _rateStart;
         }
+
         _countDown = _countDownUtilisateur;
         _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, FloatConverter(_ratePercent), _cylinder.transform.localPosition.z);
         _actualBatteryPose = 0;
