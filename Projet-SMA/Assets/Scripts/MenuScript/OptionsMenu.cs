@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class OptionsMenu : MonoBehaviour
 {
     // Toggle buttons
+    public GameObject _highIntelligenceText;
+    public GameObject _highIntelligenceTextLINE;
+    public GameObject _lowIntelligenceText;
+    public GameObject _lowIntelligenceTextLINE;
     public GameObject _yesText;
     public GameObject _yesTextLINE;
     public GameObject _noText;
@@ -26,6 +30,9 @@ public class OptionsMenu : MonoBehaviour
     {
         // Presence of sound effect
         YesEffect();
+
+        // Agent intelligence
+        HighLevel();
 
         // Number of Agents Slider
         PlayerPrefs.SetInt("NumberOfAgents", _sliderAgents);
@@ -72,6 +79,26 @@ public class OptionsMenu : MonoBehaviour
     public void MusicSlider()
     {
         PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue);
+    }
+
+    public void HighLevel()
+    {
+        _highIntelligenceText.GetComponent<Text>().text = "High";
+        _lowIntelligenceText.GetComponent<Text>().text = "Low";
+        _lowIntelligenceTextLINE.gameObject.SetActive(false);
+        _highIntelligenceTextLINE.gameObject.SetActive(true);
+        PlayerPrefs.SetInt("High", 1);
+        PlayerPrefs.SetInt("Low", 0);
+    }
+
+    public void LowLevel()
+    {
+        _highIntelligenceText.GetComponent<Text>().text = "High";
+        _lowIntelligenceText.GetComponent<Text>().text = "Low";
+        _lowIntelligenceTextLINE.gameObject.SetActive(true);
+        _highIntelligenceTextLINE.gameObject.SetActive(false);
+        PlayerPrefs.SetInt("High", 0);
+        PlayerPrefs.SetInt("Low", 1);
     }
 
     public void YesEffect()
