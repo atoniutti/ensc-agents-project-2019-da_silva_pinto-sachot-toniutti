@@ -9,10 +9,6 @@ public class OptionsMenu : MonoBehaviour
     public GameObject _highIntelligenceTextLINE;
     public GameObject _lowIntelligenceText;
     public GameObject _lowIntelligenceTextLINE;
-    public GameObject _yesText;
-    public GameObject _yesTextLINE;
-    public GameObject _noText;
-    public GameObject _noTextLINE;
 
     // Sliders
     public GameObject _agentsSlider;
@@ -28,9 +24,6 @@ public class OptionsMenu : MonoBehaviour
 
     public void Start()
     {
-        // Presence of sound effect
-        YesEffect();
-
         // Agent intelligence
         HighLevel();
 
@@ -99,25 +92,5 @@ public class OptionsMenu : MonoBehaviour
         _highIntelligenceTextLINE.gameObject.SetActive(false);
         PlayerPrefs.SetInt("High", 0);
         PlayerPrefs.SetInt("Low", 1);
-    }
-
-    public void YesEffect()
-    {
-        _yesText.GetComponent<Text>().text = "Yes";
-        _noText.GetComponent<Text>().text = "No";
-        _noTextLINE.gameObject.SetActive(false);
-        _yesTextLINE.gameObject.SetActive(true);
-        PlayerPrefs.SetInt("Yes", 1);
-        PlayerPrefs.SetInt("No", 0);
-    }
-
-    public void NoEffect()
-    {
-        _yesText.GetComponent<Text>().text = "Yes";
-        _noText.GetComponent<Text>().text = "No";
-        _noTextLINE.gameObject.SetActive(true);
-        _yesTextLINE.gameObject.SetActive(false);
-        PlayerPrefs.SetInt("Yes", 0);
-        PlayerPrefs.SetInt("No", 1);
     }
 }
