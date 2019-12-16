@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Agent : MonoBehaviour
 {
-    private static int PRE_CODE;
+    private static int PRE_CODE = 0;
 
     public NavMeshAgent _agent;
     private Animator _animator;
@@ -348,6 +348,11 @@ public class Agent : MonoBehaviour
             DestinationAgent(_currentTarget);
         }
         #endregion 
+    }
+
+    public void RestartCode()
+    {
+        PRE_CODE = 0;
     }
 
     // Agent animation manager

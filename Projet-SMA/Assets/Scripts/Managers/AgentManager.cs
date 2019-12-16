@@ -63,6 +63,12 @@ public class AgentManager : MonoBehaviour
 
     void Spawn(Transform spawnPoint)
     {
+        // Restart agent number
+        if (_agents.Count == 0)
+        {
+            _agent.RestartCode();
+        }
+
         // Create an instance of the agent prefab
         _agent = Instantiate(_agent, spawnPoint.position, spawnPoint.rotation);
         _agents.Add(_agent);

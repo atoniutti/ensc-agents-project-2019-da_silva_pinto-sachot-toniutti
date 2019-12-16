@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCanvas : MonoBehaviour
+public class PauseCanvas : MonoBehaviour
 {
-    public static bool _gameIsPaused = false;
+    private static bool _gameIsPaused = false;
 
     // Panels
     public PausePanel _pausePanel;
@@ -28,13 +28,16 @@ public class MainCanvas : MonoBehaviour
     {
         if (_gameIsPaused)
         {
-            _pausePanel.OpenPanel();
-            _gameIsPaused = false;
+            _pausePanel.ClosePanel();
         }
         else
         {
-            _pausePanel.ClosePanel();
-            _gameIsPaused = true;
+            _pausePanel.OpenPanel();
         }
+    }
+
+    public void SetGameIsPaused(bool isPaused)
+    {
+        _gameIsPaused = isPaused;
     }
 }

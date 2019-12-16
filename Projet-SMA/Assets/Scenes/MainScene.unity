@@ -3413,6 +3413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSlider: {fileID: 1975902752}
   _menuSceneName: MenuScene
+  _pauseCanvas: {fileID: 1841065696}
   _energyLevel: {fileID: 643495097}
   _wasteLevel: {fileID: 2145453394}
   _energySlider: {fileID: 545086018}
