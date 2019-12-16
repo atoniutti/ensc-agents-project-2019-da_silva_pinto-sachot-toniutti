@@ -29,25 +29,21 @@ public class OptionsMenu : MonoBehaviour
         HighLevel();
 
         // Number of Agents Slider
-        //PlayerPrefs.SetInt("NumberOfAgents", _sliderAgents);
         _sliderAgents = PlayerPrefs.GetInt("NumberOfAgents");
         _agentText.text = _sliderAgents.ToString();
         _agentsSlider.GetComponent<Slider>().value = _sliderAgents;
 
         // Energy percent Slider
-        //PlayerPrefs.SetFloat("EnergyPercent", _sliderEnergyValue);
         _sliderEnergyValue = PlayerPrefs.GetFloat("EnergyPercent");
         _energyText.text = _sliderEnergyValue.ToString() + "%";
         _energySlider.GetComponent<Slider>().value = _sliderEnergyValue;
 
         // Waste Percent Slider
-        //PlayerPrefs.SetFloat("WastePercent", _sliderWasteValue);
         _sliderWasteValue = PlayerPrefs.GetFloat("WastePercent");
         _wasteText.text = _sliderWasteValue.ToString() + "%";
         _wasteSlider.GetComponent<Slider>().value = _sliderWasteValue;
 
         // Choice of sound level
-        //PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue);
         _sliderMusicValue = PlayerPrefs.GetFloat("MusicVolume");
         _musicSlider.GetComponent<Slider>().value = _sliderMusicValue;
     }

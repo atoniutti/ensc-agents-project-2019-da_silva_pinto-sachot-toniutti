@@ -36,6 +36,11 @@ public class PauseCanvas : MonoBehaviour
         }
     }
 
+    public bool GetGameIsPaused()
+    {
+        return _gameIsPaused;
+    }
+
     public void SetGameIsPaused(bool isPaused)
     {
         _gameIsPaused = isPaused;
