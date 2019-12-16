@@ -9,6 +9,14 @@ public class PausePanel : MonoBehaviour
     public GameObject _musicSlider;
     public string _menuSceneName = "";
 
+    // Environment
+    public CylinderLevel _energyLevel;
+    public CylinderLevel _wasteLevel;
+
+    // Slider
+    public Slider _energySlider;
+    public Slider _wasteSlider;
+
     private float _sliderMusicValue;
 
     // Start is called before the first frame update
@@ -23,6 +31,10 @@ public class PausePanel : MonoBehaviour
     void Update()
     {
         _sliderMusicValue = _musicSlider.GetComponent<Slider>().value;
+
+        // Update Slider Of Energy & Waste Piles
+        _energySlider.value = _energyLevel._currentPercent;
+        _wasteSlider.value = _wasteLevel._currentPercent;
     }
 
     public void MusicSlider()
@@ -33,11 +45,13 @@ public class PausePanel : MonoBehaviour
     public void OpenPanel()
     {
         gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ClosePanel()
     {
         gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()

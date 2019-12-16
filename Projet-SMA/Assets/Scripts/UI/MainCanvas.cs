@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MainCanvas : MonoBehaviour
 {
+    public static bool _gameIsPaused = false;
+
     // Panels
     public PausePanel _pausePanel;
 
@@ -16,7 +18,7 @@ public class MainCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ActivePausePanel();
         }
@@ -24,13 +26,15 @@ public class MainCanvas : MonoBehaviour
 
     public void ActivePausePanel()
     {
-        if (_pausePanel.isActiveAndEnabled)
+        if (_gameIsPaused)
         {
-            _pausePanel.ClosePanel();
+            _pausePanel.OpenPanel();
+            _gameIsPaused = false;
         }
         else
         {
-            _pausePanel.OpenPanel();
+            _pausePanel.ClosePanel();
+            _gameIsPaused = true;
         }
     }
 }

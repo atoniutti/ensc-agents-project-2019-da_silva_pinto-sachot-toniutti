@@ -13141,7 +13141,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1815
+    m_Bits: 10007
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -42703,7 +42703,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 855415475505593588}
   m_HandleRect: {fileID: 8510454936737143643}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
