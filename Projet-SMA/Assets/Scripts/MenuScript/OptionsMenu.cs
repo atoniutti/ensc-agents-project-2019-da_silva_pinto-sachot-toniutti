@@ -33,11 +33,11 @@ public class OptionsMenu : MonoBehaviour
 
         // Energy percent Slider
         PlayerPrefs.SetFloat("EnergyPercent", _sliderEnergyValue);
-        _musicSlider.GetComponent<Slider>().value = _sliderEnergyValue;
+        _energySlider.GetComponent<Slider>().value = _sliderEnergyValue;
 
         // Waste Percent Slider
         PlayerPrefs.SetFloat("WastePercent", _sliderWasteValue);
-        _musicSlider.GetComponent<Slider>().value = _sliderWasteValue;
+        _wasteSlider.GetComponent<Slider>().value = _sliderWasteValue;
 
         // Choice of sound level
         PlayerPrefs.SetFloat("MusicVolume", _sliderMusicValue);
