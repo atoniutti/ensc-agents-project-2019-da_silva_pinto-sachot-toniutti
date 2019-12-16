@@ -418,6 +418,11 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 56737455243220829, guid: 9ad5f2809d86bd549abe59d75aa1ca03,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AgentsSlider
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ad5f2809d86bd549abe59d75aa1ca03, type: 3}
 --- !u!1001 &1341055979
