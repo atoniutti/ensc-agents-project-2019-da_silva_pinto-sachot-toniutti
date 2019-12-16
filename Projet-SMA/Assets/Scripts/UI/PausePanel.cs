@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PausePanel : MonoBehaviour
 {
     public GameObject _musicSlider;
-    public string _menuSceneName = "";
 
     // Canvas
-    public PauseCanvas _pauseCanvas;
+    public GlobalCanvas _globalCanvas;
 
     // Environment
     public CylinderLevel _energyLevel;
@@ -25,6 +23,8 @@ public class PausePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ClosePanel();
+
         // Choice of sound level
         _sliderMusicValue = PlayerPrefs.GetFloat("MusicVolume");
         _musicSlider.GetComponent<Slider>().value = _sliderMusicValue;
@@ -49,21 +49,18 @@ public class PausePanel : MonoBehaviour
     {
         gameObject.SetActive(true);
         Time.timeScale = 0f;
-        _pauseCanvas.SetGameIsPaused(true);
+        _globalCanvas.SetGameIsPaused(true);
     }
 
     public void ClosePanel()
     {
         gameObject.SetActive(false);
         Time.timeScale = 1f;
-        _pauseCanvas.SetGameIsPaused(false);
+        _globalCanvas.SetGameIsPaused(false);
     }
 
     public void QuitGame()
     {
-        if (_menuSceneName != "")
-        {
-            SceneManager.LoadScene(_menuSceneName, LoadSceneMode.Single);
-        }
+        _globalCanvas.QuitGame();
     }
 }

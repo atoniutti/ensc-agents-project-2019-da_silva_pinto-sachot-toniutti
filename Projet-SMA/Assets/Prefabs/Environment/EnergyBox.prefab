@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cylinder: {fileID: 1046248898748356033}
   _energyBoxEnter: {fileID: 0}
-  _rateStart: 25
+  _rateStart: 35
   _currentPercent: 0
   _percentQuantiteIn: 5
   _percentQuantiteOff: 2

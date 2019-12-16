@@ -27,21 +27,23 @@ public class CylinderLevel : MonoBehaviour
             _rateStart = PlayerPrefs.GetFloat("EnergyPercent");
             _nameOfTheObject = "EnergyCoil(Clone)";
         }
+
         if (_cylinder.name == "waste-cylinder")
         {
             _rateStart = PlayerPrefs.GetFloat("WastePercent");
             _nameOfTheObject = "Toxic(Clone)";
         }
 
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        if (_rateStart > 90 || _rateStart < 10)
-        {
-            _ratePercent = 50;
-        }
-        else
-        {
-            _ratePercent = _rateStart;
-        }
+        //gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        //if (_rateStart > 90 || _rateStart < 10)
+        //{
+        //    _ratePercent = 50;
+        //}
+        //else
+        //{
+        //    _ratePercent = _rateStart;
+        //}
+        _ratePercent = _rateStart;
 
         _countDown = _countDownUtilisateur;
         _cylinder.transform.localPosition = new Vector3(_cylinder.transform.localPosition.x, FloatConverter(_ratePercent), _cylinder.transform.localPosition.z);

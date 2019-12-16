@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class TimePanel : MonoBehaviour
 {
     public Text _time;
-    public PauseCanvas _pausePanel;
+    public GlobalCanvas _pausePanel;
 
     Stopwatch _stopWatch;
 
@@ -38,5 +38,10 @@ public class TimePanel : MonoBehaviour
         {
             _stopWatch.Start();
         }
+    }
+
+    public TimeSpan GetTime()
+    {
+        return _stopWatch.Elapsed;
     }
 }
