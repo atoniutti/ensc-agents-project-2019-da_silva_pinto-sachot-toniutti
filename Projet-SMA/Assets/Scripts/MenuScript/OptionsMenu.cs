@@ -15,6 +15,7 @@ public class OptionsMenu : MonoBehaviour
     public GameObject _energySlider;
     public GameObject _wasteSlider;
     public GameObject _musicSlider;
+    public Text _agentText;
     public Text _energyText;
     public Text _wasteText;
     private int _sliderAgents = 3;
@@ -29,6 +30,7 @@ public class OptionsMenu : MonoBehaviour
 
         // Number of Agents Slider
         PlayerPrefs.SetInt("NumberOfAgents", _sliderAgents);
+        _agentText.text = _sliderAgents.ToString();
         _agentsSlider.GetComponent<Slider>().value = _sliderAgents;
 
         // Energy percent Slider
@@ -57,6 +59,7 @@ public class OptionsMenu : MonoBehaviour
     public void AgentsSlider()
     {
         PlayerPrefs.SetInt("NumberOfAgents", _sliderAgents);
+        _agentText.text = _sliderAgents.ToString();
     }
 
     public void EnergySlider()
