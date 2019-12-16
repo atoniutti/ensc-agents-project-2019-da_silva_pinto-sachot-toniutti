@@ -34,11 +34,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    //public void DisablePlay()
-    //{
-
-    //}
-
     public void Position1()
     {
         _lightMenu.intensity = 2;
@@ -48,7 +43,6 @@ public class MainMenu : MonoBehaviour
     public void Position2()
     {
         _lightMenu.intensity = 2;
-        //DisablePlay();
 
         _panelareYouSure.gameObject.SetActive(false);
         _cameraObject.SetFloat("Animate", 1);
@@ -58,7 +52,6 @@ public class MainMenu : MonoBehaviour
     public void AreYouSure()
     {
         _panelareYouSure.gameObject.SetActive(true);
-        //DisablePlay();
     }
 
     public void NoExit()
