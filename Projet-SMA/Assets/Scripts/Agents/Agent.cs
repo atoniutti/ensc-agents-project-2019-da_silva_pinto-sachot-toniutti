@@ -199,6 +199,7 @@ public class Agent : MonoBehaviour
                 _percentOfEnergyPile = _fieldOfView._percentOfEnergy;
                 _percentOfWastePile = _fieldOfView._percentOfWaste;
                 _currentState = MakeAChoiceState(_percentOfEnergyPile, _percentOfWastePile);
+                _currentTarget = MakeAChoiceDirection(_numberOfBatteryByPlace, _previousTarget, _currentTarget);
                 AnimationMove(_currentState);
                 _randomDirection = Random.Range(0, 4);
                 _checkPile = true;
@@ -360,7 +361,7 @@ public class Agent : MonoBehaviour
     // Agent animation manager
     public void AnimationMove(AgentStates agentStates)
     {
-        if (_mouvement == AgentMovement.Standby && _currentState == AgentStates.FindingEnergy)
+        if (_mouvement == AgentMovement.Standby && _currentState == AgentStates.FindingEnergy )
         {
             _animator.SetBool("walk", false);
         }
@@ -381,7 +382,7 @@ public class Agent : MonoBehaviour
 
     private void SetAgentMovement(Direction currenTarget)
     {
-        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(_target[(int)currenTarget].position.x, _target[(int)currenTarget].position.z)) < 0.5)
+        if (currenTarget<=(Direction)4 && Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(_target[(int)currenTarget].position.x, _target[(int)currenTarget].position.z)) < 0.5)
         {
             _mouvement = AgentMovement.Standby;
         }
