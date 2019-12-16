@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CameraButton : MonoBehaviour
 {
-    public void SwitchCamera ()
+    public void SwitchCamera()
     {
         CameraManager cameraManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         cameraManager.SwitchCamera();

@@ -7,7 +7,6 @@ public class AgentManager : MonoBehaviour
     public Agent _agent;
     public List<Agent> _agents;
     public int _numberOfAgents = 5;
-    
 
     List<Transform> _spawnPoints = new List<Transform>();
     float _maxX = 0f;

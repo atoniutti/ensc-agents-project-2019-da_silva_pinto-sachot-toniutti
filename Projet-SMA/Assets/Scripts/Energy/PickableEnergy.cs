@@ -12,7 +12,7 @@ public class PickableEnergy : MonoBehaviour
     private static int _idPrec = 0;
     public int _idEnergy; // Identifiant of the energy
     public int _matriculAgent;
-    
+
     private void Start()
     {
         gameObject.GetComponent<BoxCollider>().isTrigger = false;

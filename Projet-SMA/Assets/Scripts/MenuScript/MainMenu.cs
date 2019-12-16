@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
         _panelareYouSure.gameObject.SetActive(false);
         NewGame();
     }
-    
+
     public void NewGame()
     {
         if (_sceneName != "")
@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
         _panelareYouSure.gameObject.SetActive(false);
         _cameraObject.SetFloat("Animate", 1);
     }
-    
+
     // Are You Sure - Quit Panel Pop Up
     public void AreYouSure()
     {

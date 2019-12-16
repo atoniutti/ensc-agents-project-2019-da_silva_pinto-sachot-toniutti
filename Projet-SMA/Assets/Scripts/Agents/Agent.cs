@@ -84,15 +84,16 @@ public class Agent : MonoBehaviour
             InstanciateTrust(_percentTrustStart);
             _boolStartTrust = false;
         }
+
         //go out or no after x seconde of the currentTarget if there is no energy
-        if(_mouvement==AgentMovement.Standby && _currentState==AgentStates.FindingEnergy)
+        if (_mouvement == AgentMovement.Standby && _currentState == AgentStates.FindingEnergy && PlayerPrefs.GetInt("High") == 1)
         {
             _countDown -= Time.deltaTime;
             bool stayOrNo = MakeAChoiceTrust(50);
-            if (_countDown <= 0.0f && stayOrNo==true)
+            if (_countDown <= 0.0f && stayOrNo == true)
             {
                 _currentTarget = MakeAChoiceDirection(_numberOfBatteryByPlace, _previousTarget, _currentTarget);
-                _countDown = _countDownUtilisateur ;
+                _countDown = _countDownUtilisateur;
                 ListenDialogue();
             }
             if (_countDown <= 0.0f && stayOrNo == false)
@@ -100,6 +101,7 @@ public class Agent : MonoBehaviour
                 _countDown = _countDownUtilisateur;
             }
         }
+
         // Look if the percent of trust is >0 and <100
         TrustManager();
 
@@ -241,7 +243,7 @@ public class Agent : MonoBehaviour
                     _currentTarget = newTarget;
                     _doneHistoric = true;
                 }
-               
+
                 // If he meet an other agent 
                 if (_listenAnOtherAgent[_actualInteractionAgent._code - 1] == true && _fieldOfView._agentFront == true && _fieldOfView._agentMember == _actualInteractionAgent
                && _currentState != AgentStates.FindingAcid && _currentState != AgentStates.CarryingAcidToPile)
@@ -358,7 +360,7 @@ public class Agent : MonoBehaviour
     // Agent animation manager
     public void AnimationMove(AgentStates agentStates)
     {
-        if(_mouvement==AgentMovement.Standby &&  _currentState==AgentStates.FindingEnergy)
+        if (_mouvement == AgentMovement.Standby && _currentState == AgentStates.FindingEnergy)
         {
             _animator.SetBool("walk", false);
         }
@@ -374,14 +376,14 @@ public class Agent : MonoBehaviour
                 _animator.SetTrigger("takeRessource");
             }
         }
-        
+
     }
 
     private void SetAgentMovement(Direction currenTarget)
     {
-        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(_target[(int)currenTarget].position.x, _target[(int)currenTarget].position.z)) <0.5)
+        if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(_target[(int)currenTarget].position.x, _target[(int)currenTarget].position.z)) < 0.5)
         {
-            _mouvement=AgentMovement.Standby;
+            _mouvement = AgentMovement.Standby;
         }
         else
         {

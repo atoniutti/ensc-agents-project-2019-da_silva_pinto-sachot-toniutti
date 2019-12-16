@@ -15,7 +15,7 @@ public class UIAgent : MonoBehaviour
     public Canvas canvasAgent;
 
     CameraManager _cameraManager;
-    
+
     // Start is called before the first frame update
     void Start()
     {

@@ -22,7 +22,7 @@ public class CylinderLevel : MonoBehaviour
     private void Start()
     {
         // Initiate percent
-        if(_cylinder.name== "energy-cylinder")
+        if (_cylinder.name == "energy-cylinder")
         {
             _rateStart = PlayerPrefs.GetFloat("EnergyPercent");
             _nameOfTheObject = "EnergyCoil(Clone)";
