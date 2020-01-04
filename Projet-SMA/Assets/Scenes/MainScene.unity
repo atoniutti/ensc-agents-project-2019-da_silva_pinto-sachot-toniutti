@@ -832,7 +832,6 @@ GameObject:
   m_Component:
   - component: {fileID: 384011353}
   - component: {fileID: 384011354}
-  - component: {fileID: 384011356}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: CameraManager
@@ -871,14 +870,6 @@ MonoBehaviour:
   _currentCamera: {fileID: 0}
   _currentAgent: {fileID: 0}
   _agentManager: {fileID: 2010744429}
---- !u!81 &384011356
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384011352}
-  m_Enabled: 1
 --- !u!1 &425631600
 GameObject:
   m_ObjectHideFlags: 0
