@@ -410,6 +410,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 7844739615922804196, guid: b69ad077fd74c484a80877f64b6cf449,
+        type: 3}
+      propertyPath: m_Name
+      value: WasteText
+      objectReference: {fileID: 0}
     - target: {fileID: 4498359565208793909, guid: b69ad077fd74c484a80877f64b6cf449,
         type: 3}
       propertyPath: m_Layer
@@ -952,6 +957,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &489885761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7844739615922804198, guid: b69ad077fd74c484a80877f64b6cf449,
+    type: 3}
+  m_PrefabInstance: {fileID: 48685888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &545086018 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4345961815407710959, guid: b69ad077fd74c484a80877f64b6cf449,
@@ -1346,6 +1363,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 7844739615922804196, guid: b69ad077fd74c484a80877f64b6cf449,
+        type: 3}
+      propertyPath: m_Name
+      value: EnergyText
+      objectReference: {fileID: 0}
     - target: {fileID: 4498359565208793909, guid: b69ad077fd74c484a80877f64b6cf449,
         type: 3}
       propertyPath: m_Layer
@@ -1590,6 +1612,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724451973}
   m_CullTransparentMesh: 0
+--- !u!114 &762900307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7844739615922804198, guid: b69ad077fd74c484a80877f64b6cf449,
+    type: 3}
+  m_PrefabInstance: {fileID: 680171645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &775985318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3745,6 +3779,8 @@ MonoBehaviour:
   _wasteLevel: {fileID: 2145453394}
   _energySlider: {fileID: 545086018}
   _wasteSlider: {fileID: 2103146935}
+  _energyText: {fileID: 762900307}
+  _wasteText: {fileID: 489885761}
 --- !u!224 &2047374093
 RectTransform:
   m_ObjectHideFlags: 0

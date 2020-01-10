@@ -18,6 +18,10 @@ public class PausePanel : MonoBehaviour
     public Slider _energySlider;
     public Slider _wasteSlider;
 
+    // Text
+    public Text _energyText;
+    public Text _wasteText;
+
     private float _sliderMusicValue;
 
     // Start is called before the first frame update
@@ -37,7 +41,9 @@ public class PausePanel : MonoBehaviour
 
         // Update Slider Of Energy & Waste Piles
         _energySlider.value = _energyLevel._currentPercent;
+        _energyText.text = _energySlider.value + "%";
         _wasteSlider.value = _wasteLevel._currentPercent;
+        _wasteText.text = _wasteSlider.value + "%";
     }
 
     public void MusicSlider()
