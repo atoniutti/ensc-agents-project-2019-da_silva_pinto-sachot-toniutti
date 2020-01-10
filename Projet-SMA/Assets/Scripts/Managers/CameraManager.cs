@@ -18,7 +18,7 @@ public class CameraManager : MonoBehaviour
     {
         _currentCamera = _mainCamera;
         _agentCameraButton.onClick.AddListener(DisplayAgentCamera);
-        _audioMusic = GetComponent<AudioSource>();
+        _audioMusic = _currentCamera.GetComponent<AudioSource>();
         _audioMusic.volume = PlayerPrefs.GetFloat("MusicVolume");
     }
 
