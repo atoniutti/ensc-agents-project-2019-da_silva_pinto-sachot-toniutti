@@ -401,7 +401,6 @@ public class Agent : MonoBehaviour
             {
                 AgentTrust trustInAgent = new AgentTrust(agentOther.GetComponent<Agent>(), trust);
                 _agentsList.Add(trustInAgent);
-                // Debug.Log("L'agent " + _code + " a une confiance en " + trustInAgent.agent._code + " de : " + trustInAgent.trust);
             }
         }
     }
