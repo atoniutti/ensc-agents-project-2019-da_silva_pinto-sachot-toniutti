@@ -34,15 +34,6 @@ public class CylinderLevel : MonoBehaviour
             _nameOfTheObject = "Toxic(Clone)";
         }
 
-        //gameObject.GetComponent<BoxCollider>().isTrigger = true;
-        //if (_rateStart > 90 || _rateStart < 10)
-        //{
-        //    _ratePercent = 50;
-        //}
-        //else
-        //{
-        //    _ratePercent = _rateStart;
-        //}
         _ratePercent = _rateStart;
 
         _countDown = _countDownUtilisateur;
