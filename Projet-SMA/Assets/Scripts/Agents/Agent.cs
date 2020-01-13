@@ -391,6 +391,7 @@ public class Agent : MonoBehaviour
             _mouvement = AgentMovement.Move;
         }
     }
+
     // Instanciate trust for each agent friend
     private void InstanciateTrust(float trust)
     {
