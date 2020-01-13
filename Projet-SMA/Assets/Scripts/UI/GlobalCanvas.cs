@@ -34,7 +34,7 @@ public class GlobalCanvas : MonoBehaviour
         }
 
         // Game Over
-        if (_energyLevel._currentPercent == 0 || _energyLevel._currentPercent == 1 || _wasteLevel._currentPercent == 100)
+        if (_energyLevel._currentPercent <= 1 || _wasteLevel._currentPercent == 100)
         {
             _gameOverPanel.GameOver();
             _gameIsOver = true;
