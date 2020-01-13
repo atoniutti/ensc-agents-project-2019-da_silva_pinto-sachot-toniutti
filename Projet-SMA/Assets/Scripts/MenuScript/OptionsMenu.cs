@@ -26,7 +26,14 @@ public class OptionsMenu : MonoBehaviour
     public void Start()
     {
         // Agent intelligence
-        HighLevel();
+        if (PlayerPrefs.GetInt("High") == 1)
+        {
+            HighLevel();
+        }
+        else
+        {
+            LowLevel();
+        }
 
         // Number of Agents Slider
         _sliderAgents = PlayerPrefs.GetInt("NumberOfAgents");
