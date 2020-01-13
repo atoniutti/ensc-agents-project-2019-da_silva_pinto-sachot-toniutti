@@ -16,6 +16,7 @@ public class GlobalCanvas : MonoBehaviour
 
     // Cylinder
     public CylinderLevel _energyLevel;
+    public CylinderLevel _wasteLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class GlobalCanvas : MonoBehaviour
         }
 
         // Game Over
-        if (_energyLevel._currentPercent == 0)
+        if (_energyLevel._currentPercent == 0 || _wasteLevel._currentPercent == 100)
         {
             _gameOverPanel.GameOver();
             _gameIsOver = true;
